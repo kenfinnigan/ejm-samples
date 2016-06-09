@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>ejm</groupId>
+  <artifactId>ejm-samples-parent</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <name>Sample code for Enterprise Java Microservices</name>
+
+  <packaging>pom</packaging>
+
+  <properties>
+    <version.springframework>4.1.9.RELEASE</version.springframework>
+  </properties>
+
+  <scm>
+    <connection>scm:git:git@github.com:kenfinnigan/wildfly-swarm-parent.git</connection>
+    <developerConnection>scm:git:git@github.com:kenfinnigan/wildfly-swarm-parent.git</developerConnection>
+    <url>https://github.com/kenfinnigan/wildfly-swarm-parent</url>
+    <tag>HEAD</tag>
+  </scm>
+
+  <licenses>
+    <license>
+      <name>AL2</name>
+    </license>
+  </licenses>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- Java EE APIs -->
+      <dependency>
+        <groupId>javax</groupId>
+        <artifactId>javaee-api</artifactId>
+        <version>7.0</version>
+      </dependency>
+
+      <!-- Spring Framework -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-webmvc</artifactId>
+        <version>${version.springframework}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <modules>
+    <module>chapter1</module>
+  </modules>
+
+  <profiles>
+    <profile>
+      <id>license</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.mycila</groupId>
+            <artifactId>license-maven-plugin</artifactId>
+            <configuration>
+              <header>http://wildfly-swarm.io/community/license-header.txt</header>
+              <includes>
+                <include>**/*.java</include>
+              </includes>
+            </configuration>
+            <executions>
+              <execution>
+                <phase>verify</phase>
+                <goals>
+                  <goal>format</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <skip>true</skip>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <configuration>
+              <skip>true</skip>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>
