@@ -12,6 +12,7 @@
   <packaging>pom</packaging>
 
   <properties>
+    <version.wildfly-swarm>1.0.0.CR1</version.wildfly-swarm>
     <version.springframework>4.1.9.RELEASE</version.springframework>
   </properties>
 
@@ -45,6 +46,25 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.wildfly.swarm</groupId>
+          <artifactId>wildfly-swarm-plugin</artifactId>
+          <version>${version.wildfly-swarm}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>package</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 
   <modules>
     <module>chapter1</module>
