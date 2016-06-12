@@ -1,8 +1,14 @@
 package ejm.chapter1.spring.services;
 
+import org.springframework.stereotype.Service;
+
 /**
  * @author Ken Finnigan
  */
-public interface HelloService {
-    String sayHello(String name);
+@Service
+public class HelloService {
+
+    public String sayHello(String name) {
+        return "Hello " + name;
+    }
 }
