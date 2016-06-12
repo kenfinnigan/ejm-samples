@@ -17,5 +17,6 @@
   <modules>
     <module>javaee</module>
     <module>spring</module>
+    <module>microservce-javaee</module>
   </modules>
 </project>
