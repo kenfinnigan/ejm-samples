@@ -12,7 +12,7 @@
   <packaging>pom</packaging>
 
   <properties>
-    <version.wildfly-swarm>1.0.0.CR1</version.wildfly-swarm>
+    <version.wildfly-swarm>1.0.0.CR2</version.wildfly-swarm>
     <version.springframework>4.1.9.RELEASE</version.springframework>
   </properties>
 
@@ -31,6 +31,15 @@
 
   <dependencyManagement>
     <dependencies>
+      <!-- WildFly Swarm -->
+      <dependency>
+        <groupId>org.wildfly.swarm</groupId>
+        <artifactId>bom</artifactId>
+        <version>${version.wildfly-swarm}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+
       <!-- Java EE APIs -->
       <dependency>
         <groupId>javax</groupId>
@@ -69,6 +78,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.2</version>
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
