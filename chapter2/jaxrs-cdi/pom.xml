@@ -10,7 +10,7 @@
     <relativePath>../pom.xml</relativePath>
   </parent>
 
-  <artifactId>chapter1-jaxrs-cdi</artifactId>
+  <artifactId>chapter2-jaxrs-cdi</artifactId>
   <name>Employee Application - JAX-RS and CDI</name>
   <packaging>war</packaging>
 
