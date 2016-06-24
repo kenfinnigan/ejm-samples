@@ -1,0 +1,22 @@
+{
+  "name": "employee-database-ui",
+  "description": "Employee Database UI",
+  "main": "",
+  "authors": [
+    "Ken Finnigan"
+  ],
+  "license": "Apache-2.0",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "patternfly": "^3.5.1",
+    "react": "0.14.8"
+  }
+}
