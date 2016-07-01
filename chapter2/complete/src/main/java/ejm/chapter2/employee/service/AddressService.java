@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
@@ -25,23 +26,26 @@ public class AddressService {
     @Transactional
     public Address create(Address address) throws Exception {
         entityManager.persist(address);
-        return entityManager.find(Address.class, address.getId());
+        return address;
     }
 
     public Address retrieve(Integer addressId) throws Exception {
-        return entityManager.find(Address.class, addressId);
+        Address address = entityManager.find(Address.class, addressId);
+        if (address == null) {
+            throw new EntityNotFoundException("Address for id " + addressId + " was not found");
+        }
+        return address;
     }
 
     @Transactional
-    public boolean delete(Integer addressId) throws Exception {
+    public void delete(Integer addressId) throws Exception {
         Address address = entityManager.find(Address.class, addressId);
 
         if (address != null) {
             entityManager.remove(address);
-            return true;
+        } else {
+            throw new EntityNotFoundException("Address for id " + addressId + " was not found");
         }
-
-        return false;
     }
 
     @Transactional

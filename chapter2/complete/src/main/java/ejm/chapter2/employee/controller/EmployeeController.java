@@ -44,14 +44,13 @@ public class EmployeeController {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{employeeId}")
     public Employee getEmployee(@PathParam("employeeId") Integer employeeId) throws Exception {
-        Employee employee = service.retrieve(employeeId);
-        return employee;
+        return service.retrieve(employeeId);
     }
 
     @DELETE
     @Path("/{employeeId}")
-    public boolean removeEmployee(@PathParam("employeeId") Integer employeeId) throws Exception {
-        return service.delete(employeeId);
+    public void removeEmployee(@PathParam("employeeId") Integer employeeId) throws Exception {
+        service.delete(employeeId);
     }
 
     @PUT

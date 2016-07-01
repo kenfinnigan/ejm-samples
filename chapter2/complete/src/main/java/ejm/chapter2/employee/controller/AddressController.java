@@ -50,8 +50,8 @@ public class AddressController {
 
     @DELETE
     @Path("/{addressId}")
-    public boolean removeEmployee(@PathParam("addressId") Integer addressId) throws Exception {
-        return service.delete(addressId);
+    public void removeEmployee(@PathParam("addressId") Integer addressId) throws Exception {
+        service.delete(addressId);
     }
 
     @PUT

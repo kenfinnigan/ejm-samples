@@ -27,7 +27,7 @@ public class EmployeeService {
     @Transactional
     public Employee create(Employee employee) throws Exception {
         entityManager.persist(employee);
-        return entityManager.find(Employee.class, employee.getId());
+        return employee;
     }
 
     public Employee retrieve(Integer employeeId) throws Exception {
@@ -39,15 +39,14 @@ public class EmployeeService {
     }
 
     @Transactional
-    public boolean delete(Integer employeeId) throws Exception {
+    public void delete(Integer employeeId) throws Exception {
         Employee employee = entityManager.find(Employee.class, employeeId);
 
         if (employee != null) {
             entityManager.remove(employee);
-            return true;
+        } else {
+            throw new EntityNotFoundException("Employee for id " + employeeId + " was not found");
         }
-
-        return false;
     }
 
     @Transactional
