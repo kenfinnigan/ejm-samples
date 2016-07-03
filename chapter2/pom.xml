@@ -20,4 +20,36 @@
     <module>complete</module>
     <module>ui</module>
   </modules>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.wildfly.swarm</groupId>
+          <artifactId>wildfly-swarm-plugin</artifactId>
+          <configuration>
+            <properties>
+              <swarm.bind.address>127.0.0.1</swarm.bind.address>
+              <java.net.preferIPv4Stack>true</java.net.preferIPv4Stack>
+              <jboss.node.name>${project.artifactId}</jboss.node.name>
+            </properties>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>package</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.wildfly.swarm</groupId>
+      <artifactId>topology-jgroups</artifactId>
+    </dependency>
+  </dependencies>
 </project>
