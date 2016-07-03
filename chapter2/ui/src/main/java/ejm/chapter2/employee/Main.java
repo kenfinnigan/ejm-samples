@@ -2,6 +2,8 @@ package ejm.chapter2.employee;
 
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.wildfly.swarm.Swarm;
+import org.wildfly.swarm.topology.webapp.TopologyProperties;
+import org.wildfly.swarm.topology.webapp.TopologyWebAppFraction;
 import org.wildfly.swarm.undertow.WARArchive;
 
 /**
@@ -11,9 +13,9 @@ public class Main {
     public static void main(String... args) throws Exception {
         Swarm swarm = new Swarm();
 
-//        System.setProperty(TopologyProperties.CONTEXT_PATH, "/topology-webapp");
-//        TopologyWebAppFraction topologyWebAppFraction = new TopologyWebAppFraction();
-//        swarm.fraction(topologyWebAppFraction);
+        System.setProperty(TopologyProperties.CONTEXT_PATH, "/topology-webapp");
+        TopologyWebAppFraction topologyWebAppFraction = new TopologyWebAppFraction();
+        swarm.fraction(topologyWebAppFraction);
 
         swarm.start();
 
