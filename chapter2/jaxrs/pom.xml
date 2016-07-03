@@ -29,6 +29,11 @@
       <plugin>
         <groupId>org.wildfly.swarm</groupId>
         <artifactId>wildfly-swarm-plugin</artifactId>
+        <configuration>
+          <properties>
+            <swarm.port.offset>1</swarm.port.offset>
+          </properties>
+        </configuration>
       </plugin>
     </plugins>
   </build>
@@ -38,6 +43,11 @@
       <groupId>javax</groupId>
       <artifactId>javaee-api</artifactId>
       <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.wildfly.swarm</groupId>
+      <artifactId>ribbon</artifactId>
     </dependency>
   </dependencies>
 </project>
