@@ -17,6 +17,7 @@
   ],
   "dependencies": {
     "patternfly": "^3.5.1",
-    "react": "0.14.8"
+    "react": "0.14.8",
+    "reflux": "0.2.13"
   }
 }
