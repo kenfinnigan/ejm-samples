@@ -64,6 +64,7 @@ Chapter2.Actions.Employees.load.listen( function() {
       Chapter2.Actions.Employees.load.completed(data);
     }, function(err) {
       console.log("Retrieving employees failed", err);
+      Chapter2.Actions.Employees.load.failed;
     });
 });
 
@@ -90,33 +91,62 @@ Chapter2.Employees = React.createClass({
     }
   },
 
+  componentDidMount: function() {
+    $(document).ready(function () {
+      var widest = 0;
+      $('.list-view-pf-equalized-column .list-view-pf-additional-info-item').each( function() {
+        widest = $(this).width() > widest ? $(this).width() : widest;
+      }).width(widest);
+    });
+  },
+
   render: function() {
     return (
       <div>
         <h1>Employees</h1>
-        <ul>
+        <div className="list-group list-view-pf">
           {
             this.state.items.map(function(e) {
               return (
-                <Chapter2.Employees.Item key={e.id} item={e}/>
+                <div className="list-group-item list-view-pf-stacked" key={e.id}>
+                  <div className="list-view-pf-actions">
+                    <button className="btn btn-info">Details</button>
+                    <button className="btn btn-danger">Delete</button>
+                  </div>
+                  <div className="list-view-pf-main-info">
+                    <div className="list-view-pf-left">
+                      <span className="pficon pficon-user list-view-pf-icon-md list-view-pf-icon-success"></span>
+                    </div>
+                    <div className="list-view-pf-body">
+                      <div className="list-view-pf-description">
+                        <div className="list-group-item-heading">
+                          {e.firstname} {e.lastname}
+                        </div>
+                        <div className="list-group-item-text" data-toggle="tooltip" title="Social Security Number">
+                          <span>SSN:</span> {e.socialSecurity}
+                        </div>
+                      </div>
+                      <div className="list-view-pf-additional-info">
+                        <div className="list-view-pf-additional-info-item">
+                          <span>Home Ph:&nbsp;</span> {e.homePhone}
+                        </div>
+                        <div className="list-view-pf-additional-info-item">
+                          <span>Salary:&nbsp;</span> {e.salary}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               );
             })
           }
-        </ul>
+        </div>
       </div>
     );
   }
 });
 
-Chapter2.Employees.Item = React.createClass({
-  render: function() {
-    return (
-      <li>{this.props.item.title}</li>
-    );
-  }
-});
-
-Chapter2.Employee = React.createClass({
+Chapter2.EmployeeDetail = React.createClass({
   render: function() {
     return (
       <h1>Single Employee</h1>
@@ -144,7 +174,7 @@ var routes = (
   <Route path="/" handler={Chapter2.App}>
     <DefaultRoute name="home" handler={Chapter2.Home}/>
     <Route name="employees">
-      <Route name="employee" path=":id" handler={Chapter2.Employee}/>
+      <Route name="employee-detail" path=":id" handler={Chapter2.EmployeeDetail}/>
       <DefaultRoute handler={Chapter2.Employees}/>
     </Route>
     <Route name="addresses">
