@@ -34,12 +34,6 @@ Chapter2.LeftNav = React.createClass({
               <span className="list-group-item-value">Employees</span>
             </Link>
           </li>
-          <li className="list-group-item">
-            <Link to="addresses">
-              <span className="fa fa-book"></span>
-              <span className="list-group-item-value">Addresses</span>
-            </Link>
-          </li>
         </ul>
       </div>
     );
@@ -154,32 +148,12 @@ Chapter2.EmployeeDetail = React.createClass({
   }
 });
 
-Chapter2.Addresses = React.createClass({
-  render: function() {
-    return (
-      <h1>Addresses</h1>
-    );
-  }
-});
-
-Chapter2.Address = React.createClass({
-  render: function() {
-    return (
-      <h1>Single Address</h1>
-    );
-  }
-});
-
 var routes = (
   <Route path="/" handler={Chapter2.App}>
     <DefaultRoute name="home" handler={Chapter2.Home}/>
     <Route name="employees">
       <Route name="employee-detail" path=":id" handler={Chapter2.EmployeeDetail}/>
       <DefaultRoute handler={Chapter2.Employees}/>
-    </Route>
-    <Route name="addresses">
-      <Route name="address" path=":id" handler={Chapter2.Address}/>
-      <DefaultRoute handler={Chapter2.Addresses}/>
     </Route>
   </Route>
 );
