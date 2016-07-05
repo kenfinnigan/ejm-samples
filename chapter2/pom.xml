@@ -11,7 +11,7 @@
   </parent>
 
   <artifactId>chapter2</artifactId>
-  <name>Chapter 2. ???</name>
+  <name>Chapter 2. Employee Management application</name>
   <packaging>pom</packaging>
 
   <modules>
