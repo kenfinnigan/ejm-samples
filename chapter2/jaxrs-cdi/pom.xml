@@ -15,7 +15,7 @@
   <packaging>war</packaging>
 
   <build>
-    <finalName>chapter2-jaxrs-cdi</finalName>
+    <finalName>chapter2</finalName>
 
     <plugins>
       <plugin>
@@ -40,9 +40,8 @@
 
   <dependencies>
     <dependency>
-      <groupId>javax</groupId>
-      <artifactId>javaee-api</artifactId>
-      <scope>provided</scope>
+      <groupId>org.wildfly.swarm</groupId>
+      <artifactId>jaxrs-cdi</artifactId>
     </dependency>
 
     <dependency>
