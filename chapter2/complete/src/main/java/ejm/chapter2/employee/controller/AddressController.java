@@ -44,13 +44,13 @@ public class AddressController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{addressId}")
-    public Address getEmployee(@PathParam("addressId") Integer addressId) throws Exception {
+    public Address getAddress(@PathParam("addressId") Integer addressId) throws Exception {
         return service.retrieve(addressId);
     }
 
     @DELETE
     @Path("/{addressId}")
-    public void removeEmployee(@PathParam("addressId") Integer addressId) throws Exception {
+    public void removeAddress(@PathParam("addressId") Integer addressId) throws Exception {
         service.delete(addressId);
     }
 
@@ -58,7 +58,7 @@ public class AddressController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{addressId}")
-    public Address updateEmployee(@PathParam("addressId") Integer addressId, Address address) throws Exception {
+    public Address updateAddress(@PathParam("addressId") Integer addressId, Address address) throws Exception {
         return service.save(address);
     }
 }
