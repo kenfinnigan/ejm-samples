@@ -32,8 +32,6 @@ public class Address {
 
     private String state;
 
-    private Boolean active = true;
-
     public Integer getId() {
         return id;
     }
@@ -58,14 +56,6 @@ public class Address {
         return state;
     }
 
-    public Boolean isActive() {
-        return active;
-    }
-
-    public void deactivate() {
-        this.active = false;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -75,12 +65,11 @@ public class Address {
                 Objects.equals(firstLine, address.firstLine) &&
                 Objects.equals(secondLine, address.secondLine) &&
                 Objects.equals(city, address.city) &&
-                Objects.equals(state, address.state) &&
-                Objects.equals(active, address.active);
+                Objects.equals(state, address.state);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstLine, secondLine, city, state, active);
+        return Objects.hash(id, firstLine, secondLine, city, state);
     }
 }
