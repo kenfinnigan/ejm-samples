@@ -16,7 +16,7 @@
 
   <modules>
     <module>dropwizard</module>
-    <!--<module>payara-micro</module>-->
+    <module>payara-micro</module>
     <module>spring-boot</module>
     <module>wildfly-swarm</module>
   </modules>
