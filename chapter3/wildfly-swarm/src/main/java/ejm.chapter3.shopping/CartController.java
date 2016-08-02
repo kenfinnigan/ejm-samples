@@ -1,4 +1,4 @@
-package ejm.chapter2.shopping;
+package ejm.chapter3.shopping;
 
 import java.util.ArrayList;
 import java.util.List;
