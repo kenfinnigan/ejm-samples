@@ -17,9 +17,9 @@
   </properties>
 
   <scm>
-    <connection>scm:git:git@github.com:kenfinnigan/wildfly-swarm-parent.git</connection>
-    <developerConnection>scm:git:git@github.com:kenfinnigan/wildfly-swarm-parent.git</developerConnection>
-    <url>https://github.com/kenfinnigan/wildfly-swarm-parent</url>
+    <connection>scm:git:git@github.com:kenfinnigan/ejm-samples.git</connection>
+    <developerConnection>scm:git:git@github.com:kenfinnigan/ejm-samples.git</developerConnection>
+    <url>https://github.com/kenfinnigan/ejm-samples</url>
     <tag>HEAD</tag>
   </scm>
 
