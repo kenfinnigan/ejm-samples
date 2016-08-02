@@ -52,7 +52,7 @@ public class CartController {
     @Path("/get/{itemName}")
     public CartItem getItem(@PathParam("itemName") String itemName) throws Exception {
         return items.stream()
-                .filter(i -> !i.getItemName().equalsIgnoreCase(itemName))
+                .filter(i -> i.getItemName().equalsIgnoreCase(itemName))
                 .findFirst()
                 .get();
     }
