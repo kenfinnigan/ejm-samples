@@ -23,7 +23,7 @@ public class CartItem {
         return itemName;
     }
 
-    public CartItem itemName(String itemName) {
+    public CartItem setItemName(String itemName) {
         this.itemName = itemName;
         return this;
     }
@@ -32,7 +32,7 @@ public class CartItem {
         return itemQuantity;
     }
 
-    public CartItem itemQuantity(Integer itemQuantity) {
+    public CartItem setItemQuantity(Integer itemQuantity) {
         this.itemQuantity = itemQuantity;
         return this;
     }
