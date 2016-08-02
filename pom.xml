@@ -15,6 +15,7 @@
     <version.wildfly-swarm>1.0.0.Final</version.wildfly-swarm>
     <version.springframework>4.1.9.RELEASE</version.springframework>
     <version.spring-boot>1.4.0.RELEASE</version.spring-boot>
+    <version.dropwizard>1.0.0</version.dropwizard>
   </properties>
 
   <scm>
@@ -60,6 +61,15 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
         <version>${version.spring-boot}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <!-- Dropwizard -->
+      <dependency>
+        <groupId>io.dropwizard</groupId>
+        <artifactId>dropwizard-bom</artifactId>
+        <version>${version.dropwizard}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
