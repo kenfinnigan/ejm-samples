@@ -14,6 +14,7 @@
   <properties>
     <version.wildfly-swarm>1.0.0.Final</version.wildfly-swarm>
     <version.springframework>4.1.9.RELEASE</version.springframework>
+    <version.spring-boot>1.4.0.RELEASE</version.spring-boot>
   </properties>
 
   <scm>
@@ -53,6 +54,15 @@
         <artifactId>spring-webmvc</artifactId>
         <version>${version.springframework}</version>
       </dependency>
+
+      <!-- Spring Boot -->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${version.spring-boot}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -70,6 +80,11 @@
               </goals>
             </execution>
           </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <version>${version.spring-boot}</version>
         </plugin>
       </plugins>
     </pluginManagement>
