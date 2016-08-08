@@ -17,7 +17,6 @@ public class Chapter3Application extends Application<Chapter3Configuration> {
 
     @Override
     public void initialize(final Bootstrap<Chapter3Configuration> bootstrap) {
-        // TODO: application initialization
     }
 
     @Override
