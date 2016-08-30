@@ -11,7 +11,7 @@
   </parent>
 
   <artifactId>chapter3-spring-boot</artifactId>
-  <name>Spring Boot - Shopping Cart example</name>
+  <name>Chapter 3: Spring Boot - Shopping Cart example</name>
   <packaging>jar</packaging>
 
   <properties>

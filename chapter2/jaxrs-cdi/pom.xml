@@ -11,7 +11,7 @@
   </parent>
 
   <artifactId>chapter2-jaxrs-cdi</artifactId>
-  <name>Employee Application - JAX-RS and CDI</name>
+  <name>Chapter 2: Employee Application - JAX-RS and CDI</name>
   <packaging>war</packaging>
 
   <build>

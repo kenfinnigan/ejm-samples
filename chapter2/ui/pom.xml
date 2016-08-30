@@ -11,7 +11,7 @@
   </parent>
 
   <artifactId>chapter2-ui</artifactId>
-  <name>Employee Application - User Inteface</name>
+  <name>Chapter 2: Employee Application - User Inteface</name>
   <packaging>jar</packaging>
 
   <build>

@@ -11,7 +11,7 @@
   </parent>
 
   <artifactId>chapter1</artifactId>
-  <name>Chapter 1. Code examples for Java EE, Spring</name>
+  <name>Chapter 1: Code examples for Java EE, Spring</name>
   <packaging>pom</packaging>
 
   <modules>

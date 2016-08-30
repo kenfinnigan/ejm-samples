@@ -11,7 +11,7 @@
   </parent>
 
   <artifactId>chapter3</artifactId>
-  <name>Chapter 3. Just enough Application Server for Microservices examples</name>
+  <name>Chapter 3: Just enough Application Server for Microservices examples</name>
   <packaging>pom</packaging>
 
   <modules>

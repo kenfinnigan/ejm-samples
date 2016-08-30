@@ -11,7 +11,7 @@
   </parent>
 
   <artifactId>chapter3-dropwizard</artifactId>
-  <name>Dropwizard - Shopping Cart example</name>
+  <name>Chapter 3: Dropwizard - Shopping Cart example</name>
 
   <packaging>jar</packaging>
 

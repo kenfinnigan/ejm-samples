@@ -11,7 +11,7 @@
   </parent>
 
   <artifactId>chapter2-jaxrs</artifactId>
-  <name>Employee Application - JAX-RS</name>
+  <name>Chapter 2: Employee Application - JAX-RS</name>
   <packaging>war</packaging>
 
   <build>

@@ -11,7 +11,7 @@
   </parent>
 
   <artifactId>chapter1-javaee</artifactId>
-  <name>Java EE example</name>
+  <name>Chapter 1: Java EE example</name>
   <packaging>war</packaging>
 
   <build>

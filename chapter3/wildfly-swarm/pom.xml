@@ -11,7 +11,7 @@
   </parent>
 
   <artifactId>chapter3-wildfly-swarm</artifactId>
-  <name>WildFly Swarm - Shopping Cart example</name>
+  <name>Chapter 3: WildFly Swarm - Shopping Cart example</name>
   <packaging>war</packaging>
 
   <build>

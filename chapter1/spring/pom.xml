@@ -11,7 +11,7 @@
   </parent>
 
   <artifactId>chapter1-spring</artifactId>
-  <name>Spring example</name>
+  <name>Chapter 1: Spring example</name>
   <packaging>war</packaging>
 
   <build>
