@@ -7,7 +7,7 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>chapter3-dropwizard</artifactId>
-  <name>Dropwizard - Shopping Cart example</name>
+  <name>Chapter 3: Dropwizard - Shopping Cart example</name>
   <build>
     <plugins>
       <plugin>
