@@ -44,8 +44,8 @@ public class MessageResource {
     @Path("/async2async")
     public void getMessageAsync2Async(@Suspended final AsyncResponse asyncResponse) throws Exception {
         timeService.execAsync(timeService::getTime,
-                          s -> asyncResponse.resume(this.message(s)),
-                          asyncResponse::resume);
+                              s -> asyncResponse.resume(this.message(s)),
+                              asyncResponse::resume);
     }
 
     private String message(String time) {

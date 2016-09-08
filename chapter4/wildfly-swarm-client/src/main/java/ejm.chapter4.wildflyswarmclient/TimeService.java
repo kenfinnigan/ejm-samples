@@ -8,15 +8,10 @@ import javax.ws.rs.core.MediaType;
 /**
  * @author Ken Finnigan
  */
+@Path("/")
 public interface TimeService extends ServiceClient<TimeService> {
 
     @GET
-    @Path("/")
     @Produces(MediaType.TEXT_PLAIN)
     String getTime();
-
-    @GET
-    @Path("/")
-    @Produces(MediaType.TEXT_PLAIN)
-    String getTimeWithOffset(String timezone);
 }

@@ -21,6 +21,7 @@
     <module>jaxrs-client</module>
     <module>resteasy-client</module>
     <module>wildfly-swarm-client</module>
-    <!--<module>employee-database</module>-->
+    <module>employee-database/address</module>
+    <module>employee-database/employee</module>
   </modules>
 </project>
