@@ -14,4 +14,9 @@ public interface TimeService extends ServiceClient<TimeService> {
     @Path("/")
     @Produces(MediaType.TEXT_PLAIN)
     String getTime();
+
+    @GET
+    @Path("/")
+    @Produces(MediaType.TEXT_PLAIN)
+    String getTimeWithOffset(String timezone);
 }

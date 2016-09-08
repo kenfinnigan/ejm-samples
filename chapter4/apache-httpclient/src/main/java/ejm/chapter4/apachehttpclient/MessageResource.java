@@ -79,7 +79,7 @@ public class MessageResource {
 
     @GET
     @Path("/async2async")
-    public void getMessageAsyn2Asyncc(@Suspended final AsyncResponse asyncResponse) throws Exception {
+    public void getMessageAsync2Async(@Suspended final AsyncResponse asyncResponse) throws Exception {
         CompletableFuture.supplyAsync(() -> {
             try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
                 HttpGet get = new HttpGet(this.timeUrl);
@@ -104,11 +104,10 @@ public class MessageResource {
             }
             return null;
         }, executorService())
-                .thenApply(time -> {
+                .thenAccept(time -> {
                     if (!asyncResponse.isDone() && time != null) {
                         asyncResponse.resume(message(time));
                     }
-                    return null;
                 });
     }
 

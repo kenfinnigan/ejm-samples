@@ -11,14 +11,23 @@ import javax.naming.InitialContext;
  * @author Ken Finnigan
  */
 public interface ServiceClient<T> {
-//    <R> CompletableFuture<R> async(Class<R> returnType, AsyncResponse response);
 
-    default <U> void execInThread(Supplier<U> restMethod, Consumer<U> handler, Consumer<Throwable> exceptionHandler) throws Exception {
+    default <U> void exec(Supplier<U> restMethod, Consumer<U> handler, Consumer<Throwable> exceptionHandler) throws Exception {
         CompletableFuture
                 .supplyAsync(restMethod, executorService())
                 .thenAccept(handler)
                 .exceptionally(t -> {
                     exceptionHandler.accept(t);
+                    return null;
+                });
+    }
+
+    default <U> void execAsync(Supplier<U> method, Consumer<U> success, Consumer<Throwable> failure) throws Exception {
+        CompletableFuture
+                .supplyAsync(method, executorService())
+                .thenAccept(success)
+                .exceptionally(t -> {
+                    failure.accept(t);
                     return null;
                 });
     }

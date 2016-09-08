@@ -5,14 +5,8 @@ import javax.inject.Inject;
 import javax.naming.InitialContext;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.InvocationCallback;
-import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.container.AsyncResponse;
 import javax.ws.rs.container.Suspended;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 /**
  * @author Ken Finnigan
@@ -41,33 +35,17 @@ public class MessageResource {
     @GET
     @Path("/async2sync")
     public void getMessageAsync2Sync(@Suspended final AsyncResponse asyncResponse) throws Exception {
-        timeService.execInThread(timeService::getTime,
-                                 s -> asyncResponse.resume(this.message(s)),
-                                 e -> asyncResponse.resume(Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e).build()));
+        timeService.exec(timeService::getTime,
+                         s -> asyncResponse.resume(this.message(s)),
+                         asyncResponse::resume);
     }
 
     @GET
     @Path("/async2async")
     public void getMessageAsync2Async(@Suspended final AsyncResponse asyncResponse) throws Exception {
-
-        //TODO How would injected service work here?
-        executorService().execute(() -> {
-            Client client = ClientBuilder.newClient();
-            WebTarget target = client.target(this.timeUrl);
-            target.request(MediaType.TEXT_PLAIN)
-                    .async()
-                    .get(new InvocationCallback<String>() {
-                        @Override
-                        public void completed(String result) {
-                            asyncResponse.resume(message(result));
-                        }
-
-                        @Override
-                        public void failed(Throwable throwable) {
-                            asyncResponse.resume(throwable);
-                        }
-                    });
-        });
+        timeService.execAsync(timeService::getTime,
+                          s -> asyncResponse.resume(this.message(s)),
+                          asyncResponse::resume);
     }
 
     private String message(String time) {

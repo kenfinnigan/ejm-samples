@@ -15,8 +15,6 @@ import javax.ws.rs.container.AsyncResponse;
 import javax.ws.rs.container.Suspended;
 import javax.ws.rs.core.MediaType;
 
-import io.undertow.util.StatusCodes;
-
 /**
  * @author Ken Finnigan
  */
@@ -37,7 +35,7 @@ public class MessageResource {
             connection.setRequestMethod("GET");
             connection.setRequestProperty("Accept", MediaType.TEXT_PLAIN);
 
-            if (connection.getResponseCode() != StatusCodes.OK) {
+            if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
                 throw new RuntimeException("Request Failed: HTTP Error code: " + connection.getResponseCode());
             }
 
@@ -50,7 +48,7 @@ public class MessageResource {
             }
 
             if (time != null) {
-                return message(time);
+                return message(this.timeUrl, time);
             } else {
                 return "Time service unavailable at " + this.timeUrl;
             }
@@ -73,7 +71,7 @@ public class MessageResource {
                 connection.setRequestMethod("GET");
                 connection.setRequestProperty("Accept", MediaType.TEXT_PLAIN);
 
-                if (connection.getResponseCode() != StatusCodes.OK) {
+                if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
                     throw new RuntimeException("Request Failed: HTTP Error code: " + connection.getResponseCode());
                 }
 
@@ -86,7 +84,7 @@ public class MessageResource {
                 }
 
                 if (time != null) {
-                    asyncResponse.resume(message(time));
+                    asyncResponse.resume(message(this.timeUrl, time));
                 } else {
                     asyncResponse.resume("Time service unavailable at " + this.timeUrl);
                 }
@@ -101,7 +99,7 @@ public class MessageResource {
 
     @GET
     @Path("/async2async")
-    public void getMessageAsyn2Asyncc(@Suspended final AsyncResponse asyncResponse) throws Exception {
+    public void getMessageAsync2Async(@Suspended final AsyncResponse asyncResponse) throws Exception {
         CompletableFuture.supplyAsync(() -> {
             HttpURLConnection connection = null;
 
@@ -112,7 +110,7 @@ public class MessageResource {
                 connection.setRequestMethod("GET");
                 connection.setRequestProperty("Accept", MediaType.TEXT_PLAIN);
 
-                if (connection.getResponseCode() != StatusCodes.OK) {
+                if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
                     throw new RuntimeException("Request Failed: HTTP Error code: " + connection.getResponseCode());
                 }
 
@@ -137,16 +135,15 @@ public class MessageResource {
             }
             return null;
         }, executorService())
-                .thenApply(time -> {
+                .thenAccept(time -> {
                     if (!asyncResponse.isDone() && time != null) {
-                        asyncResponse.resume(message(time));
+                        asyncResponse.resume(message(this.timeUrl, time));
                     }
-                    return null;
                 });
     }
 
-    private String message(String time) {
-        return "The date and time at " + this.timeUrl + " is " + time;
+    private String message(String url, String time) {
+        return "The date and time at " + url + " is " + time;
     }
 
     private ManagedExecutorService executorService() throws Exception {
