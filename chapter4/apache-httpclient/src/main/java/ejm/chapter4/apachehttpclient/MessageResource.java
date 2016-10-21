@@ -1,7 +1,6 @@
 package ejm.chapter4.apachehttpclient;
 
 import java.io.IOException;
-import java.util.concurrent.CompletableFuture;
 
 import javax.enterprise.concurrent.ManagedExecutorService;
 import javax.naming.InitialContext;
@@ -26,8 +25,8 @@ public class MessageResource {
     private String timeUrl = "http://localhost:8081/";
 
     @GET
-    @Path("/sync2sync")
-    public String getMessageSync2Sync() throws Exception {
+    @Path("/sync")
+    public String getMessageSync() throws Exception {
         try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
             HttpGet get = new HttpGet(this.timeUrl);
             String time =
@@ -50,8 +49,8 @@ public class MessageResource {
     }
 
     @GET
-    @Path("/async2sync")
-    public void getMessageAsync2Sync(@Suspended final AsyncResponse asyncResponse) throws Exception {
+    @Path("/async")
+    public void getMessageAsync(@Suspended final AsyncResponse asyncResponse) throws Exception {
         executorService().execute(() -> {
             try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
                 HttpGet get = new HttpGet(this.timeUrl);
@@ -75,40 +74,6 @@ public class MessageResource {
                 asyncResponse.resume(e);
             }
         });
-    }
-
-    @GET
-    @Path("/async2async")
-    public void getMessageAsync2Async(@Suspended final AsyncResponse asyncResponse) throws Exception {
-        CompletableFuture.supplyAsync(() -> {
-            try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
-                HttpGet get = new HttpGet(this.timeUrl);
-                String time =
-                        httpclient.execute(get, response -> {
-                            int status = response.getStatusLine().getStatusCode();
-                            if (status >= 200 && status < 300) {
-                                HttpEntity entity = response.getEntity();
-                                return entity != null ? EntityUtils.toString(entity) : null;
-                            } else {
-                                throw new ClientProtocolException("Unexpected response status: " + status);
-                            }
-                        });
-
-                if (time != null) {
-                    return time;
-                } else {
-                    asyncResponse.resume("Time service unavailable at " + this.timeUrl);
-                }
-            } catch (IOException e) {
-                asyncResponse.resume(e);
-            }
-            return null;
-        }, executorService())
-                .thenAccept(time -> {
-                    if (!asyncResponse.isDone() && time != null) {
-                        asyncResponse.resume(message(time));
-                    }
-                });
     }
 
     private String message(String time) {

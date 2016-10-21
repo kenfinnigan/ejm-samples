@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.concurrent.CompletableFuture;
 
 import javax.enterprise.concurrent.ManagedExecutorService;
 import javax.naming.InitialContext;
@@ -24,8 +23,8 @@ public class MessageResource {
     private String timeUrl = "http://localhost:8081/";
 
     @GET
-    @Path("/sync2sync")
-    public String getMessageSync2Sync() throws Exception {
+    @Path("/sync")
+    public String getMessageSync() throws Exception {
         HttpURLConnection connection = null;
 
         try {
@@ -59,8 +58,8 @@ public class MessageResource {
     }
 
     @GET
-    @Path("/async2sync")
-    public void getMessageAsync2Sync(@Suspended final AsyncResponse asyncResponse) throws Exception {
+    @Path("/async")
+    public void getMessageAsync(@Suspended final AsyncResponse asyncResponse) throws Exception {
         executorService().execute(() -> {
             HttpURLConnection connection = null;
 
@@ -95,51 +94,6 @@ public class MessageResource {
                 connection.disconnect();
             }
         });
-    }
-
-    @GET
-    @Path("/async2async")
-    public void getMessageAsync2Async(@Suspended final AsyncResponse asyncResponse) throws Exception {
-        CompletableFuture.supplyAsync(() -> {
-            HttpURLConnection connection = null;
-
-            try {
-                URL url = new URL(this.timeUrl);
-                connection = (HttpURLConnection) url.openConnection();
-
-                connection.setRequestMethod("GET");
-                connection.setRequestProperty("Accept", MediaType.TEXT_PLAIN);
-
-                if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
-                    throw new RuntimeException("Request Failed: HTTP Error code: " + connection.getResponseCode());
-                }
-
-                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                String output;
-                String time = null;
-
-                while ((output = reader.readLine()) != null) {
-                    time += output;
-                }
-
-                if (time != null) {
-                    return time;
-                } else {
-                    asyncResponse.resume("Time service unavailable at " + this.timeUrl);
-                }
-            } catch (IOException e) {
-                asyncResponse.resume(e);
-            } finally {
-                assert connection != null;
-                connection.disconnect();
-            }
-            return null;
-        }, executorService())
-                .thenAccept(time -> {
-                    if (!asyncResponse.isDone() && time != null) {
-                        asyncResponse.resume(message(this.timeUrl, time));
-                    }
-                });
     }
 
     private String message(String url, String time) {

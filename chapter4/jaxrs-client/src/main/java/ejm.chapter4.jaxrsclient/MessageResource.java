@@ -21,8 +21,8 @@ public class MessageResource {
     private String timeUrl = "http://localhost:8081/";
 
     @GET
-    @Path("/sync2sync")
-    public String getMessageSync2Sync() throws Exception {
+    @Path("/sync")
+    public String getMessageSync() throws Exception {
         Client client = ClientBuilder.newClient();
         String time = client.target(this.timeUrl)
                 .request(MediaType.TEXT_PLAIN)
@@ -36,8 +36,8 @@ public class MessageResource {
     }
 
     @GET
-    @Path("/async2sync")
-    public void getMessageAsync2Sync(@Suspended final AsyncResponse asyncResponse) throws Exception {
+    @Path("/async")
+    public void getMessageAsync(@Suspended final AsyncResponse asyncResponse) throws Exception {
         executorService().execute(() -> {
             Client client = ClientBuilder.newClient();
             String time = client.target(this.timeUrl)
@@ -53,25 +53,23 @@ public class MessageResource {
     }
 
     @GET
-    @Path("/async2async")
-    public void getMessageAsync2Async(@Suspended final AsyncResponse asyncResponse) throws Exception {
-        executorService().execute(() -> {
-            Client client = ClientBuilder.newClient();
-            WebTarget target = client.target(this.timeUrl);
-            target.request(MediaType.TEXT_PLAIN)
-                    .async()
-                    .get(new InvocationCallback<String>() {
-                        @Override
-                        public void completed(String result) {
-                            asyncResponse.resume(message(result));
-                        }
+    @Path("/asyncAlt")
+    public void getMessageAsyncAlt(@Suspended final AsyncResponse asyncResponse) throws Exception {
+        Client client = ClientBuilder.newClient();
+        WebTarget target = client.target(this.timeUrl);
+        target.request(MediaType.TEXT_PLAIN)
+                .async()
+                .get(new InvocationCallback<String>() {
+                    @Override
+                    public void completed(String result) {
+                        asyncResponse.resume(message(result));
+                    }
 
-                        @Override
-                        public void failed(Throwable throwable) {
-                            asyncResponse.resume(throwable);
-                        }
-                    });
-        });
+                    @Override
+                    public void failed(Throwable throwable) {
+                        asyncResponse.resume(throwable);
+                    }
+                });
     }
 
     private String message(String time) {
