@@ -41,9 +41,8 @@ public class AddressController {
     }
 
     @GET
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Address> all() throws Exception {
+    public List<Address> allAddresses() throws Exception {
         return addresses.values().stream().collect(Collectors.toList());
     }
 

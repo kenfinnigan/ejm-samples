@@ -7,7 +7,6 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 import ejm.chapter2.employee.controller.AddressController;
-import ejm.chapter2.employee.controller.EmployeeController;
 
 /**
  * @author Ken Finnigan
@@ -18,7 +17,6 @@ public class MyApplication extends Application {
 
     public MyApplication() {
         this.singletons.add(new AddressController());
-        this.singletons.add(new EmployeeController());
     }
 
     @Override

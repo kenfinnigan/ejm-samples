@@ -12,7 +12,7 @@
 
   <artifactId>chapter2-ui</artifactId>
   <name>Chapter 2: Employee Application - User Inteface</name>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
 
   <build>
     <finalName>chapter2-ui</finalName>
@@ -21,8 +21,11 @@
       <plugin>
         <groupId>org.wildfly.swarm</groupId>
         <artifactId>wildfly-swarm-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
         <configuration>
-          <mainClass>ejm.chapter2.employee.Main</mainClass>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
         </configuration>
       </plugin>
       <plugin>
@@ -66,10 +69,6 @@
     <dependency>
       <groupId>org.wildfly.swarm</groupId>
       <artifactId>undertow</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.wildfly.swarm</groupId>
-      <artifactId>topology-webapp</artifactId>
     </dependency>
   </dependencies>
 </project>

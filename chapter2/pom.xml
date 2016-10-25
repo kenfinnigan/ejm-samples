@@ -16,8 +16,6 @@
 
   <modules>
     <module>jaxrs</module>
-    <module>jaxrs-cdi</module>
-    <module>complete</module>
     <module>ui</module>
   </modules>
 

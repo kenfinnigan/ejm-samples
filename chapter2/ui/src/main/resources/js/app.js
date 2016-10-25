@@ -29,9 +29,9 @@ Chapter2.LeftNav = React.createClass({
       <div className="nav-pf-vertical nav-pf-vertical-with-secondary-nav ">
         <ul className="list-group">
           <li className="list-group-item active">
-            <Link to="employees">
-              <span className="pficon pficon-users"></span>
-              <span className="list-group-item-value">Employees</span>
+            <Link to="addresses">
+              <span className="fa fa-envelope"></span>
+              <span className="list-group-item-value">Addresses</span>
             </Link>
           </li>
         </ul>
@@ -43,28 +43,29 @@ Chapter2.LeftNav = React.createClass({
 Chapter2.Home = React.createClass({
   render: function() {
     return (
-      <Chapter2.Employees/>
+      <Chapter2.Addresses/>
     );
   }
 });
 
-Chapter2.Actions.Employees = Reflux.createActions({
+Chapter2.Actions.Addresses = Reflux.createActions({
   "load": {children: ["completed","failed"]}
 });
 
-Chapter2.Actions.Employees.load.listen( function() {
-  topo.ajax("chapter2", "/employee")
-    .then(function(data) {
-      Chapter2.Actions.Employees.load.completed(data);
-    }, function(err) {
-      console.log("Retrieving employees failed", err);
-      Chapter2.Actions.Employees.load.failed;
+Chapter2.Actions.Addresses.load.listen( function() {
+  $.get("http://localhost:8081/address")
+    .done((data) => {
+      Chapter2.Actions.Addresses.load.completed(data);
+    })
+    .fail((err) => {
+      console.log("Retrieving addresses failed", err);
+      Chapter2.Actions.Addresses.load.failed;
     });
 });
 
-Chapter2.State.Employees = Reflux.createStore({
+Chapter2.State.Addresses = Reflux.createStore({
   init: function() {
-    this.listenTo(Chapter2.Actions.Employees.load.completed, this.output);
+    this.listenTo(Chapter2.Actions.Addresses.load.completed, this.output);
   },
 
   output: function(results) {
@@ -72,11 +73,11 @@ Chapter2.State.Employees = Reflux.createStore({
   }
 });
 
-Chapter2.Employees = React.createClass({
-  mixins: [Reflux.connect(Chapter2.State.Employees,"items")],
+Chapter2.Addresses = React.createClass({
+  mixins: [Reflux.connect(Chapter2.State.Addresses,"items")],
 
   componentWillMount: function() {
-    Chapter2.Actions.Employees.load()
+    Chapter2.Actions.Addresses.load()
   },
 
   getInitialState: function() {
@@ -85,75 +86,138 @@ Chapter2.Employees = React.createClass({
     }
   },
 
-  componentDidMount: function() {
-    $(document).ready(function () {
-      var widest = 0;
-      $('.list-view-pf-equalized-column .list-view-pf-additional-info-item').each( function() {
-        widest = $(this).width() > widest ? $(this).width() : widest;
-      }).width(widest);
-    });
-  },
-
   render: function() {
     return (
       <div>
-        <h1>Employees</h1>
-        <div className="list-group list-view-pf">
+        <h1>Addresses</h1>
+        <table id="addressTable" className="datatable table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>First Line</th>
+              <th>Second Line</th>
+              <th>City</th>
+              <th>State</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
           {
-            this.state.items.map(function(e) {
+            this.state.items.map(function(a) {
               return (
-                <div className="list-group-item list-view-pf-stacked" key={e.id}>
-                  <div className="list-view-pf-actions">
-                    <button className="btn btn-info">Details</button>
-                    <button className="btn btn-danger">Delete</button>
-                  </div>
-                  <div className="list-view-pf-main-info">
-                    <div className="list-view-pf-left">
-                      <span className="pficon pficon-user list-view-pf-icon-md list-view-pf-icon-success"></span>
+                <tr key={a.id}>
+                  <td>{a.firstLine}</td>
+                  <td>{a.secondLine}</td>
+                  <td>{a.city}</td>
+                  <td>{a.state}</td>
+                  <td>
+                    <div className="list-view-pf-actions">
+                      <button className="btn btn-info">Details</button>
+                      <a className="btn btn-danger" onClick="{() => {if(confirm('Delete the address?')} {this.deleteItem};}}">Delete</a>
                     </div>
-                    <div className="list-view-pf-body">
-                      <div className="list-view-pf-description">
-                        <div className="list-group-item-heading">
-                          {e.firstname} {e.lastname}
-                        </div>
-                        <div className="list-group-item-text" data-toggle="tooltip" title="Social Security Number">
-                          <span>SSN:</span> {e.socialSecurity}
-                        </div>
-                      </div>
-                      <div className="list-view-pf-additional-info">
-                        <div className="list-view-pf-additional-info-item">
-                          <span>Home Ph:&nbsp;</span> {e.homePhone}
-                        </div>
-                        <div className="list-view-pf-additional-info-item">
-                          <span>Salary:&nbsp;</span> {e.salary}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                  </td>
+                </tr>
               );
             })
           }
-        </div>
+          </tbody>
+        </table>
       </div>
     );
   }
 });
 
-Chapter2.EmployeeDetail = React.createClass({
+Chapter2.AddressDetail = React.createClass({
   render: function() {
     return (
-      <h1>Single Employee</h1>
+      <h1>Address</h1>
     );
   }
 });
 
+var Modal = React.createClass({
+  componentDidMount() {
+    $(this.getDOMNode()).modal('show');
+    $(this.getDOMNode()).on('hidden.bs.modal', this.props.handleHideModal);
+  },
+
+  render() {
+    return (
+        <div className="modal fade">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">
+                  <span class="pficon pficon-close"></span>
+                </button>
+                <h4 className="modal-title">Delete Address</h4>
+              </div>
+              <div className="modal-body">
+                <p>Please confirm you wish to delete the address.</p>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" className="btn btn-primary">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+  },
+
+  propTypes:{
+    handleHideModal: React.PropTypes.func.isRequired
+  }
+});
+
+//Chapter2.AddressDelete = React.createClass({
+//  render: function() {
+//    return (
+//      <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+//        <div class="modal-dialog">
+//          <div class="modal-content">
+//            <div class="modal-header">
+//              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+//                <span class="pficon pficon-close"></span>
+//              </button>
+//              <h4 class="modal-title" id="deleteModalLabel">Delete</h4>
+//            </div>
+//            <div class="modal-body">
+//              <form class="form-horizontal">
+//                <div class="form-group">
+//                  <label class="col-sm-3 control-label" for="textInput-modal-markup">Field One</label>
+//                  <div class="col-sm-9">
+//                    <input type="text" id="textInput-modal-markup" class="form-control"></div>
+//                </div>
+//                <div class="form-group">
+//                  <label class="col-sm-3 control-label" for="textInput2-modal-markup">Field Two</label>
+//                  <div class="col-sm-9">
+//                    <input type="text" id="textInput2-modal-markup" class="form-control"></div>
+//                </div>
+//                <div class="form-group">
+//                  <label class="col-sm-3 control-label" for="textInput3-modal-markup">Field Three</label>
+//                  <div class="col-sm-9">
+//                    <input type="text" id="textInput3-modal-markup" class="form-control">
+//                  </div>
+//                </div>
+//              </form>
+//            </div>
+//            <div class="modal-footer">
+//              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+//              <button type="button" class="btn btn-primary">Save</button>
+//            </div>
+//          </div>
+//        </div>
+//      </div>
+//    );
+//  }
+//});
+
 var routes = (
   <Route path="/" handler={Chapter2.App}>
     <DefaultRoute name="home" handler={Chapter2.Home}/>
-    <Route name="employees">
-      <Route name="employee-detail" path=":id" handler={Chapter2.EmployeeDetail}/>
-      <DefaultRoute handler={Chapter2.Employees}/>
+    <Route name="addresses">
+      <Route name="address-detail" path=":id" handler={Chapter2.AddressDetail}/>
+      <DefaultRoute handler={Chapter2.Addresses}/>
     </Route>
   </Route>
 );
