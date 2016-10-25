@@ -12,7 +12,7 @@
   <packaging>pom</packaging>
 
   <properties>
-    <version.wildfly-swarm>1.0.0.Final</version.wildfly-swarm>
+    <version.wildfly-swarm>2016.10.0</version.wildfly-swarm>
     <version.springframework>4.1.9.RELEASE</version.springframework>
     <version.spring-boot>1.4.0.RELEASE</version.spring-boot>
     <version.dropwizard>1.0.0</version.dropwizard>
@@ -36,7 +36,7 @@
       <!-- WildFly Swarm -->
       <dependency>
         <groupId>org.wildfly.swarm</groupId>
-        <artifactId>bom</artifactId>
+        <artifactId>bom-all</artifactId>
         <version>${version.wildfly-swarm}</version>
         <scope>import</scope>
         <type>pom</type>
