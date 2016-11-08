@@ -15,7 +15,6 @@ public class MessageResource {
     private String timeUrl = "http://localhost:8081/";
 
     @Inject
-    @Service(baseUrl = "http://localhost:8081/")
     TimeService timeService;
 
     @GET
