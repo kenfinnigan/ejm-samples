@@ -11,12 +11,33 @@
   </parent>
 
   <artifactId>chapter1</artifactId>
-  <name>Chapter 1: Code examples for Java EE, Spring</name>
-  <packaging>pom</packaging>
+  <name>Chapter 1: Java EE Microservice example</name>
+  <packaging>war</packaging>
 
-  <modules>
-    <module>javaee</module>
-    <module>spring</module>
-    <module>microservce-javaee</module>
-  </modules>
+  <build>
+    <finalName>chapter1</finalName>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.6</version>
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.wildfly.swarm</groupId>
+        <artifactId>wildfly-swarm-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>javax</groupId>
+      <artifactId>javaee-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
 </project>
