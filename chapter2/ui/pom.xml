@@ -11,7 +11,7 @@
   </parent>
 
   <artifactId>chapter2-ui</artifactId>
-  <name>Chapter 2: Employee Application - User Inteface</name>
+  <name>Chapter 2: Address Application - User Interface</name>
   <packaging>war</packaging>
 
   <build>
