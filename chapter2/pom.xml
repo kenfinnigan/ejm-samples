@@ -11,7 +11,7 @@
   </parent>
 
   <artifactId>chapter2</artifactId>
-  <name>Chapter 2: Employee Management application</name>
+  <name>Chapter 2: Address Management application</name>
   <packaging>pom</packaging>
 
   <modules>
@@ -43,11 +43,4 @@
       </plugins>
     </pluginManagement>
   </build>
-
-  <dependencies>
-    <dependency>
-      <groupId>org.wildfly.swarm</groupId>
-      <artifactId>topology-jgroups</artifactId>
-    </dependency>
-  </dependencies>
 </project>
