@@ -5,17 +5,17 @@
 
   <parent>
     <groupId>ejm</groupId>
-    <artifactId>chapter4</artifactId>
+    <artifactId>chapter5</artifactId>
     <version>1.0-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
-  <artifactId>chapter4-resteasy-client</artifactId>
-  <name>Chapter 4: RESTEasy Client</name>
+  <artifactId>chapter5-time</artifactId>
+  <name>Chapter 5: Time Microservice</name>
   <packaging>war</packaging>
 
   <build>
-    <finalName>resteasyclient</finalName>
+    <finalName>time</finalName>
 
     <plugins>
       <plugin>
@@ -29,6 +29,11 @@
       <plugin>
         <groupId>org.wildfly.swarm</groupId>
         <artifactId>wildfly-swarm-plugin</artifactId>
+        <configuration>
+          <properties>
+            <swarm.port.offset>1</swarm.port.offset>
+          </properties>
+        </configuration>
       </plugin>
     </plugins>
   </build>
@@ -37,12 +42,6 @@
     <dependency>
       <groupId>org.wildfly.swarm</groupId>
       <artifactId>jaxrs</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jboss.resteasy</groupId>
-      <artifactId>resteasy-client</artifactId>
-      <version>3.0.19.Final</version>
-      <scope>provided</scope>
     </dependency>
   </dependencies>
 </project>
