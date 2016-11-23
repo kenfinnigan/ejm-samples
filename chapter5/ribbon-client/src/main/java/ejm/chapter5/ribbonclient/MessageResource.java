@@ -38,14 +38,14 @@ public class MessageResource {
         });
     }
 
-    private String message(String time) {
-        return "The date and time is " + time;
-    }
-
     private String extractResult(ByteBuf result) {
         byte[] bytes = new byte[result.readableBytes()];
         result.readBytes(bytes);
         return new String(bytes);
+    }
+
+    private String message(String time) {
+        return "The date and time is " + time;
     }
 
     private ManagedExecutorService executorService() throws Exception {
