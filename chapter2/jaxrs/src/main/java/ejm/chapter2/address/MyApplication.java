@@ -1,4 +1,4 @@
-package ejm.chapter2.employee;
+package ejm.chapter2.address;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -6,7 +6,7 @@ import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-import ejm.chapter2.employee.controller.AddressController;
+import ejm.chapter2.address.controller.AddressController;
 
 /**
  * @author Ken Finnigan

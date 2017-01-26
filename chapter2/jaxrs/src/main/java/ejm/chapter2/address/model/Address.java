@@ -1,4 +1,4 @@
-package ejm.chapter2.employee.model;
+package ejm.chapter2.address.model;
 
 import java.util.Objects;
 

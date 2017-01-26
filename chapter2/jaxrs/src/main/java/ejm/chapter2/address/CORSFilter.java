@@ -1,4 +1,4 @@
-package ejm.chapter2.employee;
+package ejm.chapter2.address;
 
 import java.io.IOException;
 

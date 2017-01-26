@@ -1,4 +1,4 @@
-package ejm.chapter2.employee.controller;
+package ejm.chapter2.address.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +15,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import ejm.chapter2.employee.model.Address;
+import ejm.chapter2.address.model.Address;
 
 /**
  * @author Ken Finnigan
