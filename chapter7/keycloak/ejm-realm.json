@@ -16,6 +16,7 @@
       "username": "service-account-message-service",
       "enabled": true,
       "serviceAccountClientId": "message-authz-service",
+      "realmRoles" : [ "time-access" ],
       "clientRoles": {
         "message-authz-service": [
           "time-access"
