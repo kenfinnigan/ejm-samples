@@ -1,0 +1,12 @@
+{
+  "name": "employee-database-ui",
+  "version": "1.0.0",
+  "description": "Employee Database UI",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ken Finnigan",
+  "license": "Apache-2.0"
+}

@@ -1,0 +1,56 @@
+{
+  "realm": "ejm",
+  "enabled": true,
+  "accessTokenLifespan": 60,
+  "accessCodeLifespan": 60,
+  "accessCodeLifespanUserAction": 300,
+  "ssoSessionIdleTimeout": 600,
+  "ssoSessionMaxLifespan": 36000,
+  "sslRequired": "external",
+  "registrationAllowed": false,
+  "requiredCredentials": [
+    "password"
+  ],
+  "users": [
+    {
+      "username": "service-account-message-service",
+      "enabled": true,
+      "serviceAccountClientId": "message-authz-service",
+      "clientRoles": {
+        "message-authz-service": [
+          "time-access"
+        ]
+      }
+    }
+  ],
+  "roles": {
+    "realm": [
+      {
+        "name": "time-access",
+        "description": "Time Service privileges"
+      }
+    ]
+  },
+  "scopeMappings": [
+    {
+      "client": "time-service",
+      "roles": [
+        "time-access"
+      ]
+    }
+  ],
+  "clients": [
+    {
+      "clientId": "message-authz-service",
+      "secret": "secret",
+      "enabled": true,
+      "standardFlowEnabled": false,
+      "serviceAccountsEnabled": true
+    },
+    {
+      "clientId": "time-service",
+      "enabled": true,
+      "bearerOnly": true
+    }
+  ]
+}
