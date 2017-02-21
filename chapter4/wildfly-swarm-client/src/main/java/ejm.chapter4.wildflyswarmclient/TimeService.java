@@ -5,7 +5,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.wildfly.swarm.cdi.jaxrsapi.Service;
+import org.wildfly.swarm.client.jaxrs.Service;
 
 /**
  * @author Ken Finnigan
