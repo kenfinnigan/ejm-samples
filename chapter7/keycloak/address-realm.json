@@ -1,0 +1,57 @@
+{
+  "realm": "address",
+  "enabled": true,
+  "accessTokenLifespan": 60,
+  "accessCodeLifespan": 60,
+  "accessCodeLifespanUserAction": 300,
+  "ssoSessionIdleTimeout": 600,
+  "ssoSessionMaxLifespan": 36000,
+  "sslRequired": "external",
+  "registrationAllowed": false,
+  "requiredCredentials": [
+    "password"
+  ],
+  "users": [
+    {
+      "username": "ken",
+      "enabled": true,
+      "email": "ken@ken.com",
+      "firstName": "Ken",
+      "lastName": "Finnigan",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password"
+        }
+      ],
+      "realmRoles": [
+        "admin",
+        "offline_access"
+      ],
+      "clientRoles": {
+        "account": [
+          "manage-account"
+        ]
+      }
+    }
+  ],
+  "roles": {
+    "realm": [
+      {
+        "name": "admin",
+        "description": "Administrator privileges"
+      }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "frontend",
+      "enabled": true,
+      "publicClient": true,
+      "baseUrl": "http://localhost:8080/index.html",
+      "redirectUris": [
+        "http://localhost:8080/*"
+      ]
+    }
+  ]
+}

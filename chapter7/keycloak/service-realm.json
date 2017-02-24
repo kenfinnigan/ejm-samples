@@ -1,5 +1,5 @@
 {
-  "realm": "ejm",
+  "realm": "service",
   "enabled": true,
   "accessTokenLifespan": 60,
   "accessCodeLifespan": 60,
@@ -16,12 +16,9 @@
       "username": "service-account-message-service",
       "enabled": true,
       "serviceAccountClientId": "message-authz-service",
-      "realmRoles" : [ "time-access" ],
-      "clientRoles": {
-        "message-authz-service": [
-          "time-access"
-        ]
-      }
+      "realmRoles": [
+        "time-access"
+      ]
     }
   ],
   "roles": {
@@ -32,14 +29,6 @@
       }
     ]
   },
-  "scopeMappings": [
-    {
-      "client": "time-service",
-      "roles": [
-        "time-access"
-      ]
-    }
-  ],
   "clients": [
     {
       "clientId": "message-authz-service",

@@ -7,7 +7,7 @@
   <security-constraint>
     <web-resource-collection>
       <web-resource-name>Time</web-resource-name>
-      <url-pattern>/*</url-pattern>
+      <url-pattern>/address/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>time-access</role-name>
@@ -16,7 +16,7 @@
 
   <login-config>
     <auth-method>KEYCLOAK</auth-method>
-    <realm-name>service</realm-name>
+    <realm-name>address</realm-name>
   </login-config>
 
   <security-role>
