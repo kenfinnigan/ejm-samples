@@ -2,46 +2,22 @@
 <html lang="en" class="layout-pf layout-pf-fixed">
 <head>
   <meta charset="utf-8" />
+  <base href="/" />
   <title>Address Database</title>
 
-  <script src="vendor/react/react.js"></script>
-  <script src="vendor/react/react-dom.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-router/0.13.5/ReactRouter.js"></script>
-  <script src="vendor/jquery/dist/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.js"></script>
-  <script src="vendor/reflux/dist/reflux.min.js"/>
+  <script src="node_modules/patternfly/node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="node_modules/patternfly/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="node_modules/patternfly/node_modules/datatables/media/js/jquery.dataTables.min.js"></script>
+  <script src="node_modules/patternfly/dist/js/patternfly.min.js"></script>
+  <script src="node_modules/patternfly/node_modules/jquery-match-height/jquery.matchHeight-min.js"></script>
 
-  <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-  <script src="vendor/patternfly/dist/js/patternfly.min.js"></script>
-  <script src="vendor/matchHeight/jquery.matchHeight-min.js"></script>
-
-  <link rel="stylesheet" href="vendor/patternfly/dist/css/patternfly.min.css" />
-  <link rel="stylesheet" href="vendor/patternfly/dist/css/patternfly-additions.min.css" />
+  <link rel="stylesheet" href="node_modules/patternfly/dist/css/patternfly.min.css" />
+  <link rel="stylesheet" href="node_modules/patternfly/dist/css/patternfly-additions.min.css" />
 
 </head>
 
 <body>
-  <nav class="navbar navbar-pf-vertical">
-    <div class="navbar-header">
-      <div class="navbar-toggle">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </div>
-      <a href="/" class="navbar-brand">
-        <span class="navbar-brand-name">Address Database</span>
-      </a>
-    </div>
-  </nav>
-
   <div id="app"></div>
-  <script type="text/babel" src="js/app.js"></script>
-  <script>
-    $(document).ready(function() {
-        $('#addressTable').DataTable();
-    });
-  </script>
+  <script src="bundle.js"></script>
 </body>
 </html>
