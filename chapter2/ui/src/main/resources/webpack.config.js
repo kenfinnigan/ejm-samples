@@ -6,16 +6,13 @@ module.exports = {
 
   entry: [
     'babel-polyfill',
-    './index.js'
+    './app/index.js'
   ],
 
-  devServer: {
-    inline: true,
-    port: 3333
-  },
-
   output: {
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, "build"),
+    filename: 'bundle.js',
+    publicPath: '/'
   },
 
   resolve: {
