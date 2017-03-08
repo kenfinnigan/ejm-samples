@@ -1,6 +1,6 @@
 import axios from 'axios';
 import store from '../store';
-import { getAddressesSuccess, deleteAddressSuccess } from '../actions/address-actions';
+import { getAddressesSuccess, getAddressSuccess, deleteAddressSuccess } from '../actions/address-actions';
 
 /**
  * Get Addresses
@@ -10,6 +10,19 @@ export function getAddresses() {
   return axios.get('http://localhost:8081/address')
     .then(response => {
       store.dispatch(getAddressesSuccess(response.data));
+      return response.data;
+    })
+    .catch(error => handleError(error));
+}
+
+/**
+ * Get Address
+ */
+
+export function getAddress(addressId) {
+  return axios.get('http://localhost:8081/address/' + addressId)
+    .then(response => {
+      store.dispatch(getAddressSuccess(response.data));
       return response.data;
     })
     .catch(error => handleError(error));

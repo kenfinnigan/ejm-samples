@@ -2,7 +2,8 @@ import * as types from '../actions/action-types';
 import _ from 'lodash';
 
 const initialState = {
-  addresses: []
+  addresses: [],
+  address: {}
 };
 
 const addressReducer = function(state = initialState, action) {
@@ -11,6 +12,9 @@ const addressReducer = function(state = initialState, action) {
 
     case types.GET_ADDRESSES_SUCCESS:
       return Object.assign({}, state, { addresses: action.addresses });
+
+    case types.GET_ADDRESS_SUCCESS:
+      return Object.assign({}, state, { address: action.address });
 
     case types.DELETE_ADDRESS_SUCCESS:
 

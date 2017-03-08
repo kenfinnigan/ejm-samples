@@ -7,6 +7,13 @@ export function getAddressesSuccess(addresses) {
   };
 }
 
+export function getAddressSuccess(address) {
+  return {
+    type: types.GET_ADDRESS_SUCCESS,
+    address
+  };
+}
+
 export function deleteAddressSuccess(addressId) {
   return {
     type: types.DELETE_ADDRESS_SUCCESS,

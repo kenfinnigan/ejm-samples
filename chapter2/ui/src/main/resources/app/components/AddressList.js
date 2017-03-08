@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 export default function(props) {
   return (
@@ -24,7 +25,7 @@ export default function(props) {
                 <td>{address.state}</td>
                 <td>
                   <div className="table-view-pf-btn">
-                    <button className="btn btn-info">Details</button>
+                    <Link className="btn btn-info" to={'/addresses/' + address.id}>Details</Link>
                     <span>&nbsp;&nbsp;</span>
                     <button className="btn btn-danger" onClick={props.deleteAddress.bind(null, address.id)}>Delete</button>
                   </div>

@@ -6,7 +6,7 @@ import store from '../store';
 
 const AddressListContainer = React.createClass({
 
-  componentWillMount: function() {
+  componentDidMount: function() {
     addressApi.getAddresses();
   },
 
