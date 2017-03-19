@@ -10,6 +10,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Address {
 
+    public Address() {
+    }
+
     public Address(Integer id) {
         this.id = id;
     }

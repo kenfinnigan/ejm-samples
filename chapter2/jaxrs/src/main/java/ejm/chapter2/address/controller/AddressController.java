@@ -64,8 +64,8 @@ public class AddressController {
 
     @DELETE
     @Path("/{addressId}")
-    public void removeAddress(@PathParam("addressId") Integer addressId) throws Exception {
-        addresses.remove(addressId);
+    public Address removeAddress(@PathParam("addressId") Integer addressId) throws Exception {
+        return addresses.remove(addressId);
     }
 
     @PUT
