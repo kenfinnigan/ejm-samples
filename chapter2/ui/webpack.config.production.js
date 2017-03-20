@@ -7,7 +7,7 @@ module.exports = {
   entry: './app/index.js',
 
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'target/chapter2-ui'),
     filename: 'bundle.js',
     publicPath: '/'
   },
@@ -17,15 +17,13 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loaders: ['react-hot', 'babel-loader']
+        loaders: ['babel-loader']
       }
     ]
   },
 
   plugins: [
-    new webpack.optimize.DedupePlugin(),
-
-    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
 
     new webpack.DefinePlugin({
       'process.env': {
