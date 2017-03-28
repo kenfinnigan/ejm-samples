@@ -28,7 +28,7 @@ export default class AddressList extends Component {
             <div className="table-view-pf-btn">
               <Link className="btn btn-info" to={'/address/' + address.id}>Details</Link>
               <span>&nbsp;&nbsp;</span>
-              <button className="btn btn-danger" onClick={() => this.deleteAddress(address.id)}>Delete</button>
+              <button disabled={!this.props.authenticated} className="btn btn-danger" onClick={() => this.deleteAddress(address.id)}>Delete</button>
             </div>
           </td>
         </tr>

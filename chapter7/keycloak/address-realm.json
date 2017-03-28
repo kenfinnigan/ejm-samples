@@ -33,10 +33,36 @@
           "manage-account"
         ]
       }
+    },
+    {
+      "username": "bob",
+      "enabled": true,
+      "email": "bob@bob.com",
+      "firstName": "Bob",
+      "lastName": "Smith",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password"
+        }
+      ],
+      "realmRoles": [
+        "user",
+        "offline_access"
+      ],
+      "clientRoles": {
+        "account": [
+          "manage-account"
+        ]
+      }
     }
   ],
   "roles": {
     "realm": [
+      {
+        "name": "user",
+        "description": "User privileges"
+      },
       {
         "name": "admin",
         "description": "Administrator privileges"
@@ -45,10 +71,10 @@
   },
   "clients": [
     {
-      "clientId": "frontend",
+      "clientId": "addressdb",
       "enabled": true,
       "publicClient": true,
-      "baseUrl": "http://localhost:8080/index.html",
+      "baseUrl": "http://localhost:8080",
       "redirectUris": [
         "http://localhost:8080/*"
       ]

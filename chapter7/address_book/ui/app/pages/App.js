@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './Header';
+import Header from '../containers/HeaderContainer';
 import LeftNav from './LeftNav';
 import Loading from '../containers/LoadingContainer';
 import Notification from '../containers/NotificationContainer';

@@ -63,6 +63,7 @@ public class AddressController {
     }
 
     @DELETE
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("/{addressId}")
     public Address removeAddress(@PathParam("addressId") Integer addressId) throws Exception {
         return addresses.remove(addressId);
