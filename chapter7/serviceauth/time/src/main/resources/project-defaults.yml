@@ -8,3 +8,9 @@ swarm:
         ssl-required: external
         resource: time-service
         enable-cors: true
+  deployment:
+    time.war:
+      web:
+        security-constraints:
+          - url-pattern: /*
+            roles: [ time-access ]
