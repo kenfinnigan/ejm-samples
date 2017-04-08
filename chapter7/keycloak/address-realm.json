@@ -26,6 +26,7 @@
       ],
       "realmRoles": [
         "admin",
+        "user",
         "offline_access"
       ],
       "clientRoles": {
@@ -71,13 +72,18 @@
   },
   "clients": [
     {
-      "clientId": "addressdb",
+      "clientId": "addressdb-ui",
       "enabled": true,
       "publicClient": true,
       "baseUrl": "http://localhost:8080",
       "redirectUris": [
         "http://localhost:8080/*"
       ]
+    },
+    {
+      "clientId": "addressdb-service",
+      "enabled": true,
+      "bearerOnly": true
     }
   ]
 }

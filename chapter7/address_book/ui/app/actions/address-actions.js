@@ -2,6 +2,8 @@ import * as types from '../actions/action-types';
 import { browserHistory } from 'react-router';
 import axios from 'axios';
 
+import security from '../security';
+
 const ROOT_URL = 'http://localhost:8081';
 
 export function loading(bool) {
@@ -195,18 +197,31 @@ export function updateAddress(address) {
 
 export function deleteAddress(id) {
   return dispatch => {
-    axios.delete(`${ROOT_URL}/address/${id}`)
-      .then(response => {
-        dispatch(deleteAddressSuccess(response.data));
-        dispatch(notifySuccessWithTimeout("Successfully deleted address", formatAddress(response.data), 3500));
-      })
-      .catch(error => {
-        if (error.response) {
-          dispatch(notifyError("Failed to delete address", error.response.data));
-        } else {
-          dispatch(notifyError("Failed to delete address", error.message));
-        }
+    if (security.authenticated) {
+      security.updateToken(30).success(function() {
+        axios.interceptors.request.use(config => {
+          config.headers = {...config.headers, ...{
+            Authorization: 'Bearer ' + security.token
+          }};
+          return config;
+        });
+
+        axios.delete(`${ROOT_URL}/address/${id}`)
+          .then(response => {
+            dispatch(deleteAddressSuccess(response.data));
+            dispatch(notifySuccessWithTimeout("Successfully deleted address", formatAddress(response.data), 3500));
+          })
+          .catch(error => {
+            if (error.response) {
+              dispatch(notifyError("Failed to delete address", error.response.data));
+            } else {
+              dispatch(notifyError("Failed to delete address", error.message));
+            }
+          });
+      }).error(function() {
+          dispatch(notifyError("Failed to refresh token", ""));
       });
+    }
   };
 }
 

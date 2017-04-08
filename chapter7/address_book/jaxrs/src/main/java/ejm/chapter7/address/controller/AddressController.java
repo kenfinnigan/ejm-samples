@@ -13,9 +13,13 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.SecurityContext;
 
 import ejm.chapter7.address.model.Address;
+import org.keycloak.KeycloakPrincipal;
+import org.keycloak.KeycloakSecurityContext;
 
 /**
  * @author Ken Finnigan
@@ -65,7 +69,16 @@ public class AddressController {
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{addressId}")
-    public Address removeAddress(@PathParam("addressId") Integer addressId) throws Exception {
+    public Address removeAddress(@PathParam("addressId") Integer addressId, @Context SecurityContext context) throws Exception {
+        String username = "";
+
+        if (context.getUserPrincipal() instanceof KeycloakPrincipal) {
+            KeycloakPrincipal<KeycloakSecurityContext> kp = (KeycloakPrincipal<KeycloakSecurityContext>) context.getUserPrincipal();
+
+            username = kp.getKeycloakSecurityContext().getToken().getName();
+        }
+
+        System.out.println(username + " is deleting address with id: " + addressId);
         return addresses.remove(addressId);
     }
 

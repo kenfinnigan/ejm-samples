@@ -1,0 +1,16 @@
+swarm:
+  keycloak:
+    secure-deployments:
+      chapter7-jaxrs.war:
+        realm: address
+        auth-server-url: http://localhost:9090/auth
+        ssl-required: external
+        resource: addressdb-service
+        bearer-only: true
+  deployment:
+    chapter7-jaxrs.war:
+      web:
+        security-constraints:
+          - url-pattern: /address/*
+            methods: [ DELETE ]
+            roles: [ admin ]

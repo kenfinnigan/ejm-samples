@@ -5,7 +5,8 @@ import AddressList from '../components/AddressList';
 const mapStateToProps = (state) => {
   return {
     addressList: state.addressState.addressList,
-    authenticated: state.securityState.authenticated
+    authenticated: state.securityState.authenticated,
+    adminRole: state.securityState.adminRole
   };
 };
 

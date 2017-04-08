@@ -18,6 +18,7 @@ security.init({ onLoad: 'check-sso' })
 
     if (authenticated) {
       store.getState().securityState.authenticated = true;
+      store.getState().securityState.adminRole = security.hasRealmRole('admin');
 
       if (security.idToken) {
         store.getState().securityState.user = security.idTokenParsed.name;

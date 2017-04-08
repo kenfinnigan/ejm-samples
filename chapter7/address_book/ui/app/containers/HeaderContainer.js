@@ -10,6 +10,7 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     authenticated: state.securityState.authenticated,
+    adminRole: state.securityState.adminRole,
     user: state.securityState.user,
     login: login,
     logout: logout,
