@@ -35,7 +35,6 @@ export default class KeycloakService {
                 })
                 .error(() => {
                   console.log("Failed to refresh token");
-                  keycloakAuth.login();
                 });
             }, 10000);
 
