@@ -5,31 +5,13 @@ import { Provider } from 'react-redux';
 import store from './store';
 import router from './router';
 
-import security from './security';
+import KeycloakService from './keycloak-service';
 
-security.init({ onLoad: 'check-sso' })
-  .success(authenticated => {
-    store.getState().securityState.keycloak = security;
+store.getState().securityState.keycloak = new KeycloakService();
 
-    render(
-      <Provider store={store}>{router}</Provider>,
-      document.getElementById('app')
-    );
-
-    if (authenticated) {
-      store.getState().securityState.authenticated = true;
-      store.getState().securityState.adminRole = security.hasRealmRole('admin');
-
-      if (security.idToken) {
-        store.getState().securityState.user = security.idTokenParsed.name;
-      } else {
-        security.loadUserProfile(
-          () => {
-            store.getState().securityState.user = security.profile.firstName + ' ' + keycloak.profile.lastName;
-          },
-          () => {
-          }
-        );
-      }
-    }
-  });
+store.getState().securityState.keycloak.init()
+  .then(() => render(
+                <Provider store={store}>{router}</Provider>,
+                document.getElementById('app')
+              )
+  );

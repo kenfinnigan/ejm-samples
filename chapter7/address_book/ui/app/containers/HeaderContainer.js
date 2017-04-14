@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { loginUrl, logoutUrl, myAccountUrl } from '../actions/security-actions';
 import Header from '../components/Header.js';
+import store from '../store';
 
 const mapStateToProps = (state, ownProps) => {
-  const login = loginUrl();
-  const logout = logoutUrl();
-  const acct = myAccountUrl();
+  const login = store.getState().securityState.keycloak.auth.loginUrl;
+  const logout = store.getState().securityState.keycloak.auth.logoutUrl;
+  const acct = store.getState().securityState.keycloak.auth.myAccount;
 
   return {
     authenticated: state.securityState.authenticated,
