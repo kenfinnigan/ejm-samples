@@ -17,15 +17,15 @@ export default class KeycloakService {
       keycloakAuth.init({ onLoad: 'check-sso' })
         .success((authenticated) => {
           this.auth.authz = keycloakAuth;
-          this.auth.loginUrl = keycloakAuth.createLoginUrl();
+          this.auth.loginUrl = this.auth.authz.createLoginUrl();
 
           if (authenticated) {
-            this.auth.myAccount = keycloakAuth.createAccountUrl();
+            this.auth.myAccount = this.auth.authz.createAccountUrl();
             store.getState().securityState.authenticated = true;
-            store.getState().securityState.adminRole = keycloakAuth.hasRealmRole('admin');
+            store.getState().securityState.adminRole = this.auth.authz.hasRealmRole('admin');
 
             this.auth.updateId = setInterval(() => {
-              keycloakAuth.updateToken(15)
+              this.auth.authz.updateToken()
                 .success((refreshed) => {
                   if (refreshed) {
                     console.log("Token refreshed");
@@ -35,15 +35,16 @@ export default class KeycloakService {
                 })
                 .error(() => {
                   console.log("Failed to refresh token");
+                  this.logout();
                 });
-            }, 10000);
+            }, 5000);
 
-            if (keycloakAuth.idToken) {
-              store.getState().securityState.user = keycloakAuth.idTokenParsed.name;
+            if (this.auth.authz.idToken) {
+              store.getState().securityState.user = this.auth.authz.idTokenParsed.name;
             } else {
               keycloakAuth.loadUserProfile(
                 () => {
-                  store.getState().securityState.user = keycloakAuth.profile.firstName + ' ' + keycloakAuth.profile.lastName;
+                  store.getState().securityState.user = this.auth.authz.profile.firstName + ' ' + this.auth.authz.profile.lastName;
                 },
                 () => {
                   resolve();
@@ -63,20 +64,13 @@ export default class KeycloakService {
     clearInterval(this.auth.updateId);
     this.auth.myAccount = null;
     this.auth.updateId = null;
-    window.location.href = keycloakAuth.logout();
+    this.auth.authz.logout();
   }
 
   getToken() {
     return new Promise((resolve, reject) => {
-      if (typeof this.auth.authz.token !== 'undefined') {
-        this.auth.authz
-          .updateToken()
-          .success(() => {
-            resolve(this.auth.authz.token);
-          })
-          .error(() => {
-            reject('Failed to refresh token');
-          });
+      if (this.auth.authz.token) {
+        resolve(this.auth.authz.token);
       } else {
         reject('No token found');
       }
