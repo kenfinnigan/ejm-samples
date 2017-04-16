@@ -7,7 +7,7 @@ module.exports = {
   entry: './app/index.js',
 
   output: {
-    path: path.join(__dirname, 'target/chapter2-ui'),
+    path: path.join(__dirname, 'target/chapter7-ui'),
     filename: 'bundle.js',
     publicPath: '/'
   },
