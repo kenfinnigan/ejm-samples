@@ -6,6 +6,7 @@ export default class KeycloakService {
   auth = {
     authz: null,
     loginUrl: null,
+    logoutUrl: null,
     myAccount: null,
     updateId: null,
   };
@@ -21,6 +22,7 @@ export default class KeycloakService {
 
           if (authenticated) {
             this.auth.myAccount = this.auth.authz.createAccountUrl();
+            this.auth.logoutUrl = this.auth.authz.createLogoutUrl();
             store.getState().securityState.authenticated = true;
             store.getState().securityState.adminRole = this.auth.authz.hasRealmRole('admin');
 
@@ -35,7 +37,6 @@ export default class KeycloakService {
                 })
                 .error(() => {
                   console.log("Failed to refresh token");
-                  this.logout();
                 });
             }, 5000);
 
@@ -58,13 +59,6 @@ export default class KeycloakService {
           reject();
         });
     });
-  }
-
-  logout() {
-    clearInterval(this.auth.updateId);
-    this.auth.myAccount = null;
-    this.auth.updateId = null;
-    this.auth.authz.logout();
   }
 
   getToken() {
