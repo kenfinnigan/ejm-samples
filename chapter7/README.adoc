@@ -2,11 +2,11 @@
 
 == Setup Keycloak
 
-Go to http://wildfly-swarm.io/downloads/ and download the _Keycloak Server_.
+Download the latest _Keycloak Server_ from http://wildfly-swarm.io/download/keycloak-swarm.
 
 Run it:
 
-  java -Dswarm.http.port=9090 -jar keycloak-2017.2.0-swarm.jar
+  java -Dswarm.http.port=9090 -jar keycloak-2017.5.0-swarm.jar
 
 Go to http://localhost:9090/auth/
 

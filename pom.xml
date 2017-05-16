@@ -12,7 +12,7 @@
   <packaging>pom</packaging>
 
   <properties>
-    <version.wildfly-swarm>2017.4.0</version.wildfly-swarm>
+    <version.wildfly-swarm>2017.5.0</version.wildfly-swarm>
     <version.springframework>4.1.9.RELEASE</version.springframework>
     <version.spring-boot>1.4.0.RELEASE</version.spring-boot>
     <version.dropwizard>1.0.0</version.dropwizard>
