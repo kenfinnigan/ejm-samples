@@ -45,7 +45,7 @@
     <dependency>
       <groupId>org.keycloak</groupId>
       <artifactId>keycloak-authz-client</artifactId>
-      <version>2.5.0.Final</version>
+      <version>2.5.4.Final</version>
     </dependency>
     <dependency>
       <groupId>org.jboss.resteasy</groupId>

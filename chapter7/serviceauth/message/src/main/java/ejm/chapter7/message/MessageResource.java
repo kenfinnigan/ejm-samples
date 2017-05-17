@@ -1,6 +1,5 @@
 package ejm.chapter7.message;
 
-import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +11,6 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.client.ClientRequestContext;
 import javax.ws.rs.client.ClientRequestFilter;
 import javax.ws.rs.container.AsyncResponse;
 import javax.ws.rs.container.Suspended;
@@ -47,13 +45,10 @@ public class MessageResource {
     public String getMessageSync() throws Exception {
         ResteasyClient client = new ResteasyClientBuilder().build();
 
-        client.register(new ClientRequestFilter() {
-            @Override
-            public void filter(ClientRequestContext clientRequestContext) throws IOException {
-                List<Object> list = new ArrayList<>();
-                list.add("Bearer " + getAuthzClient().obtainAccessToken().getToken());
-                clientRequestContext.getHeaders().put(HttpHeaders.AUTHORIZATION, list);
-            }
+        client.register((ClientRequestFilter) clientRequestContext -> {
+            List<Object> list = new ArrayList<>();
+            list.add("Bearer " + getAuthzClient().obtainAccessToken().getToken());
+            clientRequestContext.getHeaders().put(HttpHeaders.AUTHORIZATION, list);
         });
 
         URI url = getService("time");
@@ -70,6 +65,13 @@ public class MessageResource {
     public void getMessageAsync(@Suspended final AsyncResponse asyncResponse) throws Exception {
         executorService().execute(() -> {
             ResteasyClient client = new ResteasyClientBuilder().build();
+
+            client.register((ClientRequestFilter) clientRequestContext -> {
+                List<Object> list = new ArrayList<>();
+                list.add("Bearer " + getAuthzClient().obtainAccessToken().getToken());
+                clientRequestContext.getHeaders().put(HttpHeaders.AUTHORIZATION, list);
+            });
+
             URI url = null;
             try {
                 url = getService("time");
