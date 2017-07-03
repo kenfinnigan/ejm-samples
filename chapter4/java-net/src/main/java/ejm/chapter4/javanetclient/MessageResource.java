@@ -40,13 +40,13 @@ public class MessageResource {
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String output;
-            String time = null;
+            String time = "";
 
             while ((output = reader.readLine()) != null) {
                 time += output;
             }
 
-            if (time != null) {
+            if (!time.isEmpty()) {
                 return message(this.timeUrl, time);
             } else {
                 return "Time service unavailable at " + this.timeUrl;
@@ -76,13 +76,13 @@ public class MessageResource {
 
                 BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 String output;
-                String time = null;
+                String time = "";
 
                 while ((output = reader.readLine()) != null) {
                     time += output;
                 }
 
-                if (time != null) {
+                if (!time.isEmpty()) {
                     asyncResponse.resume(message(this.timeUrl, time));
                 } else {
                     asyncResponse.resume("Time service unavailable at " + this.timeUrl);
