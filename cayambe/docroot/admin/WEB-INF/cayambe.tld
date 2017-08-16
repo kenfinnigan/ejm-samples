@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE taglib
+        PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"
+  "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+
+<taglib>
+  <tlibversion>1.0</tlibversion>
+  <jspversion>1.1</jspversion>
+  <shortname>cayambe</shortname>
+  <uri></uri>
+  <info>
+    Cayambe tag library.
+  </info>
+
+<!-- Usage example:
+<cayambe:categories topTreeName="Cayambe Categories:" selectedNodeId="<%=selectedCategoryId%>">
+    These are the categories:<p>
+
+    <cayambe:nodes>
+
+        <cayambe:node nodeType="expandingBranch" part="before">
+            <ul><%=node.getNodeName()%>
+        </cayambe:node>
+
+        <cayambe:node nodeType="closedBranch">
+            <li>+ <%=node.getNodeName()%></il>
+        </cayambe:node>
+
+        <cayambe:node nodeType="leaf">
+            <li><%=node.getNodeName()%></li>
+        </cayambe:node>
+
+        <cayambe:node nodeType="expandingBranch" part="after">
+            </ul>
+        </cayambe:node>
+
+    </cayambe:nodes>
+
+    <br><b>That's all the categories</b>
+
+</cayambe:categories>
+-->
+    <!-- Treetags -->
+  <tag>
+    <name>categories</name>
+    <tagclass>org.cayambe.web.tag.CategoryTreeTag</tagclass>
+    <bodycontent>JSP</bodycontent>
+    <info>
+      A tag that extends TreeTag, fetching a list of all categoris from the
+      CategoryDelegate and setting variables according to the selectedNodeId.
+      Extends abstract Tree tag.
+    </info>
+ 
+    <!-- default is 0-->
+    <attribute>
+      <name>selectedNodeId</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <!-- default is ""-->
+    <attribute>
+      <name>topTreeName</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>      
+  </tag>
+
+<tag>
+    <name>nodes</name>
+    <tagclass>org.cayambe.web.tag.NodesTag</tagclass>
+    <bodycontent>JSP</bodycontent>
+    <info>
+      The inner tag in a Tree tag in which the nodes actually appear.  The
+      body of this tag is processed once for each node actually in the tree.
+      This tag  keeps a copy of the current node for the inner tags to
+      refer to, and most important manages the stack of waiting branches.
+      Must appear in a Tree tag.
+    </info>
+  </tag>
+
+ <tag>
+    <name>node</name>
+    <tagclass>org.cayambe.web.tag.NodeTag</tagclass>
+    <bodycontent>JSP</bodycontent>
+    <info>
+      The most inner tag in a tree tag in which a single node appear.  
+      In a Nodes tag we should place all the possible node tags for each of these:
+      nodeType=expandingBranch part=before -> Expanding node BEFORE it's children
+      nodeType=expandingBranch part=after -> Expanding node AFTER it's children
+      nodeType=leaf -> For a leaf node
+      nodeType=closedBranch -> For a closed  node 
+      Must appear in a Nodes tag.
+    </info>
+ 
+
+    <!-- must be one of: "leaf", "closedBranch" or "expandingBranch" -->
+    <attribute>
+      <name>nodeType</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+     <!-- required only when nodeType=expandingBranch, then must be one of: "before", "after" -->
+    <attribute>
+      <name>part</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+   <!-- Not available with tomcat 3 , must use TagExtraInfoClass
+    <variable>
+      <name-from-attribute>node</name-from-attribute>
+      <variable-class>org.cayambe.web.tag.NodeDisplayDetails</variable-class>
+      <declare>true</declare>
+      <scope>NESTED</scope>
+    </variable>  
+    <teiclass>org.cayambe.web.tag.NodeTagTei
+    </teiclass>
+    -->
+</tag>
+ <!--
+  <tag>
+    <name>DisplayCategoryHierarchy</name>
+    <tagclass>org.cayambe.web.tag.CategoryHierarchyTag</tagclass>
+    <bodycontent>JSP</bodycontent>
+    <info>
+      This tag displays product categories in their hierarchy.
+    </info>
+   <attribute>
+      <name>rootCategory</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+<tei-class>org.cayambe.web.tag.CategoryHierarchyTagTei</tei-class>
+  </tag>
+-->
+
+
+</taglib>

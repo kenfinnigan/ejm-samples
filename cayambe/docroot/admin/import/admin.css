@@ -1,0 +1,26 @@
+A.header:link {text-decoration: none; font-weight: normal; color: #FFFFFF}
+A.header:visited {text-decoration: none; font-weight: normal; color: #FFFFFF}
+A.header:active {text-decoration: none; font-weight: normal; color: #FFFFFF}
+A.header:hover {text-decoration: none; font-weight: normal; color: #FFFFFF}
+
+A.white:link {text-decoration: none; color: #ffffff}
+A.white:visited {text-decoration: none; color: #ffffff}
+A.white:active {text-decoration: none; color: #ffffff}
+A.white:hover {text-decoration: none; color: #ffffff}
+
+A.red:link {text-decoration: none; color: #FF3300}
+A.red:visited {text-decoration: none; color: #FF3300}
+A.red:active {text-decoration: none; color: #FF3300}
+A.red:hover {text-decoration: none; color: #FF3300}
+
+A:link {text-decoration: none; font-weight: none; color: navy}
+A:visited {text-decoration: none; font-weight: none; color: navy}
+A:active {text-decoration: none; font-weight: none; color: navy}
+A:hover {text-decoration: none; font-weight: none; color: navy}
+
+.small {font-family: arial; font-size: 9pt}
+.smallwhite {font-family: arial; font-size: 8pt; color: #FFFFFF}
+.normal {font-family: arial; font-size: 10pt}
+.normalwhite {font-family: arial; font-size: 10pt; color: #FFFFFF}
+.large {font-family: arial; font-size: 12pt}
+.largewhite {font-family: arial; font-size: 12pt; color: #FFFFFF}

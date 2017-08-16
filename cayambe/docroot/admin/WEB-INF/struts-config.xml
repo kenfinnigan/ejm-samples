@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.0//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_0.dtd">
+
+<struts-config>
+
+  <!-- ========== Form Bean Definitions =================================== -->
+  <form-beans>
+    <form-bean name="ProductForm" type="org.cayambe.web.admin.form.ProductActionForm"/>
+    <form-bean name="CategoryForm" type="org.cayambe.web.admin.form.CategoryActionForm"/>
+    <form-bean name="EmptyForm" type="org.cayambe.web.form.EmptyActionForm"/>
+    <form-bean name="OrderForm" type="org.cayambe.web.form.OrderActionForm"/>
+  </form-beans>
+
+
+  <!-- ========== Admin Action Mapping Definitions ============================== -->
+  <action-mappings>
+
+    <action     path="/AddNewProduct"
+        type="org.cayambe.web.admin.action.AddNewProductAction"
+        name="ProductForm"
+        scope="request"
+        validate="false">
+      <forward name="success" path="/UpdateProductIndex.jsp"/>
+    </action>
+
+    <action     path="/SearchProduct"
+        type="org.cayambe.web.admin.action.SearchProductAction"
+        name="ProductForm"
+        scope="request"
+        validate="false">
+      <forward name="success" path="/SearchProductIndex.jsp"/>
+    </action>
+
+    <action path="/SearchInventory"
+        type="org.cayambe.web.admin.action.SearchInventoryAction"
+        name="ProductForm"
+        input="SearchInventoryForm.jsp"
+        scope="request"
+        validate="false">
+      <forward name="success" path="/ListProductsIndex.jsp"/>
+    </action>
+
+    <action 	path="/UpdateProduct"
+        type="org.cayambe.web.admin.action.ManageInventoryAction"
+        name="ProductForm"
+        input="UpdateProductForm.jsp"
+        scope="request"
+        validate="false">
+      <forward name="failure" path="/UpdateProductIndex.jsp"/>
+      <forward name="success" path="/ViewProductIndex.jsp"/>
+    </action>
+
+    <action path="/ListAllProducts"
+        name="ProductForm"
+        type="org.cayambe.web.admin.action.ListProductsAction"
+        scope="request"
+        validate="false">
+      <forward name="success" path="/ListProductsIndex.jsp"/>
+    </action>
+
+
+    <action path="/EditProduct"
+        type="org.cayambe.web.admin.action.EditProductAction"
+        name="ProductForm"
+        input="ListProducts.jsp"
+        scope="request"
+        validate="false">
+      <forward name="success" path="/UpdateProductIndex.jsp"/>
+    </action>
+
+    <action path="/RemoveProduct"
+        type="org.cayambe.web.admin.action.RemoveProductAction"
+        name="ProductForm"
+        input="ListProducts.jsp"
+        scope="request"
+        validate="false">
+      <forward name="success" path="/ListAllProducts.do"/>
+    </action>
+
+    <action path="/ViewProduct"
+        type="org.cayambe.web.admin.action.ViewProductAction"
+        name="ProductForm"
+        scope="request"
+        validate="false">
+      <forward name="success" path="/ViewProductIndex.jsp" />
+    </action>
+
+<!-- Order Management Actions -->
+
+    <action path="/BuildSearchOrder"
+        type="org.cayambe.web.admin.action.BuildSearchOrderAction"
+        scope="request"
+        validate="false">
+      <forward name="success" path="/SearchOrderIndex.jsp"/>
+    </action>
+
+    <action path="/ListOrders"
+        type="org.cayambe.web.admin.action.ListOrdersAction"
+        name="EmptyForm"
+        scope="request"
+        validate="false">
+      <forward name="success" path="/ListOrdersIndex.jsp"/>
+    </action>
+
+    <action path="/ViewOrder"
+        type="org.cayambe.web.admin.action.ViewOrderAction"
+        name="OrderForm"
+        scope="request"
+        validate="false">
+      <forward name="success" path="/ViewOrderIndex.jsp"/>
+    </action>
+
+<!-- Category Action -->
+
+    <action path="/BrowseCatalog"
+        name="CategoryForm"
+        type="org.cayambe.web.admin.action.ListCategoriesAction"
+        scope="request"
+        validate="false">
+      <forward name="success" path="/BrowseCatalogIndex.jsp"/>
+    </action>
+
+    <action path="/UpdateCategory"
+        name="CategoryForm"
+        type="org.cayambe.web.admin.action.UpdateCategoryAction"
+        scope="request"
+	input="/EditCategoryIndex.jsp"
+        validate="true">
+	<!-- input="/UpdateCategoryForm.jsp" -->
+      <forward name="success" path="/BrowseCatalogIndex.jsp"/>
+    </action>
+
+    <action path="/AddSubCategory"
+        name="CategoryForm"
+        type="org.cayambe.web.admin.action.AddSubCategoryAction"
+        scope="request"
+	input="/AddSubCategoryForm.jsp"
+        validate="false">
+      <forward name="success" path="/BrowseCatalogIndex.jsp"/> 
+    </action>
+
+    <action path="/EditCategory"
+        type="org.cayambe.web.admin.action.EditCategoryAction"
+        name="CategoryForm"
+        input="ListCategories.jsp"
+        scope="request"
+        validate="false">
+      <forward name="success" path="/EditCategoryIndex.jsp"/>
+    </action>
+
+    <action path="/NewCategory"
+        type="org.cayambe.web.admin.action.NewCategoryAction"
+        name="CategoryForm"
+        input="ListCategories.jsp"
+        scope="request"
+        validate="false">
+      <forward name="success" path="/NewCategoryIndex.jsp"/>
+    </action>
+
+    <action path="/RemoveCategory"
+        type="org.cayambe.web.admin.action.RemoveCategoryAction"
+        name="CategoryForm"
+        scope="request"
+        validate="false">
+      <forward name="success" path="/BrowseCatalogIndex.jsp"/>
+    </action>
+
+    <action path="/ListProductForCategory"
+        type="org.cayambe.web.admin.action.ListProductForCategoryAction"
+        name="CategoryForm"
+        scope="request"
+        validate="false">
+       <forward name="success" path="/ListProductForCategoryIndex.jsp"/>
+    </action> 
+
+    <action path="/SearchProductForAddingToCategory"
+       type="org.cayambe.web.admin.action.SearchProductForCategoryAction"
+       name="CategoryForm"
+       scope="request"
+       validate="false">
+     <forward name="success" path="/SearchProductForAddingToCategoryIndex.jsp"/>
+    </action>
+
+    <action path="/ListProductForAddingToCategory"
+        type="org.cayambe.web.admin.action.ListProductForAddingToCategoryAction"
+        name="CategoryForm"
+        scope="request"
+        validate="false">
+       <forward name="success" path="/ListProductForAddingToCategoryIndex.jsp"/>
+    </action>
+
+    <action path="/AddProductToCategory"
+        type="org.cayambe.web.admin.action.AddProductToCategoryAction"
+        name="CategoryForm"
+        scope="request"
+        validate="false">
+       <forward name="success" path="/BrowseCatalogIndex.jsp"/>
+    </action>
+
+    <action path="/UpdateProductToCategory"
+        type="org.cayambe.web.admin.action.UpdateProductToCategoryAction"
+        name="CategoryForm"
+        scope="request"
+        validate="false">
+       <forward name="success" path="/BrowseCatalogIndex.jsp"/> 
+    </action>
+
+  </action-mappings>
+
+</struts-config>

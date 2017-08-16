@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<component-definitions>
+
+ <definition name="AdminHome" path="/AdminHomeLayout.jsp">
+  <put name="Title" value="Welcome to the Cayambe Admin" />
+  <put name="Header" value="Header.jsp" />
+  <put name="Body" value="AdminHomeContent.jsp" />
+  <put name="Footer" value="Footer.jsp" />
+ </definition>
+
+ <definition name="BrowseCatalog" extends="AdminHome">
+  <put name="Body" value="BrowseCatalogBody" />
+ </definition>
+
+ <definition name="BrowseCatalogBody" path="/BrowseCatalogBodyLayout.jsp">
+  <put name="CategoryList" value="CategoryList.jsp" />
+  <put name="ManageCategoryHeader" value="ManageCategoryHeader.jsp" />
+  <put name="ManageCategoryBody" value="blank.jsp" />
+ </definition>
+
+ <definition name="NewCategory" extends="AdminHome">
+  <put name="Body" value="NewCategoryBody" />
+ </definition>
+
+ <definition name="NewCategoryBody" extends="BrowseCatalogBody">
+  <put name="ManageCategoryBody" value="AddSubCategoryForm.jsp" />
+ </definition>
+
+ <definition name="EditCategory" extends="AdminHome">
+  <put name="Body" value="EditCategoryBody" />
+ </definition>
+
+ <definition name="EditCategoryBody" extends="BrowseCatalogBody">
+  <put name="ManageCategoryBody" value="UpdateCategoryForm.jsp" />
+ </definition>
+
+ <definition name="ListProductForAddingToCategory" extends="AdminHome">
+  <put name="Body" value="ListProductForAddingToCategoryBody" />
+ </definition>
+
+ <definition name="ListProductForAddingToCategoryBody" extends="BrowseCatalogBody">
+  <put name="ManageCategoryBody" value="AddProductsToCategory.jsp" />
+ </definition>
+
+
+ <definition name="SearchProductForAddingToCategory" extends="AdminHome">
+  <put name="Body" value="SearchProductForAddingToCategoryBody" />
+ </definition>
+
+ <definition name="SearchProductForAddingToCategoryBody" extends="BrowseCatalogBody">
+  <put name="ManageCategoryBody" value="SearchProductForAddingToCategory.jsp" />
+ </definition>
+
+
+ <definition name="Error" extends="AdminHome">
+  <put name="Body" value="Error.jsp" />
+ </definition>
+
+
+ <definition name="ListProductForCategory" extends="AdminHome">
+  <put name="Body" value="ListProductForCategoryBody" />
+ </definition>
+
+ <definition name="ListProductForCategoryBody" extends="BrowseCatalogBody">
+  <put name="ManageCategoryBody" value="CategoryListProduct.jsp" />
+ </definition>
+
+ <definition name="ViewProduct" extends="AdminHome">
+  <put name="Body" value="ViewProduct.jsp" />
+ </definition>
+
+ <definition name="UpdateProduct" extends="AdminHome">
+  <put name="Body" value="UpdateProductForm.jsp" />
+ </definition>
+
+ <definition name="ListAllProducts" extends="AdminHome">
+  <put name="Body" value="ListProducts.jsp" />
+ </definition>
+
+ <definition name="SearchProduct" extends="AdminHome">
+  <put name="Body" value="SearchProductForm.jsp" />
+ </definition>
+
+ <definition name="SearchOrders" extends="AdminHome">
+  <put name="Body" value="SearchOrderForm.jsp" />
+ </definition>
+
+ <definition name="ListOrders" extends="AdminHome">
+  <put name="Body" value="ListOrders.jsp" />
+ </definition>
+
+ <definition name="ViewOrder" extends="AdminHome">
+  <put name="Body" value="ViewOrder.jsp" />
+ </definition>
+
+</component-definitions>

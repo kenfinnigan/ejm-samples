@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project basedir="." default="core" name="cayambe">
+
+  <target name="init">
+    <tstamp/>
+    <property environment="env"/>
+    <property name="struts.home" value="${env.STRUTS_HOME}"/>
+    <property name="log4j.home" value="${env.LOG4J_HOME}"/>
+    <property name="build" value="../build"/>
+    <property name="src" value="."/>
+    <property name="docroot" value="../docroot"/>
+    <property name="assemble" value="../assemble"/>
+    <property name="appname" value="cayambe"/>
+    <property name="ejbjar" value="${assemble}/jar" />
+    <property name="cartwar" value="${assemble}/war/cart" />
+    <property name="checkoutwar" value="${assemble}/war/checkout" />
+    <property name="adminwar" value="${assemble}/war/admin" />
+    <property name="deploydir" value="${env.DEPLOY}" />
+    <property name="build.compiler" value="classic"/> 
+  </target>
+
+  <!-- ======================================================= -->
+  <!-- Compile all classes.                                    -->
+  <!-- ======================================================= -->
+  <target name="compile" depends="init">
+    <mkdir dir="${build}"/>
+    <javac destdir="${build}" srcdir="${src}"/>
+  </target>
+
+ <!-- ======================================================= -->
+  <!-- Clean up various files and directories.                 -->
+  <!-- ======================================================= -->
+  <target name="clean" depends="init">
+    <delete dir="${assemble}"/>
+    <delete dir="${build}"/>
+  </target>
+
+  <target name="fixforunix">
+    <fixcrlf cr="remove" eof="remove" includes="**/*.jsp,**/*.html,**/*.tld,**/*.xml,**/*.java,**/*.sh,**/*.sql" srcdir="${src}"/>
+  </target>
+
+  <!-- ======================================================= -->
+  <!-- Assemble EJB JAR module.                                -->
+  <!-- ======================================================= -->
+  <target name="ejbjar">
+    <mkdir dir="${ejbjar}"/>
+    <copy todir="${ejbjar}">
+      <fileset dir="${build}/">
+        <include name="**/core/*.class"/>
+        <include name="**/dao/*.class"/>
+        <include name="**/ejb/*.class"/>
+        <include name="**/util/*.class"/>
+        <exclude name="**/client/*.class"/>
+        <exclude name="**/web/*.class"/>
+        <exclude name="**/action/*.class"/>
+        <exclude name="**/form/*.class"/>
+      </fileset>
+    </copy>
+    <mkdir dir="${ejbjar}/META-INF"/>
+    <copy file="etc/ejb-jar.xml" tofile="${ejbjar}/META-INF/ejb-jar.xml"/>
+
+    <jar basedir="${ejbjar}" jarfile="${ejbjar}/../${appname}.jar" compress="false"/>
+  </target>
+
+  <target name="cartwar">
+    <mkdir dir="${cartwar}"/>
+    <mkdir dir="${cartwar}/WEB-INF"/>
+    <mkdir dir="${cartwar}/WEB-INF/classes"/>
+    <mkdir dir="${cartwar}/WEB-INF/lib"/>
+    <copy todir="${cartwar}/WEB-INF/classes">
+      <fileset dir="${build}/">
+        <include name="**/client/*.class"/>
+<!--        <include name="**/core/*.class"/>
+        <include name="**/util/*.class"/> -->
+        <include name="**/web/cart/action/*.class"/>
+        <include name="**/web/form/*.class"/>
+        <include name="**/web/cart/form/*.class"/>
+        <include name="**/web/tag/*.class"/>
+      </fileset>
+    </copy>
+    <copy todir="${cartwar}/WEB-INF">
+      <fileset dir="${docroot}/cart/WEB-INF">
+        <include name="*.tld"/>
+        <include name="*.xml"/>
+      </fileset>
+    </copy>
+    <copy todir="${cartwar}">
+      <fileset dir="${docroot}/cart">
+        <include name="**/*.html"/>
+        <include name="**/*.jsp"/>
+        <include name="**/*.gif"/>
+        <include name="**/*.jpg"/>
+        <include name="**/*.css"/>
+      </fileset>
+    </copy>
+    <jar basedir="${cartwar}" jarfile="${cartwar}/../cart.war" compress="false"/>
+  </target>
+
+
+
+  <target name="checkoutwar">
+    <mkdir dir="${checkoutwar}"/>
+    <mkdir dir="${checkoutwar}/WEB-INF"/>
+    <mkdir dir="${checkoutwar}/WEB-INF/classes"/>
+    <mkdir dir="${checkoutwar}/WEB-INF/lib"/>
+    <copy todir="${checkoutwar}/WEB-INF/classes">
+      <fileset dir="${build}/">
+        <include name="**/client/*.class"/>
+<!--        <include name="**/core/*.class"/>
+        <include name="**/util/*.class"/> -->
+        <include name="**/web/checkout/action/*.class"/>
+        <include name="**/web/checkout/form/*.class"/>
+        <include name="**/web/form/*.class"/>
+        <include name="**/web/tag/*.class"/>
+      </fileset>
+    </copy>
+    <copy todir="${checkoutwar}/WEB-INF">
+      <fileset dir="${docroot}/checkout/WEB-INF">
+        <include name="*.tld"/>
+        <include name="*.xml"/>
+      </fileset>
+    </copy>
+    <copy todir="${checkoutwar}">
+      <fileset dir="${docroot}/checkout">
+        <include name="**/*.html"/>
+        <include name="**/*.jsp"/>
+        <include name="**/*.gif"/>
+        <include name="**/*.jpg"/>
+        <include name="**/*.css"/>
+      </fileset>
+    </copy>
+    <jar basedir="${checkoutwar}" jarfile="${checkoutwar}/../checkout.war" compress="false"/>
+  </target>
+
+
+
+  <target name="adminwar">
+    <mkdir dir="${adminwar}"/>
+    <mkdir dir="${adminwar}/WEB-INF"/>
+    <mkdir dir="${adminwar}/WEB-INF/classes"/>
+    <mkdir dir="${adminwar}/WEB-INF/lib"/>
+    <copy todir="${adminwar}/WEB-INF/classes">
+      <fileset dir="${build}/">
+        <include name="**/client/*.class"/>
+<!--        <include name="**/core/*.class"/>
+        <include name="**/util/*.class"/> -->
+        <include name="**/web/admin/action/*.class"/>
+        <include name="**/web/admin/form/*.class"/>
+        <include name="**/web/form/*.class"/>
+        <include name="**/web/tag/*.class"/>
+      </fileset>
+    </copy>
+    <copy todir="${adminwar}/WEB-INF">
+      <fileset dir="${docroot}/admin/WEB-INF">
+        <include name="**/*.tld"/>
+        <include name="**/*.xml"/>
+      </fileset>
+    </copy>
+    <copy todir="${adminwar}">
+      <fileset dir="${docroot}/admin">
+        <include name="**/*.html"/>
+        <include name="**/*.jsp"/>
+        <include name="**/*.gif"/>
+        <include name="**/*.jpg"/>
+        <include name="**/*.css"/>
+      </fileset>
+    </copy>
+    <!-- <copy file="${struts.home}/lib/struts.jar" tofile="${adminwar}/WEB-INF/lib/struts.jar"/> -->
+    <!-- <copy file="${struts.home}/lib/tiles.jar" tofile="${adminwar}/WEB-INF/lib/tiles.jar"/> -->
+   <!-- <copy file="${log4j.home}/lib/log4j.jar" tofile="${adminwar}/WEB-INF/lib/log4j.jar"/> -->
+
+    <copy file="etc/ApplicationResources.properties" tofile="${adminwar}/WEB-INF/classes/ApplicationResources.properties"/>
+
+    <jar basedir="${adminwar}" jarfile="${adminwar}/../admin.war" compress="false"/>
+  </target>
+
+
+  <target depends="ejbjar" name="ear">
+    <mkdir dir="${assemble}/ear"/>
+    <copy file="${ejbjar}/../${appname}.jar" tofile="${assemble}/ear/${appname}.jar"/>
+    <copy file="${adminwar}/../admin.war" tofile="${assemble}/ear/admin.war"/>
+    <copy file="${cartwar}/../cart.war" tofile="${assemble}/ear/cart.war"/>
+    <copy file="${checkoutwar}/../checkout.war" tofile="${assemble}/ear/checkout.war"/>
+    <copy file="etc/application.xml" tofile="${assemble}/ear/META-INF/application.xml"/>
+    <copy file="etc/sun-j2ee-ri.xml" tofile="${assemble}/ear/META-INF/sun-j2ee-ri.xml"/>
+    <copy file="etc/jboss.xml" tofile="${assemble}/ear/META-INF/jboss.xml"/>
+
+    <jar basedir="${assemble}/ear" jarfile="${assemble}/${appname}.ear" compress="false"/>
+  </target>
+
+  <target depends="compile, adminwar, cartwar, checkoutwar, ear" name="core"/>
+
+  <target depends="core" name="war">
+    <delete file="${deploydir}/${appname}.war"/>
+    <copy file="${assemble}/${appname}.war" tofile="${deploydir}/${appname}.war"/>
+  </target>
+
+  <target depends="core" name="jboss">
+    <delete file="${deploydir}/${appname}.ear"/>
+    <copy file="${assemble}/${appname}.ear" tofile="${deploydir}/${appname}.ear"/>
+  </target>
+
+  <target name="test">
+    <!---
+    <java classname="test.MyTestClass">
+      <classpath>
+        <pathelement location="${jboss_root}\client\jnp-client.jar"/>
+        <pathelement location="${jboss_root}\client\jboss-client.jar"/>
+        <pathelement location="${jboss_root}\client\jbosssx-client.jar"/>
+        <pathelement location="${assemble}\cactus-ejb-client.jar"/>
+        <pathelement location="${assemble}\cactus-ejb.jar"/>
+        <pathelement location="c:\java\lib\junit.jar"/>
+        <pathelement location="${j2ee.home}\lib\j2ee.jar"/>
+      </classpath>
+    </java>
+    -->
+
+  </target>
+
+  <target depends="jboss,test" name="testjboss"/>
+  <target depends="ri,test" name="testri"/>
+
+  <target depends="core" name="ri">
+    <echo message="Executing ${j2ee.home}/bin/deploytool to register ${appname}.jar."/>
+    <exec executable="${j2ee.home}/bin/deploytool.bat">
+      <arg line="-deploy ${assemble}/${appname}.ear localhost"/>
+    </exec>
+  </target>
+
+</project>
