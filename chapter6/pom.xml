@@ -14,17 +14,9 @@
   <name>Chapter 6: Strategies for Fault Tolerance and Monitoring examples</name>
   <packaging>pom</packaging>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.wildfly.swarm</groupId>
-      <artifactId>topology-jgroups</artifactId>
-    </dependency>
-  </dependencies>
-
   <modules>
     <module>time</module>
-    <module>state-client</module>
-    <module>state-service</module>
+    <module>stock-client</module>
     <module>ribbon-client</module>
     <module>resteasy-client</module>
   </modules>

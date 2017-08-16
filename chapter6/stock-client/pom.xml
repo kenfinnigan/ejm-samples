@@ -10,12 +10,12 @@
     <relativePath>../pom.xml</relativePath>
   </parent>
 
-  <artifactId>chapter6-state-client</artifactId>
-  <name>Chapter 6: State Client</name>
+  <artifactId>chapter6-stock-client</artifactId>
+  <name>Chapter 6: Stock Client</name>
   <packaging>war</packaging>
 
   <build>
-    <finalName>stateclient</finalName>
+    <finalName>stockclient</finalName>
 
     <plugins>
       <plugin>
