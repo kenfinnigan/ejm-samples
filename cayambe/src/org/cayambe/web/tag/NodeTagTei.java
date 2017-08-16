@@ -1,7 +1,7 @@
 /*
  * NodeTei.java
  *
- * Created on 17 אוקטובר 2001, 05:43
+ * Created on 17 ? 2001, 05:43
  */
 
 package org.cayambe.web.tag;

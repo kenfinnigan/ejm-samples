@@ -47,9 +47,9 @@ public class CategoryFacadeSession implements SessionBean {
       c.setName("");
       categories.put(new Long("0"),c);
       
-      Enumeration enum = categories.elements();
-      while( enum.hasMoreElements() ){
-        CategoryVO current = (CategoryVO)enum.nextElement();
+      Enumeration categoryEnum = categories.elements();
+      while( categoryEnum.hasMoreElements() ){
+        CategoryVO current = (CategoryVO)categoryEnum.nextElement();
         CategoryVO parentOfCurrent = (CategoryVO)categories.get( current.getParentId() );
         //take care of root Category
         if (parentOfCurrent != null && !parentOfCurrent.equals(current))
@@ -152,7 +152,7 @@ THIS DOES NOTHING CURRENTLY
     /* Methods required by SessionBean Interface. EJB 1.1 section 6.5.1. */
 
     /**
-     * @see javax.ejb.SessionBean#setContext(javax.ejb.SessionContext)
+     * @see javax.ejb.SessionBean#setSessionContext(javax.ejb.SessionContext)
      */
     public void setSessionContext(SessionContext _context){
         context = _context;

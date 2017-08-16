@@ -1,7 +1,7 @@
 /*
  * NodeDisplayDetails.java
  *
- * Created on 16 אוקטובר 2001, 06:54
+ * Created on 16 ? 2001, 06:54
  */
 
 package org.cayambe.web.tag;
