@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.cayambe</groupId>
+    <artifactId>cayambe-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>cayambe-ear</artifactId>
+  <packaging>ear</packaging>
+
+  <build>
+    <finalName>cayambe</finalName>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-ear-plugin</artifactId>
+        <version>2.10.1</version>
+        <configuration>
+          <defaultLibBundleDir>lib/</defaultLibBundleDir>
+          <skinnyWars>true</skinnyWars>
+          <modules>
+            <ejbModule>
+              <groupId>org.cayambe</groupId>
+              <artifactId>cayambe</artifactId>
+              <bundleFileName>cayambe.jar</bundleFileName>
+            </ejbModule>
+            <webModule>
+              <groupId>org.cayambe</groupId>
+              <artifactId>admin</artifactId>
+              <bundleFileName>admin.war</bundleFileName>
+            </webModule>
+            <webModule>
+              <groupId>org.cayambe</groupId>
+              <artifactId>cart</artifactId>
+              <bundleFileName>cart.war</bundleFileName>
+            </webModule>
+            <webModule>
+              <groupId>org.cayambe</groupId>
+              <artifactId>checkout</artifactId>
+              <bundleFileName>checkout.war</bundleFileName>
+            </webModule>
+          </modules>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.cayambe</groupId>
+      <artifactId>admin</artifactId>
+      <type>war</type>
+    </dependency>
+    <dependency>
+      <groupId>org.cayambe</groupId>
+      <artifactId>cart</artifactId>
+      <type>war</type>
+    </dependency>
+    <dependency>
+      <groupId>org.cayambe</groupId>
+      <artifactId>checkout</artifactId>
+      <type>war</type>
+    </dependency>
+    <dependency>
+      <groupId>org.cayambe</groupId>
+      <artifactId>cayambe</artifactId>
+      <type>ejb</type>
+    </dependency>
+  </dependencies>
+</project>

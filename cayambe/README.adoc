@@ -1,0 +1,6 @@
+= Cayambe Setup
+
+== Install Tiles for Struts jar into Maven
+
+  mvn install:install-file -Dfile=extras/tilesForStruts1-0.jar -DgroupId=struts -DartifactId=struts-tiles -Dversion=1.1.0 -Dpackaging=jar
+
