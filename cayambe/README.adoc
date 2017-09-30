@@ -1,6 +1,18 @@
 = Cayambe Setup
 
-== Install Tiles for Struts jar into Maven
+== Setup MySQL
 
-  mvn install:install-file -Dfile=extras/tilesForStruts1-0.jar -DgroupId=struts -DartifactId=struts-tiles -Dversion=1.1.0 -Dpackaging=jar
+  mysql -h127.0.0.1 -P 32768 -uroot
+
+  create user 'cayambe'@'172.17.0.1' identified by 'cayambe';
+
+  grant all privileges on *.* to 'cayambe'@'172.17.0.1' with grant option;
+
+  create database cayambe;
+
+  use cayambe;
+
+  source \sql\mysql.sql
+
+  source \test_data.sql
 
