@@ -11,15 +11,6 @@ import java.io.Serializable;
  * @version 0.1
  */
 
-public class CayambeValueObject extends Hashtable implements Serializable
+public class CayambeValueObject implements Serializable
 {
-  public String getAdditionalField( String key )
-  {
-    return (String)get( key );
-  }
-
-  public void setAddtionalField( String key, String value )
-  {
-    put( key, value );
-  }
 }
