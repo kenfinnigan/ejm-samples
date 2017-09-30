@@ -45,6 +45,43 @@
               <artifactId>checkout</artifactId>
               <bundleFileName>checkout.war</bundleFileName>
             </webModule>
+
+            <jarModule>
+              <groupId>org.cayambe</groupId>
+              <artifactId>web-common</artifactId>
+              <uri>lib/web-common.jar</uri>
+            </jarModule>
+
+            <jarModule>
+              <groupId>struts</groupId>
+              <artifactId>struts</artifactId>
+              <uri>lib/struts.jar</uri>
+            </jarModule>
+            <jarModule>
+              <groupId>commons-beanutils</groupId>
+              <artifactId>commons-beanutils</artifactId>
+              <uri>lib/commons-beanutils.jar</uri>
+            </jarModule>
+            <jarModule>
+              <groupId>commons-digester</groupId>
+              <artifactId>commons-digester</artifactId>
+              <uri>lib/commons-digester.jar</uri>
+            </jarModule>
+            <jarModule>
+              <groupId>commons-collections</groupId>
+              <artifactId>commons-collections</artifactId>
+              <uri>lib/commons-collections.jar</uri>
+            </jarModule>
+            <jarModule>
+              <groupId>commons-logging</groupId>
+              <artifactId>commons-logging</artifactId>
+              <uri>lib/commons-logging.jar</uri>
+            </jarModule>
+            <jarModule>
+              <groupId>commons-validator</groupId>
+              <artifactId>commons-validator</artifactId>
+              <uri>lib/commons-validator.jar</uri>
+            </jarModule>
           </modules>
         </configuration>
       </plugin>
@@ -71,6 +108,35 @@
       <groupId>org.cayambe</groupId>
       <artifactId>cayambe</artifactId>
       <type>ejb</type>
+    </dependency>
+    <dependency>
+      <groupId>org.cayambe</groupId>
+      <artifactId>web-common</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>struts</groupId>
+      <artifactId>struts</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>commons-beanutils</groupId>
+      <artifactId>commons-beanutils</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>commons-digester</groupId>
+      <artifactId>commons-digester</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>commons-collections</groupId>
+      <artifactId>commons-collections</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>commons-validator</groupId>
+      <artifactId>commons-validator</artifactId>
     </dependency>
   </dependencies>
 </project>

@@ -3,7 +3,6 @@
 <%@ taglib uri='/WEB-INF/struts-logic.tld' prefix='logic' %>
 <%@ taglib uri='/WEB-INF/struts-bean.tld' prefix='bean' %>
 <%@ taglib uri='/WEB-INF/struts-html.tld' prefix='html' %>
-<%@ taglib uri='/WEB-INF/struts.tld' prefix='struts' %>
 <%@ taglib uri='/WEB-INF/cayambe.tld' prefix='cayambe' %>
 
   <table border=0 cellspacing=0 cellpadding=0>

@@ -1,5 +1,4 @@
 <%@ page language="java" %>
-<%@ taglib uri="/WEB-INF/struts.tld" prefix="struts" %>
 <%@ taglib uri="/WEB-INF/struts-form.tld" prefix="form" %>
 
 <center>

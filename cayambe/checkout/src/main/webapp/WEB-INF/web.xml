@@ -1,13 +1,10 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-
-<!DOCTYPE web-app
-  PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.2//EN"
-  "http://java.sun.com/j2ee/dtds/web-app_2_2.dtd">
-
-<web-app>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
 
 
- <!-- To rename application: change package headers; update Constants.java; update DatabaseServlet.java; update LinkSubscription.java; update web.xml, struts-config.xml; app.tld; mainMenu.jsp; subscription.jsp -->
+<!-- To rename application: change package headers; update Constants.java; update DatabaseServlet.java; update LinkSubscription.java; update web.xml, struts-config.xml; app.tld; mainMenu.jsp; subscription.jsp -->
 
   <!-- Action Servlet Configuration -->
   <servlet>
@@ -52,43 +49,5 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
-
-  <!-- Application Tag Library Descriptor
-  <taglib>
-    <taglib-uri>/WEB-INF/app.tld</taglib-uri>
-    <taglib-location>/WEB-INF/app.tld</taglib-location>
-  </taglib>
-  -->
-
-  <!-- Struts Tag Library Descriptors -->
-  <taglib>
-    <taglib-uri>/WEB-INF/struts-bean.tld</taglib-uri>
-    <taglib-location>/WEB-INF/struts-bean.tld</taglib-location>
-  </taglib>
-
-  <taglib>
-    <taglib-uri>/WEB-INF/struts-nested.tld</taglib-uri>
-    <taglib-location>/WEB-INF/struts-nested.tld</taglib-location>
-  </taglib>
-
-  <taglib>
-    <taglib-uri>/WEB-INF/struts-form.tld</taglib-uri>
-    <taglib-location>/WEB-INF/struts-form.tld</taglib-location>
-  </taglib>
-
-  <taglib>
-    <taglib-uri>/WEB-INF/struts-logic.tld</taglib-uri>
-    <taglib-location>/WEB-INF/struts-logic.tld</taglib-location>
-  </taglib>
-
-  <taglib>
-    <taglib-uri>/WEB-INF/struts-template.tld</taglib-uri>
-    <taglib-location>/WEB-INF/struts-template.tld</taglib-location>
-  </taglib>
-
-  <taglib>
-    <taglib-uri>/WEB-INF/cayambe.tld</taglib-uri>
-    <taglib-location>/WEB-INF/cayambe.tld</taglib-location>
-  </taglib>
 
 </web-app>

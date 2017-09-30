@@ -4,7 +4,6 @@
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="java.util.Locale" %>
 
-<%@ taglib uri="/WEB-INF/struts.tld" prefix="struts" %>
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
 <%@ taglib uri="/WEB-INF/struts-form.tld" prefix="form" %>
 <%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
@@ -12,7 +11,7 @@
 
 <html:errors />
 
-<form:form name="OrderForm" type="org.cayambe.web.checkout.form.OrderActionForm" action="SubmitOrder.do" scope="request">
+<form:form name="OrderForm" type="org.cayambe.web.form.OrderActionForm" action="SubmitOrder.do" scope="request">
 
 <table border="1" width="100%">
 

@@ -27,11 +27,13 @@
     <dependency>
       <groupId>org.cayambe</groupId>
       <artifactId>web-common</artifactId>
+      <scope>provided</scope>
     </dependency>
 
     <dependency>
       <groupId>struts</groupId>
       <artifactId>struts</artifactId>
+      <scope>provided</scope>
     </dependency>
 
     <dependency>

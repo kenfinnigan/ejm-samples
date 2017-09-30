@@ -4,7 +4,6 @@
 <%@ taglib uri='/WEB-INF/struts-form.tld' prefix='form' %>
 <%@ taglib uri='/WEB-INF/struts-html.tld' prefix='html' %>
 <%@ taglib uri='/WEB-INF/struts-bean.tld' prefix='bean' %>
-<%@ taglib uri='/WEB-INF/struts.tld' prefix='struts' %>
 
 <table align="center" bgcolor="#ececec" width="100%" cellspacing="2" cellpadding="2" border="0">
 <tr>
@@ -13,7 +12,7 @@
 </table>
 <FONT SIZE=5><B><CENTER>Check Out</CENTER></B></FONT>
 [&nbsp;
-<html:link page="/ContinueShopping.do" styleClass="normal"
+<html:link page="/ContinueShopping.do"
   paramId="cartId" paramName="cartId" styleClass="normal" paramScope="session">
   Main Catalog
 </html:link>
