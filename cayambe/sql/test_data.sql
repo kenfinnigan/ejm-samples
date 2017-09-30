@@ -85,3 +85,6 @@ insert into product_category (product_id, category_id)
 values(508, 1018);
 insert into product_category (product_id, category_id)
 values(509, 1018);
+
+insert into order_statuses (id, name)
+values(1, "Open");
