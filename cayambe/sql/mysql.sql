@@ -7,7 +7,7 @@
 
 DROP TABLE IF EXISTS billing_info;
 CREATE TABLE billing_info (
-  billing_id int(11) NOT NULL auto_increment,
+  billing_id int(11) NOT NULL auto_increment PRIMARY KEY,
   order_id int(11) NOT NULL default '0',
   name varchar(50) default NULL,
   address1 varchar(128) default NULL,
@@ -23,9 +23,8 @@ CREATE TABLE billing_info (
   card_expiration_year int(4) default NULL,
   authorization_code varchar(32) default NULL,
   phone varchar(64) default NULL,
-  email varchar(64) default NULL,
-  PRIMARY KEY  (billing_id)
-) TYPE=MyISAM;
+  email varchar(64) default NULL
+) ENGINE=MyISAM;
 # --------------------------------------------------------
 
 #
@@ -37,7 +36,7 @@ CREATE TABLE cart_line_items (
   cart_id varchar(255) NOT NULL default '',
   product_id varchar(255) NOT NULL default '',
   quantity int(11) NOT NULL default '0'
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 # --------------------------------------------------------
 
 #
@@ -46,13 +45,12 @@ CREATE TABLE cart_line_items (
 
 DROP TABLE IF EXISTS category;
 CREATE TABLE category (
-  category_id int(11) NOT NULL auto_increment,
+  category_id int(11) NOT NULL auto_increment PRIMARY KEY,
   name varchar(50) NOT NULL default '',
   header text,
   visible tinyint(4) default NULL,
-  image varchar(120) default NULL,
-  PRIMARY KEY  (category_id)
-) TYPE=MyISAM;
+  image varchar(120) default NULL
+) ENGINE=MyISAM;
 # --------------------------------------------------------
 
 #
@@ -63,7 +61,7 @@ DROP TABLE IF EXISTS category_category;
 CREATE TABLE category_category (
   category_id int(11) NOT NULL default '0',
   parent_id int(11) NOT NULL default '0'
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 # --------------------------------------------------------
 
 #
@@ -72,13 +70,12 @@ CREATE TABLE category_category (
 
 DROP TABLE IF EXISTS order_line_items;
 CREATE TABLE order_line_items (
-  order_line_item_id int(11) NOT NULL auto_increment,
+  order_line_item_id int(11) NOT NULL auto_increment PRIMARY KEY,
   order_id int(11) NOT NULL default '0',
   product_id int(11) NOT NULL default '0',
   sale_price double NOT NULL default '0',
-  quantity int(11) NOT NULL default '0',
-  PRIMARY KEY  (order_line_item_id)
-) TYPE=MyISAM;
+  quantity int(11) NOT NULL default '0'
+) ENGINE=MyISAM;
 # --------------------------------------------------------
 
 #
@@ -87,10 +84,9 @@ CREATE TABLE order_line_items (
 
 DROP TABLE IF EXISTS order_statuses;
 CREATE TABLE order_statuses (
-  id int(11) NOT NULL auto_increment,
-  name varchar(255) NOT NULL default '',
-  PRIMARY KEY  (id)
-) TYPE=MyISAM;
+  id int(11) NOT NULL auto_increment PRIMARY KEY,
+  name varchar(255) NOT NULL default ''
+) ENGINE=MyISAM;
 # --------------------------------------------------------
 
 #
@@ -99,13 +95,12 @@ CREATE TABLE order_statuses (
 
 DROP TABLE IF EXISTS orders;
 CREATE TABLE orders (
-  order_id int(11) NOT NULL auto_increment,
-  date timestamp(14) NOT NULL,
+  order_id int(11) NOT NULL auto_increment PRIMARY KEY,
+  date timestamp NOT NULL,
   status varchar(24) default '1',
   sales_tax_desc varchar(255) default NULL,
-  sales_tax_total double default NULL,
-  PRIMARY KEY  (order_id)
-) TYPE=MyISAM;
+  sales_tax_total double default NULL
+) ENGINE=MyISAM;
 # --------------------------------------------------------
 
 #
@@ -114,7 +109,7 @@ CREATE TABLE orders (
 
 DROP TABLE IF EXISTS product;
 CREATE TABLE product (
-  product_id int(11) NOT NULL auto_increment,
+  product_id int(11) NOT NULL auto_increment PRIMARY KEY,
   title varchar(120) NOT NULL default '',
   description blob,
   price double default NULL,
@@ -122,9 +117,8 @@ CREATE TABLE product (
   sku varchar(24) default NULL,
   sale_price double default NULL,
   on_sale tinyint(1) NOT NULL default '0',
-  visible tinyint(1) NOT NULL default '0',
-  PRIMARY KEY  (product_id)
-) TYPE=MyISAM;
+  visible tinyint(1) NOT NULL default '0'
+) ENGINE=MyISAM;
 # --------------------------------------------------------
 
 #
@@ -135,7 +129,7 @@ DROP TABLE IF EXISTS product_category;
 CREATE TABLE product_category (
   product_id int(11) NOT NULL default '0',
   category_id int(11) NOT NULL default '0'
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 # --------------------------------------------------------
 
 #
@@ -144,7 +138,7 @@ CREATE TABLE product_category (
 
 DROP TABLE IF EXISTS shipping_info;
 CREATE TABLE shipping_info (
-  shipping_id int(11) NOT NULL auto_increment,
+  shipping_id int(11) NOT NULL auto_increment PRIMARY KEY,
   order_id int(11) NOT NULL default '0',
   name varchar(50) default NULL,
   address1 varchar(128) default NULL,
@@ -156,8 +150,7 @@ CREATE TABLE shipping_info (
   method varchar(64) default NULL,
   amount double default NULL,
   instructions varchar(255) default NULL,
-  phone varchar(64) default NULL,
-  PRIMARY KEY  (shipping_id)
-) TYPE=MyISAM;
+  phone varchar(64) default NULL
+) ENGINE=MyISAM;
 
     
