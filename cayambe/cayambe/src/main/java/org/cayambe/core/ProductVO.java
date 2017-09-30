@@ -21,7 +21,7 @@ public class ProductVO implements Serializable
     private double salePrice = 0;
     private boolean onSale = false;
     private boolean visible = true;
-
+    private Integer categoryId = null;
 
     public String getProductId() { return (this.productId); }
     public void setProductId(String _productId) { this.productId = _productId; }
@@ -73,6 +73,13 @@ public class ProductVO implements Serializable
     }
     public void setVisible(boolean _visible) { visible = _visible; }
 
+    public Integer getCategoryId() {
+        return this.categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
+    }
 
     public String toString()
     {
@@ -86,6 +93,7 @@ public class ProductVO implements Serializable
       sb.append("\n\t Price: " + getPrice());
       sb.append("\n\t SalePrice: " + getSalePrice());
       sb.append("\n\t SKU: " + getSKU());
+      sb.append("\n\t CategoryId: " + getCategoryId());
       sb.append("\n}" );
 
       return sb.toString();

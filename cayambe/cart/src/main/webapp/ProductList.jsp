@@ -4,13 +4,10 @@
 <%@ taglib uri='/WEB-INF/struts-logic.tld' prefix='logic' %>
 <%@ taglib uri='/WEB-INF/struts-bean.tld' prefix='bean' %>
 <%@ taglib uri='/WEB-INF/struts-html.tld' prefix='html' %>
-<%@ taglib uri='/WEB-INF/struts.tld' prefix='struts' %>
 
 <center>
 
-<bean:parameter id="categoryId" name="CategoryId" />
-
-  <table width="100%" border="0" cellspacing="2" cellpadding="2" align="CENTER" valign="top"> 
+  <table width="100%" border="0" cellspacing="2" cellpadding="2" align="CENTER" valign="top">
 
   <logic:notEmpty scope="request" name="ProductList"> 
 	<tr>
@@ -26,7 +23,7 @@
         
 	<tr>
 		<td align="left" valign="top" bgcolor="#ececec">
-             <a href='ViewProduct.do?productId=<bean:write name="product" property="productId"/>&CategoryId=<bean:write name="categoryId" />'>
+             <a href='ViewProduct.do?productId=<bean:write name="product" property="productId"/>&CategoryId=<bean:write name="product" property="categoryId" />'>
               <bean:write name="product" property="title"/>
              </a>
 

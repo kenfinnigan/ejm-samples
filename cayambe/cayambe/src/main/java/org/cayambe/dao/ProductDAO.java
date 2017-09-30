@@ -215,7 +215,7 @@ public class ProductDAO {
     public Collection FindByCategoryId(CategoryVO c)
    {
     	StringBuffer sqlString = new StringBuffer(255);
-    	sqlString.append("select distinct(product.product_id), product.* from product, product_category ");
+    	sqlString.append("select distinct(product.product_id), product.*, product_category.* from product, product_category ");
     	sqlString.append("where ");
     	sqlString.append("product_category.category_id = ");
      	sqlString.append(c.getId());
@@ -267,7 +267,13 @@ public class ProductDAO {
           sqlString.append("%')");
         }
 
-        return ListProduct(sqlString.toString());
+        String updatedSql = "(" + sqlString.toString() + ")";
+        updatedSql = "select pc.product_id, pc.title, pc.description, pc.price, pc.image, "
+                + "pc.sku, pc.sale_price, pc.on_sale, pc.visible, product_category.category_id "
+                + "from " + updatedSql + " pc, product_category "
+                + "where pc.product_id = product_category.product_id";
+
+        return ListProduct(updatedSql);
     }
 
 
@@ -280,7 +286,7 @@ public class ProductDAO {
         Connection conn = null;
 
         try {
-	
+
           cat.info("LISTPRODUCT SQLSTRING ------>" + sqlString);
           
           CayambeServiceLocator serviceLocator = CayambeServiceLocator.getInstance();
@@ -292,6 +298,7 @@ public class ProductDAO {
           while (rs.next()) {
             ProductVO p = new ProductVO();
             p.setProductId(rs.getString("product_id"));
+            p.setCategoryId(rs.getInt("category_id"));
             p.setTitle(rs.getString("title"));
             p.setDesc(rs.getString("description"));
             p.setPrice(rs.getDouble("price"));
