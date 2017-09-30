@@ -14,7 +14,9 @@ public class CayambeServiceLocator
   InitialContext context = null;
   private static CayambeServiceLocator me;
   private final String DATASOURCE = "java:/Climb";
-  
+
+  private static final String JNDI_EJB_PREFIX = "java:global/cayambe/cayambe/";
+
   private static String CLASSNAME = CayambeServiceLocator.class.getName();
   private Category cat = (Category)Category.getInstance(CLASSNAME);
 
@@ -22,7 +24,7 @@ public class CayambeServiceLocator
     throws Exception
   {
     try {
-      Object objref = context.lookup(name);
+      Object objref = context.lookup(JNDI_EJB_PREFIX + name + "!" + clazz.getName());
       cat.debug("ServiceHandler: Getting Home..." + name + " " + clazz);
       EJBHome home = (EJBHome)PortableRemoteObject.narrow(objref, clazz);
       cat.debug("ServiceHandler: (EJBHome classloader == myclassloader) : "     
