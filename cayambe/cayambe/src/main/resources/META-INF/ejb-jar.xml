@@ -70,7 +70,7 @@
         <ejb-name>CategoryFacade</ejb-name>
         <method-name>*</method-name>
       </method>
-      <trans-attribute>Required</trans-attribute>
+      <trans-attribute>RequiresNew</trans-attribute>
     </container-transaction>
 
     <container-transaction>
@@ -78,7 +78,7 @@
         <ejb-name>ProductFacade</ejb-name>
         <method-name>*</method-name>
       </method>
-      <trans-attribute>Required</trans-attribute>
+      <trans-attribute>RequiresNew</trans-attribute>
     </container-transaction>
 
     <container-transaction>
@@ -86,7 +86,7 @@
         <ejb-name>CartFacade</ejb-name>
         <method-name>*</method-name>
       </method>
-      <trans-attribute>Required</trans-attribute>
+      <trans-attribute>RequiresNew</trans-attribute>
     </container-transaction>
 
     <container-transaction>
@@ -94,7 +94,7 @@
         <ejb-name>CheckOutFacade</ejb-name>
         <method-name>*</method-name>
       </method>
-      <trans-attribute>Required</trans-attribute>
+      <trans-attribute>RequiresNew</trans-attribute>
     </container-transaction>
 
     <container-transaction>
@@ -102,7 +102,7 @@
         <ejb-name>OrderFacade</ejb-name>
         <method-name>*</method-name>
       </method>
-      <trans-attribute>Required</trans-attribute>
+      <trans-attribute>RequiresNew</trans-attribute>
     </container-transaction>
 
   </assembly-descriptor>
