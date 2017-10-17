@@ -17,6 +17,7 @@
   <modules>
     <module>jaxrs</module>
     <module>ui</module>
+    <module>admin</module>
   </modules>
 
   <build>

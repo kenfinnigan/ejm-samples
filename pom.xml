@@ -16,6 +16,8 @@
     <version.springframework>4.1.9.RELEASE</version.springframework>
     <version.spring-boot>1.4.0.RELEASE</version.spring-boot>
     <version.dropwizard>1.0.0</version.dropwizard>
+
+    <version.h2>1.4.196</version.h2>
   </properties>
 
   <scm>
@@ -72,6 +74,13 @@
         <version>${version.dropwizard}</version>
         <type>pom</type>
         <scope>import</scope>
+      </dependency>
+
+      <!-- Databases -->
+      <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <version>${version.h2}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
