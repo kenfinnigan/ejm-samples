@@ -84,7 +84,7 @@ public class Category {
         this.header = header;
     }
 
-    public Boolean getVisible() {
+    public Boolean isVisible() {
         return visible;
     }
 

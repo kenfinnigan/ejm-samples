@@ -67,7 +67,7 @@ public class CategoryTree {
         return header;
     }
 
-    public Boolean getVisible() {
+    public Boolean isVisible() {
         return visible;
     }
 
