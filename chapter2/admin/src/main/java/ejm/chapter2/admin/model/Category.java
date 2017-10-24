@@ -3,7 +3,6 @@ package ejm.chapter2.admin.model;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,9 +15,10 @@ import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
@@ -29,6 +29,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @NamedQueries({
         @NamedQuery(name = "Category.findAll", query = "SELECT c from Category c")
 })
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Category {
 
     @Id
@@ -41,6 +42,8 @@ public class Category {
     @Column(name = "id", updatable = false, nullable = false)
     private Integer id;
 
+    @NotNull
+    @Size(min = 3, max = 50)
     @Column(name = "name", length = 50, nullable = false)
     private String name;
 
@@ -51,10 +54,8 @@ public class Category {
     @Column(name = "image_path", length = 120)
     private String imagePath;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne
     @JoinColumn(name = "parent_id")
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
     private Category parent;
 
     private LocalDateTime created = LocalDateTime.now();
