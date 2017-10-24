@@ -1,0 +1,109 @@
+{
+    "provider": {
+        "name": "admin_service_provider"
+    },
+    "consumer": {
+        "name": "admin_client_consumer"
+    },
+    "interactions": [
+        {
+            "description": "Retrieve a category",
+            "request": {
+                "method": "GET",
+                "path": "/admin/category/1015"
+            },
+            "response": {
+                "status": 200,
+                "body": {
+                    "id": 1015,
+                    "name": "Toyota Cars",
+                    "header": "header",
+                    "visible": true,
+                    "imagePath": "n/a",
+                    "parent": {
+                        "id": 1009,
+                        "name": "Cars",
+                        "header": "header",
+                        "visible": true,
+                        "imagePath": "n/a",
+                        "parent": {
+                            "id": 1002,
+                            "name": "Automobiles",
+                            "header": "header",
+                            "visible": true,
+                            "imagePath": "n/a",
+                            "parent": {
+                                "id": 1000,
+                                "name": "Transportation",
+                                "header": "header",
+                                "visible": true,
+                                "imagePath": "n/a",
+                                "parent": {
+                                    "id": 0,
+                                    "name": "Top",
+                                    "header": "header",
+                                    "visible": true,
+                                    "imagePath": "n/a",
+                                    "parent": null,
+                                    "created": [
+                                        2002,
+                                        1,
+                                        1,
+                                        0,
+                                        0
+                                    ],
+                                    "updated": null,
+                                    "version": 1
+                                },
+                                "created": [
+                                    2002,
+                                    1,
+                                    1,
+                                    0,
+                                    0
+                                ],
+                                "updated": null,
+                                "version": 1
+                            },
+                            "created": [
+                                2002,
+                                1,
+                                1,
+                                0,
+                                0
+                            ],
+                            "updated": null,
+                            "version": 1
+                        },
+                        "created": [
+                            2002,
+                            1,
+                            1,
+                            0,
+                            0
+                        ],
+                        "updated": null,
+                        "version": 1
+                    },
+                    "created": [
+                        2002,
+                        1,
+                        1,
+                        0,
+                        0
+                    ],
+                    "updated": null,
+                    "version": 1
+                }
+            }
+        }
+    ],
+    "metadata": {
+        "pact-specification": {
+            "version": "3.0.0"
+        },
+        "pact-jvm": {
+            "version": "3.5.8"
+        }
+    }
+}

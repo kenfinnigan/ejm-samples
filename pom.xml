@@ -18,6 +18,11 @@
     <version.dropwizard>1.0.0</version.dropwizard>
 
     <version.h2>1.4.196</version.h2>
+
+    <version.junit>4.12</version.junit>
+    <version.fest-assert>1.4</version.fest-assert>
+    <version.arquillian>1.1.13.Final</version.arquillian>
+    <version.rest-assured>3.0.5</version.rest-assured>
   </properties>
 
   <scm>
@@ -82,6 +87,33 @@
         <artifactId>h2</artifactId>
         <version>${version.h2}</version>
       </dependency>
+
+      <!-- Testing -->
+      <dependency>
+        <groupId>org.easytesting</groupId>
+        <artifactId>fest-assert</artifactId>
+        <version>${version.fest-assert}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>io.rest-assured</groupId>
+        <artifactId>rest-assured</artifactId>
+        <version>${version.rest-assured}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${version.junit}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.arquillian</groupId>
+        <artifactId>arquillian-bom</artifactId>
+        <version>${version.arquillian}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -94,6 +126,7 @@
           <version>${version.wildfly-swarm}</version>
           <executions>
             <execution>
+              <id>package</id>
               <goals>
                 <goal>package</goal>
               </goals>
@@ -130,6 +163,7 @@
     <module>chapter5</module>
     <module>chapter6</module>
     <module>chapter7</module>
+    <module>chapter8</module>
     <module>cayambe</module>
   </modules>
 </project>
