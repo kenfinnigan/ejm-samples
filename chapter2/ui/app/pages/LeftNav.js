@@ -6,9 +6,9 @@ export default function(props) {
     <div className="nav-pf-vertical nav-pf-vertical-with-secondary-nav ">
       <ul className="list-group">
         <li className="list-group-item active">
-          <Link to="address">
+          <Link to="category">
             <span className="fa fa-envelope"></span>
-            <span className="list-group-item-value">Addresses</span>
+            <span className="list-group-item-value">Categories</span>
           </Link>
         </li>
       </ul>

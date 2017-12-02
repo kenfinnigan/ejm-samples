@@ -11,13 +11,12 @@
   </parent>
 
   <artifactId>chapter2</artifactId>
-  <name>Chapter 2: Address Management application</name>
+  <name>Chapter 2: Cayambe Admin Application</name>
   <packaging>pom</packaging>
 
   <modules>
-    <module>jaxrs</module>
-    <module>ui</module>
     <module>admin</module>
+    <module>ui</module>
   </modules>
 
   <build>

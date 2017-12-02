@@ -11,7 +11,7 @@
   </parent>
 
   <artifactId>chapter2-admin</artifactId>
-  <name>Chapter 2: Admin Service</name>
+  <name>Chapter 2: Cayambe Admin Service</name>
   <packaging>war</packaging>
 
   <build>

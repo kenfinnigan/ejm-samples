@@ -11,7 +11,7 @@
   </parent>
 
   <artifactId>chapter2-ui</artifactId>
-  <name>Chapter 2: Address Application - User Interface</name>
+  <name>Chapter 2: Cayambe Admin - User Interface</name>
   <packaging>war</packaging>
 
   <build>
@@ -48,8 +48,8 @@
               <goal>install-node-and-npm</goal>
             </goals>
             <configuration>
-              <nodeVersion>v6.10.0</nodeVersion>
-              <npmVersion>4.3.0</npmVersion>
+              <nodeVersion>v8.9.1</nodeVersion>
+              <npmVersion>5.5.1</npmVersion>
             </configuration>
           </execution>
           <execution>

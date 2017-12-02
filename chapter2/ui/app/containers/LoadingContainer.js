@@ -3,7 +3,7 @@ import Loading from '../components/Loading';
 
 const mapStateToProps = (state) => {
   return {
-    loading: state.addressState.loading
+    loading: state.categoryState.loading
   };
 };
 

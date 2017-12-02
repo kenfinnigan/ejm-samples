@@ -2,19 +2,19 @@ import React from 'react';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 
 import App from './pages/App';
-import AddressList from './containers/AddressListContainer';
-import Address from './pages/Address';
-import NewAddress from './containers/NewAddressContainer';
+import CategoryList from './containers/CategoryListContainer';
+import Category from './pages/Category';
+import NewCategory from './containers/NewCategoryContainer';
 
 export default (
   <Router history={browserHistory}>
     <Route path="/" component={App}>
-      <IndexRoute component={AddressList} />
+      <IndexRoute component={CategoryList} />
 
-      <Route path="/address">
-        <IndexRoute component={AddressList} />
-        <Route path="/address/new" component={NewAddress} />
-        <Route path="/address/:addressId" component={Address} />
+      <Route path="/category">
+        <IndexRoute component={CategoryList} />
+        <Route path="/category/new" component={NewCategory} />
+        <Route path="/category/:categoryId" component={Category} />
       </Route>
     </Route>
   </Router>

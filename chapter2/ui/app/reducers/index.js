@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
 // Reducers
-import addressReducer from './address-reducer';
+import categoryReducer from './category-reducer';
 
 // Combine Reducers
 var reducers = combineReducers({
-    addressState: addressReducer
+    categoryState: categoryReducer
 });
 
 export default reducers;

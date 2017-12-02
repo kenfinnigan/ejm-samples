@@ -3,7 +3,7 @@ import Notification from '../components/Notification';
 
 const mapStateToProps = (state) => {
   return {
-    notification: state.addressState.notification
+    notification: state.categoryState.notification
   };
 };
 

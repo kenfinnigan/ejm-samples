@@ -11,7 +11,7 @@ export default function(props) {
           <span className="icon-bar"></span>
         </div>
         <a href="/" className="navbar-brand">
-          <span className="navbar-brand-name">Address Database</span>
+          <span className="navbar-brand-name">Cayambe Admin</span>
         </a>
       </div>
     </nav>
