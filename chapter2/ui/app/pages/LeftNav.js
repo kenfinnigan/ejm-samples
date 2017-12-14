@@ -7,7 +7,7 @@ export default function(props) {
       <ul className="list-group">
         <li className="list-group-item active">
           <Link to="category">
-            <span className="fa fa-envelope"></span>
+            <span className="fa fa-folder-o"></span>
             <span className="list-group-item-value">Categories</span>
           </Link>
         </li>
