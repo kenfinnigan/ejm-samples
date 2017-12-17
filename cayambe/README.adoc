@@ -14,5 +14,75 @@
 
   source \sql\mysql.sql
 
-  source \test_data.sql
+  source \sql\test_data.sql
 
+== Setup WildFly
+
+  download WildFly 11.0.0.Final from http://wildfly.org/downloads/
+
+  download MySQL Connector jar from https://dev.mysql.com/downloads/connector/j/
+
+  create directory structure in WildFly exploded location of /modules/system/layers/base/com/mysql/main
+
+  copy .jar for MySQL Connector into this directory
+
+  create a file in the same directory called module.xml with the following content:
+
+[source,xml]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="urn:jboss:module:1.3" name="com.mysql">
+
+  <resources>
+    <resource-root path="mysql-connector-java-5.1.43-bin.jar"/>
+  </resources>
+  <dependencies>
+    <module name="javax.api"/>
+    <module name="javax.transaction.api"/>
+  </dependencies>
+</module>
+----
+
+  where the file name specified in `path` is the same as the file you copied into the directory
+
+  edit /standalone/configuration/standalone.xml within WildFly installation to have the following `datasources` subsystem config:
+
+[source,xml]
+----
+<subsystem xmlns="urn:jboss:domain:datasources:5.0">
+    <datasources>
+        <datasource jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" enabled="true" use-java-context="true">
+            <connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</connection-url>
+            <driver>h2</driver>
+            <security>
+                <user-name>sa</user-name>
+                <password>sa</password>
+            </security>
+        </datasource>
+        <datasource jta="true" jndi-name="java:/Climb" pool-name="MySqlDS" enabled="true" use-ccm="true">
+            <connection-url>jdbc:mysql://localhost:32768/cayambe</connection-url>
+            <driver-class>com.mysql.jdbc.Driver</driver-class>
+            <driver>mysql</driver>
+            <security>
+                <user-name>cayambe</user-name>
+                <password>cayambe</password>
+            </security>
+            <validation>
+                <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLValidConnectionChecker"/>
+                <background-validation>true</background-validation>
+                <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLExceptionSorter"/>
+            </validation>
+        </datasource>
+        <drivers>
+            <driver name="h2" module="com.h2database.h2">
+                <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
+            </driver>
+            <driver name="mysql" module="com.mysql">
+                <xa-datasource-class>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</xa-datasource-class>
+            </driver>
+        </drivers>
+    </datasources>
+</subsystem>
+----
+
+  run `mvn clean install` in /cayambe and then copy /cayambe/cayambe-ear/target/cayambe.ear into /standalone/deployments of WildFly
