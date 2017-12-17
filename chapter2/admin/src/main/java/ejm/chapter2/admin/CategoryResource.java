@@ -24,7 +24,7 @@ import ejm.chapter2.admin.model.CategoryTree;
 /**
  * @author Ken Finnigan
  */
-@Path("/category")
+@Path("/")
 @ApplicationScoped
 public class CategoryResource {
 
@@ -32,6 +32,7 @@ public class CategoryResource {
     private EntityManager em;
 
     @GET
+    @Path("/category")
     @Produces(MediaType.APPLICATION_JSON)
     public Collection<Category> all() throws Exception {
         return em.createNamedQuery("Category.findAll", Category.class)
@@ -39,13 +40,14 @@ public class CategoryResource {
     }
 
     @GET
-    @Path("/tree")
+    @Path("/categorytree")
     @Produces(MediaType.APPLICATION_JSON)
     public CategoryTree tree() throws Exception {
         return em.find(CategoryTree.class, 1);
     }
 
     @POST
+    @Path("/category")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
@@ -72,14 +74,14 @@ public class CategoryResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/{categoryId}")
+    @Path("/category/{categoryId}")
     public Category get(@PathParam("categoryId") Integer categoryId) {
         return em.find(Category.class, categoryId);
     }
 
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/{categoryId}")
+    @Path("/category/{categoryId}")
     @Transactional
     public Response remove(@PathParam("categoryId") Integer categoryId) throws Exception {
         try {
@@ -100,7 +102,7 @@ public class CategoryResource {
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/{categoryId}")
+    @Path("/category/{categoryId}")
     @Transactional
     public Response update(@PathParam("categoryId") Integer categoryId, Category category) throws Exception {
         try {

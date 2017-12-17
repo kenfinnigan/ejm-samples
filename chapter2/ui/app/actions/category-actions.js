@@ -88,7 +88,7 @@ export function getCategories() {
   return dispatch => {
     dispatch(loading(true));
 
-    axios.get(`${ROOT_URL}/admin/category/tree`)
+    axios.get(`${ROOT_URL}/admin/categorytree`)
       .then(response => {
         dispatch(loading(false));
         dispatch(getCategoriesSuccess(convertTreeToList(response.data)));
