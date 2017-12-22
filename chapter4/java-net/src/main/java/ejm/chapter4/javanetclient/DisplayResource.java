@@ -1,8 +1,6 @@
 package ejm.chapter4.javanetclient;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -10,47 +8,43 @@ import javax.enterprise.concurrent.ManagedExecutorService;
 import javax.naming.InitialContext;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.container.AsyncResponse;
 import javax.ws.rs.container.Suspended;
 import javax.ws.rs.core.MediaType;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 /**
  * @author Ken Finnigan
  */
 @Path("/")
-public class MessageResource {
+public class DisplayResource {
 
-    private String timeUrl = "http://localhost:8081/";
+    private String categoryUrl = "http://localhost:8081/admin/categorytree";
 
     @GET
     @Path("/sync")
-    public String getMessageSync() throws Exception {
+    @Produces(MediaType.APPLICATION_JSON)
+    public Category getCategoryTreeSync() throws Exception {
         HttpURLConnection connection = null;
 
         try {
-            URL url = new URL(this.timeUrl);
+            URL url = new URL(this.categoryUrl);
             connection = (HttpURLConnection) url.openConnection();
 
             connection.setRequestMethod("GET");
-            connection.setRequestProperty("Accept", MediaType.TEXT_PLAIN);
+            connection.setRequestProperty("Accept", MediaType.APPLICATION_JSON);
 
             if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
                 throw new RuntimeException("Request Failed: HTTP Error code: " + connection.getResponseCode());
             }
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String output;
-            String time = "";
+            return new ObjectMapper()
+                    .registerModule(new JavaTimeModule())
+                    .readValue(connection.getInputStream(), Category.class);
 
-            while ((output = reader.readLine()) != null) {
-                time += output;
-            }
-
-            if (!time.isEmpty()) {
-                return message(this.timeUrl, time);
-            } else {
-                return "Time service unavailable at " + this.timeUrl;
-            }
         } finally {
             assert connection != null;
             connection.disconnect();
@@ -59,34 +53,27 @@ public class MessageResource {
 
     @GET
     @Path("/async")
-    public void getMessageAsync(@Suspended final AsyncResponse asyncResponse) throws Exception {
+    @Produces(MediaType.APPLICATION_JSON)
+    public void getCategoryTreeAsync(@Suspended final AsyncResponse asyncResponse) throws Exception {
         executorService().execute(() -> {
             HttpURLConnection connection = null;
 
             try {
-                URL url = new URL(this.timeUrl);
+                URL url = new URL(this.categoryUrl);
                 connection = (HttpURLConnection) url.openConnection();
 
                 connection.setRequestMethod("GET");
-                connection.setRequestProperty("Accept", MediaType.TEXT_PLAIN);
+                connection.setRequestProperty("Accept", MediaType.APPLICATION_JSON);
 
                 if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
                     throw new RuntimeException("Request Failed: HTTP Error code: " + connection.getResponseCode());
                 }
 
-                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                String output;
-                String time = "";
+                Category category = new ObjectMapper()
+                        .registerModule(new JavaTimeModule())
+                        .readValue(connection.getInputStream(), Category.class);
 
-                while ((output = reader.readLine()) != null) {
-                    time += output;
-                }
-
-                if (!time.isEmpty()) {
-                    asyncResponse.resume(message(this.timeUrl, time));
-                } else {
-                    asyncResponse.resume("Time service unavailable at " + this.timeUrl);
-                }
+                asyncResponse.resume(category);
             } catch (IOException e) {
                 asyncResponse.resume(e);
             } finally {
@@ -94,10 +81,6 @@ public class MessageResource {
                 connection.disconnect();
             }
         });
-    }
-
-    private String message(String url, String time) {
-        return "The date and time at " + url + " is " + time;
     }
 
     private ManagedExecutorService executorService() throws Exception {

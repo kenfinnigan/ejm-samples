@@ -8,10 +8,10 @@ import javax.ws.rs.core.MediaType;
 /**
  * @author Ken Finnigan
  */
-@Path("/")
-public interface TimeService {
+@Path("/admin/categorytree")
+public interface CategoryService {
 
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    String getTime();
+    @Produces(MediaType.APPLICATION_JSON)
+    Category getCategoryTree();
 }

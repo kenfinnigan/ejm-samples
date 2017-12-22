@@ -15,11 +15,11 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>time</module>
+    <module>admin</module>
     <module>java-net</module>
     <module>apache-httpclient</module>
     <module>jaxrs-client</module>
     <module>resteasy-client</module>
-    <module>wildfly-swarm-client</module>
+    <!--<module>wildfly-swarm-client</module>-->
   </modules>
 </project>
