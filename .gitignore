@@ -4,3 +4,4 @@ target
 *.iml
 node_modules
 node
+audit.log
