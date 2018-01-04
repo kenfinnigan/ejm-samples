@@ -16,7 +16,7 @@
 
   <modules>
     <module>serviceauth</module>
-    <module>address_book</module>
+    <module>admin_ui</module>
   </modules>
 
   <build>

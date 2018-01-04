@@ -1,0 +1,7 @@
+{
+  "realm": "cayambe",
+  "auth-server-url": "http://localhost:9090/auth",
+  "ssl-required": "external",
+  "resource": "cayambe-admin-ui",
+  "public-client": true
+}

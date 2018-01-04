@@ -2,17 +2,17 @@
 
 == Setup Keycloak
 
-Download the latest _Keycloak Server_ from http://wildfly-swarm.io/download/keycloak-swarm.
+Download the _Keycloak Server_ from http://repo2.maven.org/maven2/org/wildfly/swarm/servers/keycloak/2018.1.0/keycloak-2018.1.0-swarm.jar
 
 Run it:
 
-  java -Dswarm.http.port=9090 -jar keycloak-2017.5.0-swarm.jar
+  java -Dswarm.http.port=9090 -jar keycloak-2018.1.0-swarm.jar
 
 Go to http://localhost:9090/auth/
 
 Create an admin user
 
-Select _Administration Server_ and login as admin user just created
+Select _Administration Server_ and login as the admin user just created
 
 Select Realm drop down and click "Add realm", select /keycloak/service-realm.json in the file chooser and then click "Create"
 
