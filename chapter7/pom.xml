@@ -11,12 +11,20 @@
   </parent>
 
   <artifactId>chapter7</artifactId>
-  <name>Chapter 7: Security with Keycloak Examples</name>
+  <name>Chapter 7: Discovering Microservices for Consumption examples</name>
   <packaging>pom</packaging>
 
+  <dependencies>
+    <dependency>
+      <groupId>org.wildfly.swarm</groupId>
+      <artifactId>topology-jgroups</artifactId>
+    </dependency>
+  </dependencies>
+
   <modules>
-    <module>serviceauth</module>
-    <module>admin_ui</module>
+    <module>time</module>
+    <module>ribbon-client</module>
+    <module>resteasy-client</module>
   </modules>
 
   <build>
@@ -29,16 +37,8 @@
             <properties>
               <swarm.bind.address>127.0.0.1</swarm.bind.address>
               <java.net.preferIPv4Stack>true</java.net.preferIPv4Stack>
-              <jboss.node.name>${project.artifactId}</jboss.node.name>
             </properties>
           </configuration>
-          <executions>
-            <execution>
-              <goals>
-                <goal>package</goal>
-              </goals>
-            </execution>
-          </executions>
         </plugin>
       </plugins>
     </pluginManagement>

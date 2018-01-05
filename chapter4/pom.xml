@@ -11,15 +11,11 @@
   </parent>
 
   <artifactId>chapter4</artifactId>
-  <name>Chapter 4: Consuming Microservices examples</name>
+  <name>Chapter 4: Testing Microservices</name>
   <packaging>pom</packaging>
 
   <modules>
+    <module>admin-client</module>
     <module>admin</module>
-    <module>java-net</module>
-    <module>apache-httpclient</module>
-    <module>jaxrs-client</module>
-    <module>resteasy-client</module>
-    <!--<module>wildfly-swarm-client</module>-->
   </modules>
 </project>

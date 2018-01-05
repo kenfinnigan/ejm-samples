@@ -11,11 +11,11 @@
   </parent>
 
   <artifactId>chapter4-admin</artifactId>
-  <name>Chapter 4: Cayambe Admin Service</name>
+  <name>Chapter 4: Admin Service</name>
   <packaging>war</packaging>
 
   <build>
-    <finalName>admin</finalName>
+    <finalName>chapter8</finalName>
 
     <plugins>
       <plugin>
@@ -61,5 +61,103 @@
       <groupId>com.fasterxml.jackson.datatype</groupId>
       <artifactId>jackson-datatype-jsr310</artifactId>
     </dependency>
+
+    <dependency>
+      <groupId>io.rest-assured</groupId>
+      <artifactId>rest-assured</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <!-- Needed for rest-assured -->
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.1.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.easytesting</groupId>
+      <artifactId>fest-assert</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.wildfly.swarm</groupId>
+      <artifactId>arquillian</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.arquillian.junit</groupId>
+      <artifactId>arquillian-junit-container</artifactId>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
+
+  <profiles>
+    <profile>
+      <id>not-skipping-tests</id>
+      <activation>
+        <property>
+          <name>!skipTests</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.wildfly.swarm</groupId>
+            <artifactId>wildfly-swarm-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>start</id>
+                <phase>pre-integration-test</phase>
+                <goals>
+                  <goal>start</goal>
+                </goals>
+                <configuration>
+                  <stdoutFile>target/stdout.log</stdoutFile>
+                  <stderrFile>target/stderr.log</stderrFile>
+                </configuration>
+              </execution>
+              <execution>
+                <id>stop</id>
+                <phase>post-integration-test</phase>
+                <goals>
+                  <goal>stop</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>au.com.dius</groupId>
+            <artifactId>pact-jvm-provider-maven_2.12</artifactId>
+            <version>3.5.8</version>
+            <configuration>
+              <serviceProviders>
+                <serviceProdiver>
+                  <name>admin_service_provider</name>
+                  <protocol>http</protocol>
+                  <host>localhost</host>
+                  <port>8081</port>
+                  <path>/</path>
+                  <pactFileDirectory>src/test/resources/pacts</pactFileDirectory>
+                </serviceProdiver>
+              </serviceProviders>
+            </configuration>
+            <executions>
+              <execution>
+                <id>verify-pacts</id>
+                <phase>integration-test</phase>
+                <goals>
+                  <goal>verify</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>

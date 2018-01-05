@@ -11,11 +11,30 @@
   </parent>
 
   <artifactId>chapter8</artifactId>
-  <name>Chapter 8: Testing Microservices</name>
+  <name>Chapter 8: Strategies for Fault Tolerance and Monitoring examples</name>
   <packaging>pom</packaging>
 
   <modules>
-    <module>admin-client</module>
-    <module>admin</module>
+    <module>time</module>
+    <module>stock-client</module>
+    <module>ribbon-client</module>
+    <module>resteasy-client</module>
   </modules>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.wildfly.swarm</groupId>
+          <artifactId>wildfly-swarm-plugin</artifactId>
+          <configuration>
+            <properties>
+              <swarm.bind.address>127.0.0.1</swarm.bind.address>
+              <java.net.preferIPv4Stack>true</java.net.preferIPv4Stack>
+            </properties>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 </project>

@@ -1,5 +1,5 @@
-INSERT INTO category VALUES(1, '2002-01-01 00:00:00.000', 'header', 'n/a', 'Top', null, 1, 1, null);
-INSERT INTO category VALUES(1000, '2002-01-01 00:00:00.000', 'header', 'n/a', 'Transportation', null, 1, 1, 1);
+INSERT INTO category VALUES(0, '2002-01-01 00:00:00.000', 'header', 'n/a', 'Top', null, 1, 1, null);
+INSERT INTO category VALUES(1000, '2002-01-01 00:00:00.000', 'header', 'n/a', 'Transportation', null, 1, 1, 0);
 INSERT INTO category VALUES(1001, '2002-01-01 00:00:00.000', 'header', 'n/a', 'Bikes', null, 1, 1, 1000);
 INSERT INTO category VALUES(1002, '2002-01-01 00:00:00.000', 'header', 'n/a', 'Automobiles', null, 1, 1, 1000);
 INSERT INTO category VALUES(1003, '2002-01-01 00:00:00.000', 'header', 'n/a', 'Road Bikes', null, 1, 1, 1001);

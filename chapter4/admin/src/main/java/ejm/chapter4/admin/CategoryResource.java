@@ -7,6 +7,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import javax.validation.ConstraintViolationException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -24,7 +25,7 @@ import ejm.chapter4.admin.model.CategoryTree;
 /**
  * @author Ken Finnigan
  */
-@Path("/")
+@Path("/category")
 @ApplicationScoped
 public class CategoryResource {
 
@@ -32,7 +33,6 @@ public class CategoryResource {
     private EntityManager em;
 
     @GET
-    @Path("/category")
     @Produces(MediaType.APPLICATION_JSON)
     public Collection<Category> all() throws Exception {
         return em.createNamedQuery("Category.findAll", Category.class)
@@ -40,14 +40,13 @@ public class CategoryResource {
     }
 
     @GET
-    @Path("/categorytree")
+    @Path("/tree")
     @Produces(MediaType.APPLICATION_JSON)
     public CategoryTree tree() throws Exception {
         return em.find(CategoryTree.class, 1);
     }
 
     @POST
-    @Path("/category")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
@@ -59,8 +58,19 @@ public class CategoryResource {
                     .build();
         }
 
+        Category parent;
+        if ((parent = category.getParent()) != null && parent.getId() != null) {
+            category.setParent(get(parent.getId()));
+        }
+
         try {
             em.persist(category);
+            em.flush();
+        } catch (ConstraintViolationException cve) {
+            return Response
+                    .status(Response.Status.BAD_REQUEST)
+                    .entity(cve.getMessage())
+                    .build();
         } catch (Exception e) {
             return Response
                     .serverError()
@@ -68,20 +78,20 @@ public class CategoryResource {
                     .build();
         }
         return Response
-                .created(new URI(category.getId().toString()))
+                .created(new URI("category/" + category.getId().toString()))
                 .build();
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/category/{categoryId}")
+    @Path("/{categoryId}")
     public Category get(@PathParam("categoryId") Integer categoryId) {
         return em.find(Category.class, categoryId);
     }
 
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/category/{categoryId}")
+    @Path("/{categoryId}")
     @Transactional
     public Response remove(@PathParam("categoryId") Integer categoryId) throws Exception {
         try {
@@ -102,7 +112,7 @@ public class CategoryResource {
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/category/{categoryId}")
+    @Path("/{categoryId}")
     @Transactional
     public Response update(@PathParam("categoryId") Integer categoryId, Category category) throws Exception {
         try {
@@ -113,6 +123,13 @@ public class CategoryResource {
                         .status(Response.Status.NOT_FOUND)
                         .entity("Category with id of " + categoryId + " does not exist.")
                         .build();
+            }
+
+            Category parent;
+            if ((parent = category.getParent()) != null) {
+                if (parent.getId() != null && parent.getVersion() == null) {
+                    category.setParent(get(parent.getId()));
+                }
             }
 
             em.merge(category);

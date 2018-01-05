@@ -11,30 +11,15 @@
   </parent>
 
   <artifactId>chapter6</artifactId>
-  <name>Chapter 6: Strategies for Fault Tolerance and Monitoring examples</name>
+  <name>Chapter 6: Consuming Microservices examples</name>
   <packaging>pom</packaging>
 
   <modules>
-    <module>time</module>
-    <module>stock-client</module>
-    <module>ribbon-client</module>
+    <module>admin</module>
+    <module>java-net</module>
+    <module>apache-httpclient</module>
+    <module>jaxrs-client</module>
     <module>resteasy-client</module>
+    <!--<module>wildfly-swarm-client</module>-->
   </modules>
-
-  <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.wildfly.swarm</groupId>
-          <artifactId>wildfly-swarm-plugin</artifactId>
-          <configuration>
-            <properties>
-              <swarm.bind.address>127.0.0.1</swarm.bind.address>
-              <java.net.preferIPv4Stack>true</java.net.preferIPv4Stack>
-            </properties>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-  </build>
 </project>

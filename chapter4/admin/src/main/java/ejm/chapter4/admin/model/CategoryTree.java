@@ -63,11 +63,11 @@ public class CategoryTree {
         return name;
     }
 
-    public String getHeader() {
+    public String isHeader() {
         return header;
     }
 
-    public Boolean isVisible() {
+    public Boolean getVisible() {
         return visible;
     }
 
@@ -105,7 +105,7 @@ public class CategoryTree {
                 Objects.equals(header, category.header) &&
                 Objects.equals(visible, category.visible) &&
                 Objects.equals(imagePath, category.imagePath) &&
-                Objects.equals(parent, category.parent) &&
+                (parent == null ? category.parent == null : Objects.equals(parent.getId(), category.parent.getId())) &&
                 Objects.equals(children, category.children) &&
                 Objects.equals(created, category.created) &&
                 Objects.equals(updated, category.updated) &&
@@ -114,6 +114,6 @@ public class CategoryTree {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, header, visible, imagePath, parent, children, created, updated, version);
+        return Objects.hash(id, name, header, visible, imagePath, parent == null ? null : parent.getId(), children, created, updated, version);
     }
 }

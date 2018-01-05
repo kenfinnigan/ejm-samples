@@ -3,6 +3,7 @@ package ejm.chapter4.admin.model;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -40,30 +41,30 @@ public class Category {
     )
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "category_sequence")
     @Column(name = "id", updatable = false, nullable = false)
-    private Integer id;
+    protected Integer id;
 
     @NotNull
     @Size(min = 3, max = 50)
     @Column(name = "name", length = 50, nullable = false)
-    private String name;
+    protected String name;
 
-    private String header;
+    protected String header;
 
-    private Boolean visible;
+    protected Boolean visible;
 
     @Column(name = "image_path", length = 120)
-    private String imagePath;
+    protected String imagePath;
 
     @ManyToOne
     @JoinColumn(name = "parent_id")
-    private Category parent;
+    protected Category parent;
 
-    private LocalDateTime created = LocalDateTime.now();
+    protected LocalDateTime created = LocalDateTime.now();
 
-    private LocalDateTime updated;
+    protected LocalDateTime updated;
 
     @Version
-    private Integer version = 0;
+    protected Integer version;
 
     public Integer getId() {
         return id;
@@ -135,7 +136,7 @@ public class Category {
                 Objects.equals(header, category.header) &&
                 Objects.equals(visible, category.visible) &&
                 Objects.equals(imagePath, category.imagePath) &&
-                Objects.equals(parent, category.parent) &&
+                (parent == null ? category.parent == null : Objects.equals(parent.getId(), category.parent.getId())) &&
                 Objects.equals(created, category.created) &&
                 Objects.equals(updated, category.updated) &&
                 Objects.equals(version, category.version);
@@ -143,6 +144,6 @@ public class Category {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, header, visible, imagePath, parent, created, updated, version);
+        return Objects.hash(id, name, header, visible, imagePath, parent == null ? null : parent.getId(), created, updated, version);
     }
 }
