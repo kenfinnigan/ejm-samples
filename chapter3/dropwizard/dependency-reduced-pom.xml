@@ -56,7 +56,7 @@
     </plugins>
   </build>
   <properties>
-    <mainClass>ejm.chapter3.shopping.Chapter3Application</mainClass>
+    <mainClass>ejm.shopping.Chapter3Application</mainClass>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
