@@ -14,33 +14,9 @@
   <name>Chapter 7: Discovering Microservices for Consumption examples</name>
   <packaging>pom</packaging>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.wildfly.swarm</groupId>
-      <artifactId>topology-jgroups</artifactId>
-    </dependency>
-  </dependencies>
-
   <modules>
-    <module>time</module>
+    <module>stripe</module>
     <module>ribbon-client</module>
     <module>resteasy-client</module>
   </modules>
-
-  <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.wildfly.swarm</groupId>
-          <artifactId>wildfly-swarm-plugin</artifactId>
-          <configuration>
-            <properties>
-              <swarm.bind.address>127.0.0.1</swarm.bind.address>
-              <java.net.preferIPv4Stack>true</java.net.preferIPv4Stack>
-            </properties>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-  </build>
 </project>

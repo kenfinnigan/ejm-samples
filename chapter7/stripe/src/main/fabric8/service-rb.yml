@@ -1,0 +1,7 @@
+metadata:
+  name: view-service
+subjects:
+- kind: ServiceAccount
+  name: service
+roleRef:
+  name: view
