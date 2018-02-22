@@ -60,7 +60,7 @@ public class PaymentServiceResource {
     @Path("/async")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public void getMessageAsync(@Suspended final AsyncResponse asyncResponse, ChargeRequest chargeRequest) throws Exception {
+    public void chargeAsync(@Suspended final AsyncResponse asyncResponse, ChargeRequest chargeRequest) throws Exception {
         executorService().execute(() -> {
             ResteasyClient client = new ResteasyClientBuilder().build();
             URI url = null;
