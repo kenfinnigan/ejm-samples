@@ -2,10 +2,15 @@ package ejm.stock;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Hashtable;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
 import javax.ws.rs.core.MediaType;
 
 import com.netflix.hystrix.HystrixCommandGroupKey;
@@ -18,6 +23,9 @@ import rx.Observable;
 public class StockObservableCommand extends HystrixObservableCommand<String> {
     // For tracking requests
     private static AtomicInteger counter = new AtomicInteger(1);
+
+    // a cached copy of relevant previous day quotes
+    private static Hashtable<String, Double> previousQuotes = new Hashtable<>();
 
     private final String stockCode;
 
@@ -42,7 +50,11 @@ public class StockObservableCommand extends HystrixObservableCommand<String> {
 
     @Override
     protected Observable<String> resumeWithFallback() {
-        return Observable.just("Yesterdays price for " + this.stockCode);
+        return Observable.just(
+                Json.createObjectBuilder()
+                        .add("fallback", "Yesterdays price for " + this.stockCode + " " + previousQuotes.get(stockCode))
+                        .build().toString()
+        );
     }
 
     @Override
@@ -79,7 +91,23 @@ public class StockObservableCommand extends HystrixObservableCommand<String> {
 
             System.err.println("Successfully executed stock price request for: " + this.stockCode);
 
-            return response.toString() + " { \"request_num\":" + "\"" + requestNum + "\" }";
+            Double previousQuote = previousQuotes.get(stockCode);
+
+            if (previousQuote == null) {
+                JsonReader jsonReader = Json.createReader(new StringReader(response.toString()));
+                JsonObject object = jsonReader.readObject();
+                jsonReader.close();
+                previousQuotes.put(stockCode,
+                                   object.getJsonObject("quotes")
+                                           .getJsonObject("quote")
+                                           .getJsonNumber("prevclose")
+                                           .doubleValue());
+            }
+
+            return Json.createObjectBuilder()
+                    .add("quote-data", response.toString())
+                    .add("request_num", requestNum)
+                    .build().toString();
         } finally {
             assert connection != null;
             connection.disconnect();
