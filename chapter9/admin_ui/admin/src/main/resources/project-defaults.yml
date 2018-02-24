@@ -8,14 +8,14 @@ swarm:
         password: sa
   keycloak:
     secure-deployments:
-      chapter9.war:
+      chapter9-admin.war:
         realm: cayambe
-        auth-server-url: http://localhost:9090/auth
+        auth-server-url: http://192.168.1.13:9090/auth
         ssl-required: external
         resource: cayambe-admin-service
         bearer-only: true
   deployment:
-    chapter9.war:
+    chapter9-admin.war:
       web:
         security-constraints:
           - url-pattern: /admin/category/*
