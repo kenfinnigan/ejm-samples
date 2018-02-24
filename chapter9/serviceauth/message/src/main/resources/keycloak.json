@@ -1,8 +1,0 @@
-{
-  "realm": "service",
-  "auth-server-url": "http://localhost:9090/auth",
-  "resource": "message-authz-service",
-  "credentials": {
-    "secret": "secret"
-  }
-}

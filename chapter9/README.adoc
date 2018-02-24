@@ -14,5 +14,5 @@ Create an admin user
 
 Select _Administration Server_ and login as the admin user just created
 
-Select Realm drop down and click "Add realm", select /keycloak/service-realm.json in the file chooser and then click "Create"
+Select Realm drop down and click "Add realm", select /keycloak/cayambe-realm.json in the file chooser and then click "Create"
 

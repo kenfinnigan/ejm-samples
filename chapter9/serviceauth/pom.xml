@@ -15,7 +15,7 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>time</module>
-    <module>message</module>
+    <module>stripe</module>
+    <module>payment-service</module>
   </modules>
 </project>

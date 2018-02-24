@@ -56,6 +56,14 @@
           "manage-account"
         ]
       }
+    },
+    {
+      "username": "service-account-payment-service",
+      "enabled": true,
+      "serviceAccountClientId": "payment-authz-service",
+      "realmRoles": [
+        "stripe-service-access"
+      ]
     }
   ],
   "roles": {
@@ -67,6 +75,10 @@
       {
         "name": "admin",
         "description": "Administrator privileges"
+      },
+      {
+        "name": "stripe-service-access",
+        "description": "Stripe service access privileges"
       }
     ]
   },
@@ -82,6 +94,18 @@
     },
     {
       "clientId": "cayambe-admin-service",
+      "enabled": true,
+      "bearerOnly": true
+    },
+    {
+      "clientId": "payment-authz-service",
+      "secret": "secret",
+      "enabled": true,
+      "standardFlowEnabled": false,
+      "serviceAccountsEnabled": true
+    },
+    {
+      "clientId": "stripe-service",
       "enabled": true,
       "bearerOnly": true
     }
