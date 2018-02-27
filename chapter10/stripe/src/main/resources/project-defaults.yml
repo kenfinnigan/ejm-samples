@@ -1,0 +1,31 @@
+swarm:
+#  undertow:
+#    servers:
+#      default-server:
+#        hosts:
+#          default-host:
+#            filter-refs:
+#              request-dumper:
+#    filter-configuration:
+#      custom-filters:
+#        request-dumper:
+#          class-name: io.undertow.server.handlers.RequestDumpingHandler
+#          module: io.undertow.core
+  keycloak:
+    secure-deployments:
+      chapter9-stripe.war:
+        realm: cayambe
+        bearer-only: true
+        # Change URL to where you have Keycloak installed locally
+        auth-server-url: http://192.168.1.13:9090/auth
+        ssl-required: external
+        resource: stripe-service
+        enable-cors: true
+  deployment:
+    chapter9-stripe.war:
+      web:
+        security-constraints:
+          - url-pattern: /stripe/charge/*
+            roles: [ stripe-service-access ]
+stripe:
+  key: rk_test_CPPrVf55qKxCCvFMsInxmEmU

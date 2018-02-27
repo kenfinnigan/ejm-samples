@@ -1,0 +1,8 @@
+swarm:
+  datasources:
+    data-sources:
+      PaymentsDS:
+        driver-name: mysql
+        connection-url: jdbc:mysql://mysql:3306/cayambe_payment
+        user-name: cayambe-payment
+        password: cayambe-payment

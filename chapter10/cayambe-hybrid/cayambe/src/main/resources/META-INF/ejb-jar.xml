@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE ejb-jar PUBLIC '-//Sun Microsystems, Inc.//DTD Enterprise JavaBeans 1.1//EN' 'http://java.sun.com/j2ee/dtds/ejb-jar_1_1.dtd'>
+
+<ejb-jar>
+  <description>Cayambe Test Redirector</description>
+  <display-name>cayambe</display-name>
+  <enterprise-beans>
+    <session>
+      <description>Cayambe Category Facade</description>
+      <display-name>Category Facade</display-name>
+      <ejb-name>CategoryFacade</ejb-name>
+      <home>org.cayambe.ejb.CategoryFacadeHome</home>
+      <remote>org.cayambe.ejb.CategoryFacade</remote>
+      <ejb-class>org.cayambe.ejb.CategoryFacadeSession</ejb-class>
+      <session-type>Stateful</session-type>
+      <transaction-type>Container</transaction-type>
+    </session>
+
+    <session>
+      <description>Cayambe Product Facade</description>
+      <display-name>Product Facade</display-name>
+      <ejb-name>ProductFacade</ejb-name>
+      <home>org.cayambe.ejb.ProductFacadeHome</home>
+      <remote>org.cayambe.ejb.ProductFacade</remote>
+      <ejb-class>org.cayambe.ejb.ProductFacadeSession</ejb-class>
+      <session-type>Stateful</session-type>
+      <transaction-type>Container</transaction-type>
+    </session>
+
+    <session>
+      <description>Cayambe Shopping Cart</description>
+      <display-name>Cart Facade</display-name>
+      <ejb-name>CartFacade</ejb-name>
+      <home>org.cayambe.ejb.CartFacadeHome</home>
+      <remote>org.cayambe.ejb.CartFacade</remote>
+      <ejb-class>org.cayambe.ejb.CartFacadeSession</ejb-class>
+      <session-type>Stateful</session-type>
+      <transaction-type>Container</transaction-type>
+    </session>
+
+    <session>
+      <description>CheckOut Facade</description>
+      <display-name>Check Out Facade</display-name>
+      <ejb-name>CheckOutFacade</ejb-name>
+      <home>org.cayambe.ejb.CheckOutFacadeHome</home>
+      <remote>org.cayambe.ejb.CheckOutFacade</remote>
+      <ejb-class>org.cayambe.ejb.CheckOutFacadeSession</ejb-class>
+      <session-type>Stateful</session-type>
+      <transaction-type>Container</transaction-type>
+    </session>
+
+
+   <session>
+     <description>Order Facade</description>
+     <display-name>Order Facade</display-name>
+     <ejb-name>OrderFacade</ejb-name>
+     <home>org.cayambe.ejb.OrderFacadeHome</home>
+     <remote>org.cayambe.ejb.OrderFacade</remote>
+     <ejb-class>org.cayambe.ejb.OrderFacadeSession</ejb-class>
+     <session-type>Stateful</session-type>
+     <transaction-type>Container</transaction-type>
+   </session>
+
+  </enterprise-beans>
+
+  <assembly-descriptor>
+    <container-transaction>
+      <method>
+        <ejb-name>CategoryFacade</ejb-name>
+        <method-name>*</method-name>
+      </method>
+      <trans-attribute>RequiresNew</trans-attribute>
+    </container-transaction>
+
+    <container-transaction>
+      <method>
+        <ejb-name>ProductFacade</ejb-name>
+        <method-name>*</method-name>
+      </method>
+      <trans-attribute>RequiresNew</trans-attribute>
+    </container-transaction>
+
+    <container-transaction>
+      <method>
+        <ejb-name>CartFacade</ejb-name>
+        <method-name>*</method-name>
+      </method>
+      <trans-attribute>RequiresNew</trans-attribute>
+    </container-transaction>
+
+    <container-transaction>
+      <method>
+        <ejb-name>CheckOutFacade</ejb-name>
+        <method-name>*</method-name>
+      </method>
+      <trans-attribute>RequiresNew</trans-attribute>
+    </container-transaction>
+
+    <container-transaction>
+      <method>
+        <ejb-name>OrderFacade</ejb-name>
+        <method-name>*</method-name>
+      </method>
+      <trans-attribute>RequiresNew</trans-attribute>
+    </container-transaction>
+
+  </assembly-descriptor>
+</ejb-jar>

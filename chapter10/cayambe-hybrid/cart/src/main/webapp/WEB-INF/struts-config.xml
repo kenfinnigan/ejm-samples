@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.0//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_0.dtd">
+
+<struts-config>
+
+  <!-- ========== Form Bean Definitions =================================== -->
+  <form-beans>
+    <form-bean name="EmptyForm" type="org.cayambe.web.form.EmptyActionForm"/>
+    <form-bean name="CartForm" type="org.cayambe.web.cart.form.CartActionForm"/>
+    <form-bean name="SearchProductForm" type="org.cayambe.web.cart.form.SearchProductActionForm"/>
+  </form-beans>
+
+
+  <!-- ========== Global Forward Definitions ============================== -->
+
+
+  <!-- ========== Action Mapping Definitions ============================== -->
+  <action-mappings>
+    <action    path="/ListProductsInCategory"
+	       name="EmptyForm"
+               type="org.cayambe.web.cart.action.ListProductsInCategoryAction"
+               validate="false">
+      <forward name="success" path="/ListProductsInCategoryIndex.jsp"/>
+    </action>
+
+    <action    path="/CartHome"
+               type="org.cayambe.web.cart.action.CartHomeAction"
+               scope="request"
+	       unknown="true"
+               validate="false">
+      <forward name="success" path="/CartHomeIndex.jsp"/>
+    </action>
+
+    <action    path="/SearchProducts"
+               type="org.cayambe.web.cart.action.SearchProductAction"
+               scope="request"
+               validate="false">
+      <forward name="failure" path="/index.jsp"/>
+      <forward name="success" path="/ListProductsInCategoryIndex.jsp"/>
+    </action>
+
+
+    <action    path="/OpenCart"
+               type="org.cayambe.web.cart.action.OpenCartAction"
+               scope="request"
+               validate="true">
+      <forward name="success" path="/CartIndex.jsp"/>
+    </action>
+
+
+    <action    path="/AddToCart"
+               type="org.cayambe.web.cart.action.AddToCartAction"
+               name="CartForm"
+               scope="request"
+               validate="true">
+      <forward name="success" path="/CartIndex.jsp"/>
+    </action>
+
+    <action    path="/UpdateCart"
+	       name="EmptyForm"
+               type="org.cayambe.web.cart.action.UpdateCartAction"
+               validate="true">
+      <forward name="failure" path="/CartIndex.jsp"/>
+      <forward name="success" path="/CartIndex.jsp"/>
+    </action>
+
+    <action    path="/ViewCart"
+               type="org.cayambe.web.cart.action.ViewCartAction">
+      <forward name="success" path="/CartIndex.jsp"/>
+    </action>
+
+    <action    path="/ViewProduct"
+               type="org.cayambe.web.cart.action.ViewProductAction"
+               validate="true">
+      <forward name="success" path="/ViewProductIndex.jsp"/>
+    </action> 
+
+
+    <action    path="/GetShippingInfo"
+         name="CheckOutForm"
+               type="org.cayambe.web.cart.action.GetShippingInfoAction"
+               scope="session"
+               validate="false">
+      <forward name="success" path="/BillingInfo.jsp"/>
+    </action>
+
+    <action    path="/GetBillingInfo"
+         name="CheckOutForm"
+               type="org.cayambe.web.cart.action.GetBillingInfoAction"
+               scope="session"
+               validate="false">
+      <forward name="success" path="/ConfirmOrder.jsp"/>
+    </action>
+
+
+    <action    path="/SaveOrder"
+         name="CheckOutForm"
+               type="org.cayambe.web.cart.action.SaveOrderAction"
+               scope="request"
+               validate="false">
+      <forward name="success" path="/OrderReceipt.jsp"/>
+    </action>
+
+    <action    path="/CheckOut"
+         name="CheckOutForm"
+         type="org.cayambe.web.cart.action.CheckOutAction"
+         scope="request"
+         validate="false">
+      <forward name="success" path="/ForwardCartToCheckOut.jsp"/>
+    </action>
+
+
+  </action-mappings>
+
+</struts-config>

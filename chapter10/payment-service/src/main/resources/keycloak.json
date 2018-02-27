@@ -1,0 +1,8 @@
+{
+  "realm": "cayambe",
+  "auth-server-url": "http://192.168.1.13:9090/auth",
+  "resource": "payment-authz-service",
+  "credentials": {
+    "secret": "secret"
+  }
+}

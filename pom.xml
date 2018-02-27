@@ -18,6 +18,7 @@
     <version.dropwizard>1.0.0</version.dropwizard>
 
     <version.h2>1.4.196</version.h2>
+    <version.mysql>5.1.43</version.mysql>
 
     <version.junit>4.12</version.junit>
     <version.fest-assert>1.4</version.fest-assert>
@@ -88,6 +89,11 @@
         <groupId>com.h2database</groupId>
         <artifactId>h2</artifactId>
         <version>${version.h2}</version>
+      </dependency>
+      <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>${version.mysql}</version>
       </dependency>
 
       <!-- Testing -->
@@ -176,6 +182,7 @@
 
   <modules>
     <module>hystrix-dashboard</module>
+    <module>cayambe</module>
     <module>chapter1</module>
     <module>chapter2</module>
     <module>chapter3</module>
@@ -185,6 +192,6 @@
     <module>chapter7</module>
     <module>chapter8</module>
     <module>chapter9</module>
-    <module>cayambe</module>
+    <module>chapter10</module>
   </modules>
 </project>

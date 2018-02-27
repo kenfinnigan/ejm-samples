@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE component-definitions PUBLIC
+    "-//Apache Software Foundation//DTD Tiles Configuration//EN"
+    "http://jakarta.apache.org/struts/dtds/tiles-config.dtd">
+<component-definitions>
+
+ <definition name="CheckOutHome" path="/CheckOutHomeLayout.jsp">
+  <put name="Title" value="Welcome to the Cayambe" />
+  <put name="Header" value="Header.jsp" />
+  <put name="Cart" value="Cart.jsp" />
+  <put name="Body" value="CartHomeContent.jsp" />
+  <put name="Footer" value="Footer.jsp" />
+ </definition>
+
+ <definition name="CheckOutForm" extends="CheckOutHome">
+  <put name="Body" value="CheckOutForm.jsp" />
+ </definition>
+
+ <definition name="Receipt" extends="CheckOutHome">
+  <put name="Body" value="Receipt.jsp" />
+ </definition>
+
+</component-definitions>

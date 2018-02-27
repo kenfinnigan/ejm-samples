@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE component-definitions PUBLIC
+    "-//Apache Software Foundation//DTD Tiles Configuration//EN"
+    "http://jakarta.apache.org/struts/dtds/tiles-config.dtd">
+<component-definitions>
+
+ <definition name="CartHome" path="/CartHomeLayout.jsp">
+  <put name="Title" value="Welcome to the Cayambe" />
+  <put name="Header" value="Header.jsp" />
+  <put name="Navigation" value="Navigation" />
+  <put name="Hierarchy" value="Hierarchy.jsp" />
+  <put name="Body" value="CartHomeContent.jsp" />
+  <put name="Footer" value="Footer.jsp" />
+ </definition>
+
+ <definition name="Navigation" path="/NavigationLayout.jsp">
+  <put name="SearchBox" value="SearchBox.jsp" />
+  <put name="CategoryList" value="CategoryList.jsp" />
+ </definition>
+
+ <definition name="ListProductsInCategory" extends="CartHome">
+  <put name="Body" value="ProductList.jsp" />
+ </definition>
+
+ <definition name="ViewProduct" extends="CartHome">
+  <put name="Body" value="ProductDetail.jsp" />
+ </definition>
+
+ <definition name="Cart" extends="CartHome">
+  <put name="Body" value="ManageCart.jsp" />
+ </definition>
+
+</component-definitions>

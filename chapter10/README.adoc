@@ -1,0 +1,97 @@
+= Cayambe Hybrid Setup
+
+== Minishift
+
+  minishift start
+
+
+== MySQL Setup
+
+=== OpenShift Image Setup
+
+  Open OpenShift Console
+
+  Select "Add to Project" menu and choose "Browse Catalog"
+
+  Click "Data Stores" box
+
+  Click "Select" for "MySQL (Persistent)"
+
+  Set values for "MySQL Connection Username", "MySQL Connection Password", and "MySQL root user Password"
+
+=== Access MySQL Shell
+
+  oc get pods
+
+  oc rsh {mysql-pod-name}
+
+  mysql -u root -p$MYSQL_ROOT_PASSWORD -h $HOSTNAME
+
+=== Admin Data
+
+  create user 'cayambe-admin' identified by 'cayambe-admin';
+
+  grant all privileges on cayambe_admin.* to 'cayambe-admin' with grant option;
+
+  create database cayambe_admin;
+
+  use cayambe_admin;
+
+  copy content of sql/admin/mysql.sql and paste into mysql shell
+
+  copy content of sql/admin/data.sql and paste into mysql shell
+
+=== Payment Service Data
+
+  create user 'cayambe-payment' identified by 'cayambe-payment';
+
+  grant all privileges on cayambe_payment.* to 'cayambe-payment' with grant option;
+
+  create database cayambe_payment;
+
+  use cayambe_payment;
+
+  copy content of sql/payment-service/mysql.sql and paste into mysql shell
+
+=== Cayambe Data
+
+  create user 'cayambe' identified by 'cayambe';
+
+  grant all privileges on cayambe.* to 'cayambe' with grant option;
+
+  create database cayambe;
+
+  use cayambe;
+
+  copy content of sql/cayambe/mysql.sql and paste into mysql shell
+
+  copy content of sql/cayambe/test_data.sql and paste into mysql shell
+
+== Keycloak
+
+  /chapter9/keycloak> java -Dswarm.http.port=9090 -jar keycloak-2018.1.0-swarm.jar
+
+== Deploy
+
+=== Admin microservice
+
+  /chapter10/admin> mvn clean fabric8:deploy -Popenshift
+
+=== Admin UI
+
+  Modify ROOT_URL in /app/actions/category-actions.js to be the URL from OpenShift Console for cayambe-admin-service
+  Be sure to remove trailing slash from URL
+
+  /chapter10/admin-ui> npm start
+
+  Will open a browser window to the Admin UI
+
+=== Stripe Microservice
+
+  /chapter10/stripe> mvn clean fabric8:deploy -Popenshift
+
+=== Payment Microservice
+
+  /chapter10/payment-service> mvn clean fabric8:deploy -Popenshift
+
+=== Cayambe EAR

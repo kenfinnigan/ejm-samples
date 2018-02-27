@@ -1,0 +1,53 @@
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+
+<!-- To rename application: change package headers; update Constants.java; update DatabaseServlet.java; update LinkSubscription.java; update web.xml, struts-config.xml; app.tld; mainMenu.jsp; subscription.jsp -->
+
+  <!-- Action Servlet Configuration -->
+  <servlet>
+    <servlet-name>action</servlet-name>
+    <servlet-class>org.apache.struts.tiles.ActionComponentServlet</servlet-class>  
+    <init-param>
+      <param-name>definitions-config</param-name>
+      <param-value>/WEB-INF/tileDefinitions.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>application</param-name>
+      <param-value>app.ApplicationResources</param-value>
+    </init-param>
+    <init-param>
+      <param-name>config</param-name>
+      <param-value>/WEB-INF/struts-config.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>debug</param-name>
+      <param-value>2</param-value>
+    </init-param>
+    <init-param>
+      <param-name>detail</param-name>
+      <param-value>2</param-value>
+    </init-param>
+    <init-param>
+      <param-name>validate</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+
+
+  <!-- Action Servlet Mapping -->
+  <servlet-mapping>
+    <servlet-name>action</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+
+
+  <!-- The Welcome File List -->
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+
+</web-app>
