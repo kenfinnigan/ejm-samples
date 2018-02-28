@@ -1,4 +1,16 @@
 swarm:
+#  undertow:
+#    servers:
+#      default-server:
+#        hosts:
+#          default-host:
+#            filter-refs:
+#              request-dumper:
+#    filter-configuration:
+#      custom-filters:
+#        request-dumper:
+#          class-name: io.undertow.server.handlers.RequestDumpingHandler
+#          module: io.undertow.core
   keycloak:
     secure-deployments:
       chapter9-stripe.war:

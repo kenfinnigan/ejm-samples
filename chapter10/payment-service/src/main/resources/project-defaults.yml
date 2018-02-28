@@ -6,3 +6,7 @@ swarm:
         connection-url: jdbc:mysql://mysql:3306/cayambe_payment
         user-name: cayambe-payment
         password: cayambe-payment
+        valid-connection-checker-class-name: org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLValidConnectionChecker
+        validate-on-match: true
+        background-validation: false
+        exception-sorter-class-name: org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLExceptionSorter
