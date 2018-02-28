@@ -497,6 +497,11 @@
 <rtexprvalue>true</rtexprvalue>
 </attribute>
 <attribute>
+<name>styleId</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
 <name>target</name>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
@@ -522,6 +527,11 @@
 </attribute>
 <attribute>
 <name>value</name>
+<required>false</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+<attribute>
+<name>styleId</name>
 <required>false</required>
 <rtexprvalue>true</rtexprvalue>
 </attribute>

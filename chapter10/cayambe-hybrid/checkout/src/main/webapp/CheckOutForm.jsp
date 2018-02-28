@@ -8,10 +8,69 @@
 <%@ taglib uri="/WEB-INF/struts-form.tld" prefix="form" %>
 <%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
 
+<script src="https://js.stripe.com/v3/"></script>
+<script type="text/javascript">
+  var stripe = Stripe('pk_test_a0a6rIQq6Ov7G3RzgCGutnyn');
+  var elements = stripe.elements();
+  var style = {
+    base: {
+      color: '#32325d',
+      fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+      fontSmoothing: 'antialiased',
+      fontSize: '16px',
+      '::placeholder': {
+        color: '#aab7c4'
+      }
+    },
+    invalid: {
+      color: '#fa755a',
+      iconColor: '#fa755a'
+    }
+  };
+
+  var card = elements.create('card', {style: style});
+
+  function stripeTokenHandler(token) {
+    // Insert the token ID into the form so it gets submitted to the server
+    var cardToken = document.getElementById('cardToken');
+    cardToken.value = token.id;
+
+    // Submit the form
+    document.getElementById('orderForm').submit();
+  };
+
+  document.body.onload = function() {
+    card.mount('#card-element');
+
+    card.addEventListener('change', function(event) {
+      var displayError = document.getElementById('card-errors');
+      if (event.error) {
+        displayError.textContent = event.error.message;
+      } else {
+        displayError.textContent = '';
+      }
+    });
+
+    var form = document.getElementById('orderForm');
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      stripe.createToken(card).then(function(result) {
+        if (result.error) {
+          // Inform the user if there was an error.
+          var errorElement = document.getElementById('card-errors');
+          errorElement.textContent = result.error.message;
+        } else {
+          stripeTokenHandler(result.token);
+        }
+      });
+    });
+  };
+</script>
 
 <html:errors />
 
-<form:form name="OrderForm" type="org.cayambe.web.form.OrderActionForm" action="SubmitOrder.do" scope="request">
+<form:form name="OrderForm" styleId="orderForm" type="org.cayambe.web.form.OrderActionForm" action="SubmitOrder.do" scope="request">
 
 <table border="1" width="100%">
 
@@ -224,48 +283,21 @@
       <u>Credit Card Info</u>
     </th>
   </tr>
-  
+
   <tr>
     <th align="right">
-      Name On Card:
+      <label for="card-element">
+        Enter card details
+      </label>
     </th>
     <td align="left">
-      <form:text property="nameOnCard" size="16"/>
-    </td>
-  </tr>
-  
-  <tr>
-    <th align="right">
-      Credit Card Number:
-    </th>
-    <td align="left">
-      <form:text property="cardNumber" size="16"/>
-    </td>
-  </tr>
- 
-  <tr>
-    <th align="right">
-      Credit Card Type:
-    </th>
-    <td align="left">
-      <form:text property="cardType" size="16"/>
-    </td>
-  </tr>
-  <tr>
-    <th align="right">
-      Credit Card Expiration Month:
-    </th>
-    <td align="left">
-      <form:text property="cardExpirationMonth" size="2"/>
-    </td>
-  </tr>
- 
-  <tr>
-    <th align="right">
-      Credit Card Expiration Year:
-    </th>
-    <td align="left">
-      <form:text property="cardExpirationYear" size="10"/>
+      <div id="card-element">
+        <!-- A Stripe Element will be inserted here. -->
+      </div>
+
+      <!-- Used to display form errors. -->
+      <div id="card-errors" role="alert"></div>
+      <form:hidden property="cardToken" styleId="cardToken"/>
     </td>
   </tr>
 
@@ -275,7 +307,7 @@
 
   <tr>
     <td align="center" colspan="2">
-      <form:submit property="submit" value="Submit"/>
+      <form:submit value="Submit"/>
       <form:reset/>
     </td>
   </tr>

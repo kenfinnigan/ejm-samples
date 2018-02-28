@@ -17,7 +17,7 @@
 
   Click "Select" for "MySQL (Persistent)"
 
-  Set values for "MySQL Connection Username", "MySQL Connection Password", and "MySQL root user Password"
+  Set values for "MySQL Connection Username", "MySQL Connection Password", and "MySQL root user Password". Then click "Create"
 
 === Access MySQL Shell
 
@@ -71,6 +71,85 @@
 
   /chapter9/keycloak> java -Dswarm.http.port=9090 -jar keycloak-2018.1.0-swarm.jar
 
+  Login to the administration console, and select "Clients" from the left hand menu.
+
+  Select "cayambe-admin-ui" from the list of clients.
+
+  Update the URLs to have a port of "8090" and click "Save".
+
+== WildFly
+
+  Download WF 11 from http://download.jboss.org/wildfly/11.0.0.Final/wildfly-11.0.0.Final.zip and unpack it into /chapter10
+
+  Download MySQL Connector jar from https://dev.mysql.com/downloads/connector/j/
+
+  Create directory structure in WildFly exploded location of /modules/system/layers/base/com/mysql/main
+
+  copy .jar for MySQL Connector into this directory
+
+  create a file in the same directory called module.xml with the following content:
+
+[source,xml]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="urn:jboss:module:1.3" name="com.mysql">
+
+  <resources>
+    <resource-root path="mysql-connector-java-5.1.43-bin.jar"/>
+  </resources>
+  <dependencies>
+    <module name="javax.api"/>
+    <module name="javax.transaction.api"/>
+  </dependencies>
+</module>
+----
+
+  where the file name specified in `path` is the same as the file you copied into the directory
+
+  Open a new terminal window so we can expose the MySQL port to WF:
+    oc port-forward {mysql-pod-name} 53652:3306
+  Note, each time you want to start WF you will need to reactivate the port forwarding.
+
+  edit /standalone/configuration/standalone.xml within WildFly installation to have the following `datasources` subsystem config:
+
+[source,xml]
+----
+<subsystem xmlns="urn:jboss:domain:datasources:5.0">
+    <datasources>
+        <datasource jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" enabled="true" use-java-context="true">
+            <connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</connection-url>
+            <driver>h2</driver>
+            <security>
+                <user-name>sa</user-name>
+                <password>sa</password>
+            </security>
+        </datasource>
+        <datasource jta="true" jndi-name="java:/Climb" pool-name="MySqlDS" enabled="true" use-ccm="true">
+            <connection-url>jdbc:mysql://localhost:53652/cayambe</connection-url>
+            <driver-class>com.mysql.jdbc.Driver</driver-class>
+            <driver>mysql</driver>
+            <security>
+                <user-name>cayambe</user-name>
+                <password>cayambe</password>
+            </security>
+            <validation>
+                <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLValidConnectionChecker"/>
+                <background-validation>true</background-validation>
+                <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLExceptionSorter"/>
+            </validation>
+        </datasource>
+        <drivers>
+            <driver name="h2" module="com.h2database.h2">
+                <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
+            </driver>
+            <driver name="mysql" module="com.mysql">
+                <xa-datasource-class>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</xa-datasource-class>
+            </driver>
+        </drivers>
+    </datasources>
+</subsystem>
+----
+
 == Deploy
 
 === Admin microservice
@@ -95,3 +174,9 @@
   /chapter10/payment-service> mvn clean fabric8:deploy -Popenshift
 
 === Cayambe EAR
+
+  /chapter10/cayambe> mvn clean install
+
+  copy /cayambe-hybrid/cayambe-ear/target/cayambe.ear into /standalone/deployments of WildFly installation
+
+  run wildfly-11.0.0.Final/bin/standalone.sh

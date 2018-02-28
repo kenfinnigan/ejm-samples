@@ -1,5 +1,11 @@
-CREATE sequence hibernate_sequence start with 1 increment by 5;
+DROP TABLE IF EXISTS hibernate_sequence;
+CREATE TABLE hibernate_sequence (
+  next_val bigint
+);
 
+insert into hibernate_sequence values ( 1 );
+
+DROP TABLE IF EXISTS payment;
 CREATE TABLE payment (
   id integer not null,
   amount decimal(19,2),

@@ -101,7 +101,7 @@ public class OrderDAO {
 	    StringBuffer sqlBillingInfo = new StringBuffer(512);
         sqlBillingInfo.append("insert into billing_info ");
         sqlBillingInfo.append("(order_id,name,address1,address2,city,state,zipcode,country,name_on_card,");
-	    sqlBillingInfo.append("card_type,card_number,card_expiration_month,card_expiration_year,authorization_code,phone,email) ");
+	    sqlBillingInfo.append("card_charge_id,phone,email) ");
         sqlBillingInfo.append("values ('" );
 	    sqlBillingInfo.append(orderId);
         sqlBillingInfo.append("','");
@@ -119,17 +119,7 @@ public class OrderDAO {
         sqlBillingInfo.append("','");
 	    sqlBillingInfo.append(orderVO.getBillingInfoVO().getCountry());
         sqlBillingInfo.append("','");
-	    sqlBillingInfo.append(orderVO.getBillingInfoVO().getNameOnCard());
-        sqlBillingInfo.append("','");
-	    sqlBillingInfo.append(orderVO.getBillingInfoVO().getCardType());
-        sqlBillingInfo.append("','");
-	    sqlBillingInfo.append(orderVO.getBillingInfoVO().getCardNumber());
-        sqlBillingInfo.append("','");
-	    sqlBillingInfo.append(orderVO.getBillingInfoVO().getCardExpirationMonth());
-        sqlBillingInfo.append("','");
-	    sqlBillingInfo.append(orderVO.getBillingInfoVO().getCardExpirationYear());
-        sqlBillingInfo.append("','");
-	    sqlBillingInfo.append(orderVO.getBillingInfoVO().getAuthorizationCode());
+	    sqlBillingInfo.append(orderVO.getBillingInfoVO().getCardChargeId());
         sqlBillingInfo.append("','");
 	    sqlBillingInfo.append(orderVO.getBillingInfoVO().getPhone());
         sqlBillingInfo.append("','");
@@ -361,11 +351,7 @@ public class OrderDAO {
 	        b.setPhone( rs.getString("billing_info.phone") );
             b.setEmail( rs.getString("billing_info.email") );
 
-            b.setNameOnCard( rs.getString("billing_info.name_on_card") );
-            b.setCardType( rs.getString("billing_info.card_type") );
-            b.setCardNumber ( rs.getString("billing_info.card_number") );
-            b.setCardExpirationMonth ( rs.getString("billing_info.card_expiration_month") );
-            b.setCardExpirationYear ( rs.getString("billing_info.card_expiration_year") );
+            b.setCardChargeId( rs.getString("billing_info.card_charge_id") );
 
 			orderVO.setStatus( rs.getString("order_statuses.id") );
 			orderVO.setStatusName( rs.getString("order_statuses.name") );

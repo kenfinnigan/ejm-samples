@@ -56,11 +56,7 @@ public final class OrderActionForm extends ActionForm {
     private String billingPhoneNumber = null;
     private String billingEmail = null;
     
-	private String nameOnCard = null;
-    private String cardNumber = null;
-    private String cardType = null;
-    private int cardExpirationMonth = 0;
-    private int cardExpirationYear = 0;
+	private String cardToken = null;
 
 
 
@@ -303,49 +299,13 @@ public final class OrderActionForm extends ActionForm {
 
 	
 
-	public void setNameOnCard( String _nameOnCard ) 
+	public void setCardToken( String _cardToken )
 	{
-		nameOnCard = _nameOnCard;
+		cardToken = _cardToken;
 	}
-    public String getNameOnCard( ) 
+    public String getCardToken( )
 	{
-		return nameOnCard;
-	}
-	
-	public void setCardNumber( String _cardNumber ) 
-	{
-		cardNumber = _cardNumber;
-	}
-    public String getCardNumber( ) 
-	{
-		return cardNumber;
-	}
-	
-	public void setCardType( String _cardType ) 
-	{
-		cardType = _cardType;
-	}
-    public String getCardType( ) 
-	{
-		return cardType;
-	}
-	
-	public void setCardExpirationMonth( int _cardExpirationMonth ) 
-	{
-		cardExpirationMonth = _cardExpirationMonth;
-	}
-    public int getCardExpirationMonth( ) 
-	{
-		return cardExpirationMonth;
-	}
-	
-	public void setCardExpirationYear( int _cardExpirationYear ) 
-	{
-		cardExpirationYear = _cardExpirationYear;
-	}
-    public int getCardExpirationYear( ) 
-	{
-		return cardExpirationYear;
+		return cardToken;
 	}
 
     public ShippingInfoVO toShippingInfoVO() {
@@ -380,11 +340,7 @@ public final class OrderActionForm extends ActionForm {
         b.setPhone ( getBillingPhoneNumber() );
 		b.setEmail ( getBillingEmail() );
 
-		b.setNameOnCard( getNameOnCard() );
-		b.setCardType( getCardType() );
-		b.setCardNumber ( getCardNumber() );
-		b.setCardExpirationMonth ( getCardExpirationMonth() );
-		b.setCardExpirationYear ( getCardExpirationYear() );		
+		b.setCardToken( getCardToken() );
 
 		return b;
 	}
@@ -415,11 +371,7 @@ public final class OrderActionForm extends ActionForm {
         setBillingPhoneNumber( b.getPhone() );
 		setBillingEmail( b.getEmail() );
 
-		setNameOnCard( b.getNameOnCard() );
-		setCardType( b.getCardType() );
-		setCardNumber( b.getCardNumber() );
-		setCardExpirationMonth( b.getCardExpirationMonth() );
-		setCardExpirationYear( b.getCardExpirationYear() );		
+		setCardToken( b.getCardToken() );
 
 	}
 

@@ -32,6 +32,12 @@
     </dependency>
 
     <dependency>
+      <groupId>org.jboss.resteasy</groupId>
+      <artifactId>resteasy-client</artifactId>
+      <version>3.0.24.Final</version>
+    </dependency>
+
+    <dependency>
       <groupId>struts</groupId>
       <artifactId>struts</artifactId>
       <scope>provided</scope>

@@ -25,12 +25,8 @@ public class BillingInfoVO implements Serializable {
   private String phone = null;
   private String email = null;
 
-  private String nameOnCard = null;
-  private String cardType = null;
-  private String cardNumber = null;
-  private int cardExpirationMonth = 0;
-  private int cardExpirationYear = 0;
-  private String authorizationCode = null;
+  private String cardToken = null;
+  private String cardChargeId = null;
 
   public void setBillingId ( Long _billingId ) { billingId = _billingId; }
   public void setBillingId ( String _billingId ) { billingId = new Long ( _billingId ); }
@@ -67,34 +63,9 @@ public class BillingInfoVO implements Serializable {
   public void setEmail ( String _email ) { email = _email; }
   public String getEmail () { return email; }
 
-  public void setNameOnCard ( String _nameOnCard ) { nameOnCard = _nameOnCard; }
-  public String getNameOnCard () { return nameOnCard; }
+  public void setCardToken ( String _cardToken ) { cardToken = _cardToken; }
+  public String getCardToken () { return cardToken; }
 
-  public void setCardType ( String _cardType ) { cardType = _cardType; }
-  public String getCardType () { return cardType; }
-
-  public void setCardNumber ( String _cardNumber ) { cardNumber = _cardNumber; }
-  public String getCardNumber () { return cardNumber; }
-
-  public void setCardExpirationMonth ( int _cardExpirationMonth ) { cardExpirationMonth = _cardExpirationMonth; }
-  public void setCardExpirationMonth ( String _cardExpirationMonth ) { 
-	if (_cardExpirationMonth != null)
-	{
-	   cardExpirationMonth = Integer.parseInt ( _cardExpirationMonth ); 
-	}
-  }
-  public int getCardExpirationMonth () { return cardExpirationMonth; }
-
-  public void setCardExpirationYear ( int _cardExpirationYear ) { cardExpirationYear = _cardExpirationYear; }
-  public void setCardExpirationYear ( String _cardExpirationYear ) { 
-	if (_cardExpirationYear != null)
-	{
-      cardExpirationYear = Integer.parseInt ( _cardExpirationYear ); 
-	}	
-  }
-  public int getCardExpirationYear () { return cardExpirationYear; }
-
-  public void setAuthorizationCode ( String _authorizationCode ) { authorizationCode = _authorizationCode; }
-  public String getAuthorizationCode () { return authorizationCode; }  
-
+  public void setCardChargeId ( String _cardChargeId ) { cardChargeId = _cardChargeId; }
+  public String getCardChargeId () { return cardChargeId; }
 }

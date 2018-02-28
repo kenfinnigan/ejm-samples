@@ -26,7 +26,7 @@ import org.wildfly.swarm.topology.Advertise;
  */
 @Path("/")
 @ApplicationScoped
-@Advertise("chapter9-stripe")
+@Advertise("cayambe-stripe")
 public class StripeResource {
 
     @Inject

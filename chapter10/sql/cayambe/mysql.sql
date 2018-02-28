@@ -16,12 +16,7 @@ CREATE TABLE billing_info (
   state varchar(16) default NULL,
   zipcode varchar(10) default NULL,
   country varchar(32) default NULL,
-  name_on_card varchar(50) default NULL,
-  card_type varchar(16) default NULL,
-  card_number varchar(19) default NULL,
-  card_expiration_month int(2) default NULL,
-  card_expiration_year int(4) default NULL,
-  authorization_code varchar(32) default NULL,
+  card_charge_id varchar(50) default NULL,
   phone varchar(64) default NULL,
   email varchar(64) default NULL
 ) ENGINE=MyISAM;
@@ -43,25 +38,25 @@ CREATE TABLE cart_line_items (
 # Table structure for table `category`
 #
 
---DROP TABLE IF EXISTS category;
---CREATE TABLE category (
---  category_id int(11) NOT NULL auto_increment PRIMARY KEY,
---  name varchar(50) NOT NULL default '',
---  header text,
---  visible tinyint(4) default NULL,
---  image varchar(120) default NULL
---) ENGINE=MyISAM;
+DROP TABLE IF EXISTS category;
+CREATE TABLE category (
+  category_id int(11) NOT NULL auto_increment PRIMARY KEY,
+  name varchar(50) NOT NULL default '',
+  header text,
+  visible tinyint(4) default NULL,
+  image varchar(120) default NULL
+) ENGINE=MyISAM;
 # --------------------------------------------------------
 
 #
 # Table structure for table `category_category`
 #
 
---DROP TABLE IF EXISTS category_category;
---CREATE TABLE category_category (
---  category_id int(11) NOT NULL default '0',
---  parent_id int(11) NOT NULL default '0'
---) ENGINE=MyISAM;
+DROP TABLE IF EXISTS category_category;
+CREATE TABLE category_category (
+  category_id int(11) NOT NULL default '0',
+  parent_id int(11) NOT NULL default '0'
+) ENGINE=MyISAM;
 # --------------------------------------------------------
 
 #

@@ -3,6 +3,9 @@ package org.cayambe.web.checkout.action;
 import org.cayambe.client.*;
 import org.cayambe.util.*;
 import org.cayambe.core.*;
+import org.cayambe.web.checkout.action.payments.PaymentRequest;
+import org.cayambe.web.checkout.action.payments.PaymentResponse;
+import org.cayambe.web.checkout.action.payments.PaymentService;
 import org.cayambe.web.form.OrderActionForm;
 import org.apache.struts.action.*;
 import javax.servlet.http.*;
@@ -10,6 +13,9 @@ import javax.servlet.*;
 import java.io.*;
 import java.util.*;
 import org.apache.log4j.Category;
+import org.jboss.resteasy.client.jaxrs.ResteasyClient;
+import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
+import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 
 
 /**
@@ -48,7 +54,20 @@ public class SubmitOrderAction extends Action
 		OrderVO orderVO = new OrderVO();
 	    orderVO = (OrderVO)oaf.toOrderVO();
 	    orderVO.setCartVO( (CartVO) session.getAttribute("Cart") );
-	    delegate.Save ( orderVO );
+
+	    // Call Payment Service
+        ResteasyClient client = new ResteasyClientBuilder().build();
+        ResteasyWebTarget target = client.target("http://cayambe-payment-service-myproject.192.168.64.33.nip.io");
+        PaymentService paymentService = target.proxy(PaymentService.class);
+        PaymentResponse paymentResponse = paymentService.charge(new PaymentRequest()
+                              .amount((long) (orderVO.getCartVO().getTotalCost() * 100))
+                              .cardToken(oaf.getCardToken())
+                              .orderId(Math.toIntExact(orderVO.getOrderId()))
+        );
+
+        orderVO.getBillingInfoVO().setCardChargeId(paymentResponse.getChargeId());
+
+        delegate.Save ( orderVO );
 
 		CartDelegate cartDelegate = new CartDelegate();
 		cartDelegate.Remove( orderVO.getCartVO() );
