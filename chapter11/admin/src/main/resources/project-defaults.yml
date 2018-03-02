@@ -1,0 +1,27 @@
+swarm:
+  datasources:
+    data-sources:
+      AdminDS:
+        driver-name: mysql
+        connection-url: jdbc:mysql://mysql:3306/cayambe_admin
+        user-name: cayambe-admin
+        password: cayambe-admin
+        valid-connection-checker-class-name: org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLValidConnectionChecker
+        validate-on-match: true
+        background-validation: false
+        exception-sorter-class-name: org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLExceptionSorter
+  keycloak:
+    secure-deployments:
+      admin.war:
+        realm: cayambe
+        auth-server-url: http://192.168.1.13:9090/auth
+        ssl-required: external
+        resource: cayambe-admin-service
+        bearer-only: true
+  deployment:
+    admin.war:
+      web:
+        security-constraints:
+          - url-pattern: /admin/category/*
+            methods: [ DELETE ]
+            roles: [ admin ]
