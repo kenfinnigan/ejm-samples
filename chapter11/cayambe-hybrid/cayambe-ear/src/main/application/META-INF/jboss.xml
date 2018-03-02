@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss>
+
+  <enterprise-beans>
+    <session>
+      <ejb-name>CategoryFacade</ejb-name>
+      <jndi-name>cayambe/CategoryFacade</jndi-name>
+      <container-configuration>Standard Stateful SessionBean</container-configuration>
+    </session>
+    <session>
+      <ejb-name>ProductFacade</ejb-name>
+      <jndi-name>cayambe/ProductFacade</jndi-name>
+      <container-configuration>Standard Stateful SessionBean</container-configuration>
+    </session>
+    <session>
+      <ejb-name>CartFacade</ejb-name>
+      <jndi-name>cayambe/CartFacade</jndi-name>
+      <container-configuration>Standard Stateful SessionBean</container-configuration>
+    </session>
+
+    <session>
+      <ejb-name>CheckOutFacade</ejb-name>
+      <jndi-name>cayambe/CheckOutFacade</jndi-name>
+      <container-configuration>Standard Stateful SessionBean</container-configuration>
+    </session>
+
+
+    <session>
+      <ejb-name>OrderFacade</ejb-name>
+      <jndi-name>cayambe/OrderFacade</jndi-name>
+       <container-configuration>Standard Stateful SessionBean</container-configuration>
+    </session>
+
+  </enterprise-beans>
+
+</jboss>

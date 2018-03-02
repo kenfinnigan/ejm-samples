@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>ejm</groupId>
+    <artifactId>chapter11</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <groupId>ejm.cayambe.chapter11</groupId>
+  <artifactId>cayambe-hybrid-parent</artifactId>
+  <packaging>pom</packaging>
+
+  <properties>
+    <version.struts>1.1-beta-2</version.struts>
+    <version.log4j>1.2.17</version.log4j>
+  </properties>
+
+  <modules>
+    <module>cayambe</module>
+    <module>web-common</module>
+    <module>cart</module>
+    <module>checkout</module>
+    <module>cayambe-ear</module>
+  </modules>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>ejm.cayambe.chapter11</groupId>
+        <artifactId>cayambe</artifactId>
+        <version>${project.version}</version>
+        <type>ejb</type>
+      </dependency>
+      <dependency>
+        <groupId>ejm.cayambe.chapter11</groupId>
+        <artifactId>web-common</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>ejm.cayambe.chapter11</groupId>
+        <artifactId>cart</artifactId>
+        <version>${project.version}</version>
+        <type>war</type>
+      </dependency>
+      <dependency>
+        <groupId>ejm.cayambe.chapter11</groupId>
+        <artifactId>checkout</artifactId>
+        <version>${project.version}</version>
+        <type>war</type>
+      </dependency>
+
+      <dependency>
+        <groupId>struts</groupId>
+        <artifactId>struts</artifactId>
+        <version>${version.struts}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>javax.sql</groupId>
+            <artifactId>jdbc-stdext</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>commons-beanutils</groupId>
+        <artifactId>commons-beanutils</artifactId>
+        <version>1.6.1</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-digester</groupId>
+        <artifactId>commons-digester</artifactId>
+        <version>1.5</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-collections</groupId>
+        <artifactId>commons-collections</artifactId>
+        <version>2.1</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-logging</groupId>
+        <artifactId>commons-logging</artifactId>
+        <version>1.0</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-validator</groupId>
+        <artifactId>commons-validator</artifactId>
+        <version>1.1.4</version>
+      </dependency>
+
+      <dependency>
+        <groupId>javax</groupId>
+        <artifactId>javaee-api</artifactId>
+        <version>7.0</version>
+      </dependency>
+      <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>${version.log4j}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+</project>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.0//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_0.dtd">
+
+<struts-config>
+
+  <!-- ========== Form Bean Definitions =================================== -->
+  <form-beans>
+
+    <form-bean name="OrderForm" type="org.cayambe.web.form.OrderActionForm"/> 
+  </form-beans>
+
+
+  <!-- ========== Global Forward Definitions ============================== -->
+
+
+  <!-- ========== Action Mapping Definitions ============================== -->
+  <action-mappings>
+
+    <action    path="/Index"
+               type="org.cayambe.web.checkout.action.IndexAction"
+               scope="request"
+               validate="false">
+      <forward name="success" path="/CheckOutFormIndex.jsp"/>
+    </action>
+
+    <action    path="/ContinueShopping"
+               type="org.cayambe.web.checkout.action.ContinueShoppingAction"
+               scope="request"
+               validate="false">
+      <forward name="success" path="/ForwardBackToCart.jsp"/>
+    </action>
+
+
+    <action    path="/SubmitOrder"
+	       name="OrderForm"
+               type="org.cayambe.web.checkout.action.SubmitOrderAction"
+               scope="request"
+               validate="false">
+      <forward name="success" path="/ReceiptIndex.jsp"/>
+    </action>
+
+  </action-mappings>
+
+</struts-config>

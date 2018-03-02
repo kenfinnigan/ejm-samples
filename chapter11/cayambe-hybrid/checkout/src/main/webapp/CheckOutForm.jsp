@@ -1,0 +1,317 @@
+<%@ page language="java" %>
+
+<%@ page import="org.cayambe.core.CartVO" %>
+<%@ page import="java.text.NumberFormat" %>
+<%@ page import="java.util.Locale" %>
+
+<%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
+<%@ taglib uri="/WEB-INF/struts-form.tld" prefix="form" %>
+<%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script type="text/javascript">
+  var stripe = Stripe('pk_test_a0a6rIQq6Ov7G3RzgCGutnyn');
+  var elements = stripe.elements();
+  var style = {
+    base: {
+      color: '#32325d',
+      fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+      fontSmoothing: 'antialiased',
+      fontSize: '16px',
+      '::placeholder': {
+        color: '#aab7c4'
+      }
+    },
+    invalid: {
+      color: '#fa755a',
+      iconColor: '#fa755a'
+    }
+  };
+
+  var card = elements.create('card', {style: style});
+
+  function stripeTokenHandler(token) {
+    // Insert the token ID into the form so it gets submitted to the server
+    var cardToken = document.getElementById('cardToken');
+    cardToken.value = token.id;
+
+    // Submit the form
+    document.getElementById('orderForm').submit();
+  };
+
+  document.body.onload = function() {
+    card.mount('#card-element');
+
+    card.addEventListener('change', function(event) {
+      var displayError = document.getElementById('card-errors');
+      if (event.error) {
+        displayError.textContent = event.error.message;
+      } else {
+        displayError.textContent = '';
+      }
+    });
+
+    var form = document.getElementById('orderForm');
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      stripe.createToken(card).then(function(result) {
+        if (result.error) {
+          // Inform the user if there was an error.
+          var errorElement = document.getElementById('card-errors');
+          errorElement.textContent = result.error.message;
+        } else {
+          stripeTokenHandler(result.token);
+        }
+      });
+    });
+  };
+</script>
+
+<html:errors />
+
+<form:form name="OrderForm" styleId="orderForm" type="org.cayambe.web.form.OrderActionForm" action="SubmitOrder.do" scope="request">
+
+<table border="1" width="100%">
+
+  <tr>
+    <th align="left" colspan="2">
+      <u>Shipping Info</u>
+    </th>
+  </tr>
+
+  <tr>
+    <th align="right">
+      Name:
+    </th>
+    <td align="left">
+      <form:text property="shippingName" size="50"/>
+    </td>
+  </tr>
+
+  <tr>
+    <th align="right">
+      Address 1:
+    </th>
+    <td align="left">
+      <form:text property="shippingAddress" size="65"/>
+    </td>
+  </tr>
+
+  <tr>
+    <th align="right">
+      Address 2:
+    </th>
+    <td align="left">
+      <form:text property="shippingAddress2" size="65"/>
+    </td>
+  </tr>
+
+  <tr>
+    <th align="right">
+      City:
+    </th>
+    <td align="left">
+      <form:text property="shippingCity" size="30"/>
+    </td>
+  </tr>
+
+  <tr>
+    <th align="right">
+      State:
+    </th>
+    <td align="left">
+      <form:text property="shippingState" size="20"/>
+    </td>
+  </tr>
+  
+  <tr>
+    <th align="right">
+      Zip Code:
+    </th>
+    <td align="left">
+      <form:text property="shippingZipCode" size="12"/>
+    </td>
+  </tr>
+
+  <tr>
+    <th align="right">
+      Country:
+    </th>
+    <td align="left">
+      <form:text property="shippingCountry" size="30"/>
+    </td>
+  </tr>
+
+  <tr>
+    <th align="right">
+      Phone Number:
+    </th>
+    <td align="left">
+      <form:text property="shippingPhoneNumber" size="20"/>
+    </td>
+  </tr>
+
+  <tr>
+    <th align="right">
+      Shipping Method:
+    </th>
+    <td align="left">
+      <form:text property="shippingMethod" size="20"/>
+    </td>
+  </tr>
+
+  <tr>
+    <th align="right">
+      Shipping Amount:
+    </th>
+    <td align="left">
+      <form:text property="shippingAmount" size="12"/>
+    </td>
+  </tr>
+ 
+   <tr>
+    <th align="right">
+      Shipping Instructions:
+    </th>
+    <td align="left">
+	  <form:textarea property="shippingInstructions" cols="25" rows="5"/>
+    </td>
+  </tr>
+
+
+
+  <tr>
+    <th align="left" colspan="2"><br></th>
+  </tr>
+
+  <tr>
+    <th align="left" colspan="2">
+      <u>Billing Info</u>
+    </th>
+  </tr>
+
+  <tr>
+    <th align="right">
+      Name:
+    </th>
+    <td align="left">
+      <form:text property="billingName" size="50"/>
+    </td>
+  </tr>
+
+  <tr>
+    <th align="right">
+      Address 1:
+    </th>
+    <td align="left">
+      <form:text property="billingAddress" size="65"/>
+    </td>
+  </tr>
+
+  <tr>
+    <th align="right">
+      Address 2:
+    </th>
+    <td align="left">
+      <form:text property="billingAddress2" size="65"/>
+    </td>
+  </tr>
+
+  <tr>
+    <th align="right">
+      City:
+    </th>
+    <td align="left">
+      <form:text property="billingCity" size="30"/>
+    </td>
+  </tr>
+
+  <tr>
+    <th align="right">
+      State:
+    </th>
+    <td align="left">
+      <form:text property="billingState" size="20"/>
+    </td>
+  </tr>
+  
+  <tr>
+    <th align="right">
+      Zip Code:
+    </th>
+    <td align="left">
+      <form:text property="billingZipCode" size="12"/>
+    </td>
+  </tr>
+
+  <tr>
+    <th align="right">
+      Country:
+    </th>
+    <td align="left">
+      <form:text property="billingCountry" size="30"/>
+    </td>
+  </tr>
+
+  <tr>
+    <th align="right">
+      Phone Number:
+    </th>
+    <td align="left">
+      <form:text property="billingPhoneNumber" size="20"/>
+    </td>
+  </tr>
+
+  <tr>
+    <th align="right">
+      Email:
+    </th>
+    <td align="left">
+      <form:text property="billingEmail" size="20"/>
+    </td>
+  </tr>
+
+
+
+  <tr>
+    <th align="left" colspan="2"><br></th>
+  </tr>
+
+  <tr>
+    <th align="left" colspan="2">
+      <u>Credit Card Info</u>
+    </th>
+  </tr>
+
+  <tr>
+    <th align="right">
+      <label for="card-element">
+        Enter card details
+      </label>
+    </th>
+    <td align="left">
+      <div id="card-element">
+        <!-- A Stripe Element will be inserted here. -->
+      </div>
+
+      <!-- Used to display form errors. -->
+      <div id="card-errors" role="alert"></div>
+      <form:hidden property="cardToken" styleId="cardToken"/>
+    </td>
+  </tr>
+
+  <tr>
+    <th align="left" colspan="2"><br></th>
+  </tr>
+
+  <tr>
+    <td align="center" colspan="2">
+      <form:submit value="Submit"/>
+      <form:reset/>
+    </td>
+  </tr>
+
+</table>
+
+</form:form>
