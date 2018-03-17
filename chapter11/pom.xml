@@ -16,6 +16,6 @@
 
   <modules>
     <module>admin</module>
-    <module>cayambe-hybrid</module>
+    <module>kafka-consumer</module>
   </modules>
 </project>

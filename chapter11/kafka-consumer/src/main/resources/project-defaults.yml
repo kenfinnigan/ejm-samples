@@ -1,0 +1,12 @@
+swarm:
+  datasources:
+    data-sources:
+      CayambeDS:
+        driver-name: mysql
+        connection-url: jdbc:mysql://mysql:3306/cayambe
+        user-name: cayambe
+        password: cayambe
+        valid-connection-checker-class-name: org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLValidConnectionChecker
+        validate-on-match: true
+        background-validation: false
+        exception-sorter-class-name: org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLExceptionSorter

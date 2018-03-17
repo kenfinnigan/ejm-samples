@@ -1,0 +1,44 @@
+= Setup
+
+== Kafka
+
+Copy contents of /resources/Kafka_OpenShift.yml and paste into "Add to Project" -> "Import YAML / JSON".
+Then click "Create" and then "Continue" in the popup. Lastly click "Create" at the bottom of the form.
+
+The contents are the same as https://github.com/strimzi/strimzi/blob/0.1.0/kafka-statefulsets/resources/openshift-template.yaml,
+except we've reduced the number of replicas from 3 to 1 to reduce the memory and cpu load in OpenShift
+
+Retrieve all the services to find the Zookeeper URL:
+
+[source,bash]
+----
+$ oc get services
+NAME                 CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
+kafka                172.30.225.60    <none>        9092/TCP   5h
+kafka-headless       None             <none>        9092/TCP   5h
+zookeeper            172.30.93.118    <none>        2181/TCP   5h
+zookeeper-headless   None             <none>        2181/TCP   5h
+----
+
+In the OpenShift Console, select "Applications" and then "Pods" to see all the running pods.
+Click on one of the Kafka pods
+Select the "Terminal" tab
+Create a Kafka Topic, using the Zookeeper URL we found earlier:
+
+[source,bash]
+----
+./bin/kafka-topics.sh --create --topic category_topic --replication-factor 1 --partitions 1 --zookeeper 172.30.93.118:2181
+----
+
+After using the admin service, or UI, to create, update, or delete some categories run:
+
+[source,bash]
+----
+./bin/kafka-console-consumer.sh --bootstrap-server 172.30.225.60:9092 --from-beginning --topic category_topic
+----
+
+to see the events that have been created
+
+== Kafka Consumer
+
+  /chapter11/kafka-consumer> mvn clean fabric8:deploy -Popenshift

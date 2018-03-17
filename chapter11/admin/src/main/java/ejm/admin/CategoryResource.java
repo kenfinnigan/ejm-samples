@@ -22,6 +22,9 @@ import javax.ws.rs.core.SecurityContext;
 
 import ejm.admin.model.Category;
 import ejm.admin.model.CategoryTree;
+import org.aerogear.kafka.SimpleKafkaProducer;
+import org.aerogear.kafka.cdi.annotation.KafkaConfig;
+import org.aerogear.kafka.cdi.annotation.Producer;
 import org.keycloak.KeycloakPrincipal;
 import org.keycloak.KeycloakSecurityContext;
 
@@ -30,10 +33,14 @@ import org.keycloak.KeycloakSecurityContext;
  */
 @Path("/")
 @ApplicationScoped
+@KafkaConfig(bootstrapServers = "#{KAFKA_SERVICE_HOST}:#{KAFKA_SERVICE_PORT}")
 public class CategoryResource {
 
     @PersistenceContext(unitName = "AdminPU")
     private EntityManager em;
+
+    @Producer
+    private SimpleKafkaProducer<Integer, Category> producer;
 
     @GET
     @Path("/category")
@@ -71,6 +78,9 @@ public class CategoryResource {
                     .entity(e.getMessage())
                     .build();
         }
+
+        producer.send("category_topic", category.getId(), category);
+
         return Response
                 .created(new URI(category.getId().toString()))
                 .build();
@@ -107,6 +117,8 @@ public class CategoryResource {
                     .build();
         }
 
+        producer.send("category_topic", categoryId, null);
+
         return Response
                 .noContent()
                 .build();
@@ -129,6 +141,8 @@ public class CategoryResource {
             }
 
             em.merge(category);
+
+            producer.send("category_topic", categoryId, category);
 
             return Response
                     .ok(category)

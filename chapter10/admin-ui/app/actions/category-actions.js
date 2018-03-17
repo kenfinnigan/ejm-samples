@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import store from '../store';
 
-const ROOT_URL = 'http://cayambe-admin-service-myproject.192.168.64.33.nip.io';
+const ROOT_URL = 'http://cayambe-admin-service-myproject.192.168.64.34.nip.io';
 
 export function loading(bool) {
   return {

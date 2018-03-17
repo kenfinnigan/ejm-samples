@@ -2,7 +2,7 @@
 
 == Minishift
 
-  minishift start
+  minishift start --cpus 3 --memory 4GB
 
 
 == MySQL Setup
@@ -31,9 +31,9 @@
 
   create user 'cayambe-admin' identified by 'cayambe-admin';
 
-  grant all privileges on cayambe_admin.* to 'cayambe-admin' with grant option;
-
   create database cayambe_admin;
+
+  grant all privileges on cayambe_admin.* to 'cayambe-admin' with grant option;
 
   use cayambe_admin;
 
@@ -45,9 +45,9 @@
 
   create user 'cayambe-payment' identified by 'cayambe-payment';
 
-  grant all privileges on cayambe_payment.* to 'cayambe-payment' with grant option;
-
   create database cayambe_payment;
+
+  grant all privileges on cayambe_payment.* to 'cayambe-payment' with grant option;
 
   use cayambe_payment;
 
@@ -57,9 +57,9 @@
 
   create user 'cayambe' identified by 'cayambe';
 
-  grant all privileges on cayambe.* to 'cayambe' with grant option;
-
   create database cayambe;
+
+  grant all privileges on cayambe.* to 'cayambe' with grant option;
 
   use cayambe;
 
@@ -79,7 +79,7 @@
 
 == WildFly
 
-  Download WF 11 from http://download.jboss.org/wildfly/11.0.0.Final/wildfly-11.0.0.Final.zip and unpack it into /chapter10
+  Download WF 11 from http://download.jboss.org/wildfly/11.0.0.Final/wildfly-11.0.0.Final.zip and unpack it into /
 
   Download MySQL Connector jar from https://dev.mysql.com/downloads/connector/j/
 
