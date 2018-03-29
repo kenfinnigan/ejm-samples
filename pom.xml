@@ -13,9 +13,8 @@
 
   <properties>
     <version.wildfly-swarm>2018.2.0</version.wildfly-swarm>
-    <version.springframework>4.1.9.RELEASE</version.springframework>
-    <version.spring-boot>1.4.0.RELEASE</version.spring-boot>
-    <version.dropwizard>1.0.0</version.dropwizard>
+    <version.spring-boot>1.5.10.RELEASE</version.spring-boot>
+    <version.dropwizard>1.0.9</version.dropwizard>
 
     <version.h2>1.4.196</version.h2>
     <version.mysql>5.1.43</version.mysql>
@@ -57,13 +56,6 @@
         <groupId>javax</groupId>
         <artifactId>javaee-api</artifactId>
         <version>7.0</version>
-      </dependency>
-
-      <!-- Spring Framework -->
-      <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-webmvc</artifactId>
-        <version>${version.springframework}</version>
       </dependency>
 
       <!-- Spring Boot -->
