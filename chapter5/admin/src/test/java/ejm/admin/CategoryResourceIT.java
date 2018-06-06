@@ -24,7 +24,7 @@ import static org.fest.assertions.Assertions.assertThat;
 @RunWith(Arquillian.class)
 public class CategoryResourceIT {
 
-    @RouteURL("chapter9-admin")
+    @RouteURL("chapter5-admin")
     private URL url;
 
     @Before
