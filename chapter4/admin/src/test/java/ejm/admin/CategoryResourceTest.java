@@ -158,9 +158,9 @@ public class CategoryResourceTest {
 
         assertThat(response).isNotNull();
         assertThat(response.getStatusCode()).isEqualTo(400);
-        assertThat(response.getBody().asString()).contains("Validation failed for classes [ejm.chapter8.admin.model.Category] during persist time for groups [javax.validation.groups.Default, ]\n" +
+        assertThat(response.getBody().asString()).contains("Validation failed for classes [ejm.admin.model.Category] during persist time for groups [javax.validation.groups.Default, ]\n" +
                                                                    "List of constraint violations:[\n" +
-                                                                   "\tConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=name, rootBeanClass=class ejm.chapter8.admin.model.Category, messageTemplate='{javax.validation.constraints.NotNull.message}'}\n" +
+                                                                   "\tConstraintViolationImpl{interpolatedMessage='may not be null', propertyPath=name, rootBeanClass=class ejm.admin.model.Category, messageTemplate='{javax.validation.constraints.NotNull.message}'}\n" +
                                                                    "]");
 
         response =
