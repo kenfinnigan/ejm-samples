@@ -135,7 +135,7 @@ public class Category {
                 Objects.equals(header, category.header) &&
                 Objects.equals(visible, category.visible) &&
                 Objects.equals(imagePath, category.imagePath) &&
-                (parent == null ? category.parent == null : Objects.equals(parent.getId(), category.parent.getId())) &&
+                Objects.equals(parent, category.parent) &&
                 Objects.equals(created, category.created) &&
                 Objects.equals(updated, category.updated) &&
                 Objects.equals(version, category.version);
@@ -143,6 +143,6 @@ public class Category {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, header, visible, imagePath, parent == null ? null : parent.getId(), created, updated, version);
+        return Objects.hash(id, name, header, visible, imagePath, parent, created, updated, version);
     }
 }
