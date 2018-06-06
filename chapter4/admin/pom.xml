@@ -15,7 +15,7 @@
   <packaging>war</packaging>
 
   <build>
-    <finalName>chapter8</finalName>
+    <finalName>chapter4</finalName>
 
     <plugins>
       <plugin>

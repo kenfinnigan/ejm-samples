@@ -15,7 +15,7 @@
   <packaging>war</packaging>
 
   <build>
-    <finalName>chapter8-client</finalName>
+    <finalName>chapter4-client</finalName>
 
     <plugins>
       <plugin>
