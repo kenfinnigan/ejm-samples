@@ -133,14 +133,14 @@
             <version>3.5.8</version>
             <configuration>
               <serviceProviders>
-                <serviceProdiver>
+                <serviceProvider>
                   <name>admin_service_provider</name>
                   <protocol>http</protocol>
                   <host>localhost</host>
                   <port>8081</port>
                   <path>/</path>
                   <pactFileDirectory>src/test/resources/pacts</pactFileDirectory>
-                </serviceProdiver>
+                </serviceProvider>
               </serviceProviders>
             </configuration>
             <executions>
