@@ -37,8 +37,8 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.wildfly.swarm</groupId>
-        <artifactId>wildfly-swarm-plugin</artifactId>
+        <groupId>io.thorntail</groupId>
+        <artifactId>thorntail-maven-plugin</artifactId>
         <configuration>
           <properties>
             <swarm.port.offset>10</swarm.port.offset>
@@ -56,7 +56,7 @@
       <type>war</type>
     </dependency>
     <dependency>
-      <groupId>org.wildfly.swarm</groupId>
+      <groupId>io.thorntail</groupId>
       <artifactId>undertow</artifactId>
     </dependency>
   </dependencies>

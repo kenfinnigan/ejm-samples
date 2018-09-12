@@ -24,23 +24,23 @@
         <version>3.2.0</version>
       </plugin>
       <plugin>
-        <groupId>org.wildfly.swarm</groupId>
-        <artifactId>wildfly-swarm-plugin</artifactId>
+        <groupId>io.thorntail</groupId>
+        <artifactId>thorntail-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>
 
   <dependencies>
     <dependency>
-      <groupId>org.wildfly.swarm</groupId>
+      <groupId>io.thorntail</groupId>
       <artifactId>jaxrs</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.wildfly.swarm</groupId>
+      <groupId>io.thorntail</groupId>
       <artifactId>cdi</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.wildfly.swarm</groupId>
+      <groupId>io.thorntail</groupId>
       <artifactId>keycloak</artifactId>
     </dependency>
 
@@ -60,7 +60,7 @@
       </activation>
       <dependencies>
         <dependency>
-          <groupId>org.wildfly.swarm</groupId>
+          <groupId>io.thorntail</groupId>
           <artifactId>topology-jgroups</artifactId>
           <scope>provided</scope>
         </dependency>
@@ -87,7 +87,7 @@
       </build>
       <dependencies>
         <dependency>
-          <groupId>org.wildfly.swarm</groupId>
+          <groupId>io.thorntail</groupId>
           <artifactId>topology-openshift</artifactId>
         </dependency>
       </dependencies>

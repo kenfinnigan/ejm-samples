@@ -20,6 +20,5 @@
     <module>apache-httpclient</module>
     <module>jaxrs-client</module>
     <module>resteasy-client</module>
-    <!--<module>wildfly-swarm-client</module>-->
   </modules>
 </project>

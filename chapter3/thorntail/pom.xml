@@ -10,8 +10,8 @@
     <relativePath>../pom.xml</relativePath>
   </parent>
 
-  <artifactId>chapter3-wildfly-swarm</artifactId>
-  <name>Chapter 3: WildFly Swarm - Shopping Cart example</name>
+  <artifactId>chapter3-thorntail</artifactId>
+  <name>Chapter 3: Thorntail - Shopping Cart example</name>
   <packaging>war</packaging>
 
   <build>
@@ -24,8 +24,8 @@
         <version>3.2.0</version>
       </plugin>
       <plugin>
-        <groupId>org.wildfly.swarm</groupId>
-        <artifactId>wildfly-swarm-plugin</artifactId>
+        <groupId>io.thorntail</groupId>
+        <artifactId>thorntail-maven-plugin</artifactId>
         <configuration>
           <properties>
             <swarm.bind.address>127.0.0.1</swarm.bind.address>

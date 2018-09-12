@@ -12,7 +12,7 @@
   <packaging>pom</packaging>
 
   <properties>
-    <version.wildfly-swarm>2018.2.0</version.wildfly-swarm>
+    <version.thorntail>2.2.0.Final</version.thorntail>
     <version.spring-boot>1.5.10.RELEASE</version.spring-boot>
     <version.dropwizard>1.0.9</version.dropwizard>
 
@@ -42,11 +42,11 @@
 
   <dependencyManagement>
     <dependencies>
-      <!-- WildFly Swarm -->
+      <!-- Thorntail -->
       <dependency>
-        <groupId>org.wildfly.swarm</groupId>
+        <groupId>io.thorntail</groupId>
         <artifactId>bom-all</artifactId>
-        <version>${version.wildfly-swarm}</version>
+        <version>${version.thorntail}</version>
         <scope>import</scope>
         <type>pom</type>
       </dependency>
@@ -134,9 +134,9 @@
     <pluginManagement>
       <plugins>
         <plugin>
-          <groupId>org.wildfly.swarm</groupId>
-          <artifactId>wildfly-swarm-plugin</artifactId>
-          <version>${version.wildfly-swarm}</version>
+          <groupId>io.thorntail</groupId>
+          <artifactId>thorntail-maven-plugin</artifactId>
+          <version>${version.thorntail}</version>
           <executions>
             <execution>
               <id>package</id>

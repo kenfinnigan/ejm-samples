@@ -6,3 +6,4 @@ node_modules
 node
 audit.log
 wildfly-11.0.0.Final
+.java-version
