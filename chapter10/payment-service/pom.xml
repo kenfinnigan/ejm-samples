@@ -52,7 +52,7 @@
     <dependency>
       <groupId>org.keycloak</groupId>
       <artifactId>keycloak-authz-client</artifactId>
-      <version>3.4.0.Final</version>
+      <version>8.0.0</version>
     </dependency>
 
     <dependency>
