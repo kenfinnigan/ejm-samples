@@ -28,7 +28,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
-        <version>3.2.0</version>
+        <version>3.3.1</version>
       </plugin>
       <plugin>
         <groupId>io.thorntail</groupId>
@@ -45,7 +45,7 @@
     <dependency>
       <groupId>org.jboss.resteasy</groupId>
       <artifactId>resteasy-client</artifactId>
-      <version>3.0.24.Final</version>
+      <version>3.13.0.Final</version>
       <scope>provided</scope>
     </dependency>
 
@@ -115,7 +115,7 @@
           <plugin>
             <groupId>io.fabric8</groupId>
             <artifactId>fabric8-maven-plugin</artifactId>
-            <version>3.5.33</version>
+            <version>3.5.42</version>
             <executions>
               <execution>
                 <goals>

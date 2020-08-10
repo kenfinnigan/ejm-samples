@@ -15,7 +15,7 @@
   <packaging>war</packaging>
 
   <properties>
-    <version.hystrix>1.5.8</version.hystrix>
+    <version.hystrix>1.5.18</version.hystrix>
   </properties>
 
   <build>
@@ -25,7 +25,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
-        <version>3.2.0</version>
+        <version>3.3.1</version>
         <extensions>true</extensions>
         <configuration>
           <overlays>

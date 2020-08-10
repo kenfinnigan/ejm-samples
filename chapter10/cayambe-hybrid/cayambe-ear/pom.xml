@@ -21,7 +21,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-ear-plugin</artifactId>
-        <version>2.10.1</version>
+        <version>3.0.2</version>
         <configuration>
           <defaultLibBundleDir>lib/</defaultLibBundleDir>
           <skinnyWars>true</skinnyWars>
@@ -78,6 +78,11 @@
               <artifactId>commons-validator</artifactId>
               <uri>lib/commons-validator.jar</uri>
             </jarModule>
+            <jarModule>
+              <groupId>org.jboss.openjdk-orb</groupId>
+              <artifactId>openjdk-orb</artifactId>
+              <uri>lib/openjdk-orb.jar</uri>
+            </jarModule>
           </modules>
         </configuration>
       </plugin>
@@ -128,6 +133,10 @@
     <dependency>
       <groupId>commons-validator</groupId>
       <artifactId>commons-validator</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.openjdk-orb</groupId>
+      <artifactId>openjdk-orb</artifactId>
     </dependency>
   </dependencies>
 </project>

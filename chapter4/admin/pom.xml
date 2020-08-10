@@ -21,7 +21,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
-        <version>3.2.0</version>
+        <version>3.3.1</version>
       </plugin>
       <plugin>
         <groupId>io.thorntail</groupId>
@@ -130,7 +130,7 @@
           <plugin>
             <groupId>au.com.dius</groupId>
             <artifactId>pact-jvm-provider-maven_2.12</artifactId>
-            <version>3.5.8</version>
+            <version>3.6.15</version>
             <configuration>
               <serviceProviders>
                 <serviceProvider>

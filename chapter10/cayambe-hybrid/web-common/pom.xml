@@ -35,5 +35,10 @@
       <artifactId>log4j</artifactId>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>org.jboss.openjdk-orb</groupId>
+      <artifactId>openjdk-orb</artifactId>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
 </project>

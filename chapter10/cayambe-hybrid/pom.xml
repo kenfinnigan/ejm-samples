@@ -93,7 +93,12 @@
       <dependency>
         <groupId>javax</groupId>
         <artifactId>javaee-api</artifactId>
-        <version>7.0</version>
+        <version>8.0.1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.openjdk-orb</groupId>
+        <artifactId>openjdk-orb</artifactId>
+        <version>8.1.4.Final</version>
       </dependency>
       <dependency>
         <groupId>log4j</groupId>
