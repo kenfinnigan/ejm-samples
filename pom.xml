@@ -19,7 +19,7 @@
     <version.h2>1.4.200</version.h2>
     <version.mysql>8.0.21</version.mysql>
 
-    <version.junit>4.13</version.junit>
+    <version.junit>4.13.1</version.junit>
     <version.fest-assert>1.4</version.fest-assert>
     <version.arquillian>1.6.0.Final</version.arquillian>
     <version.arquillian.cube>1.18.2</version.arquillian.cube>
