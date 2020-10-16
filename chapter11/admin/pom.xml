@@ -21,7 +21,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
-        <version>3.2.0</version>
+        <version>3.3.1</version>
       </plugin>
       <plugin>
         <groupId>io.thorntail</groupId>
@@ -51,7 +51,7 @@
     <dependency>
       <groupId>org.aerogear.kafka</groupId>
       <artifactId>kafka-cdi-extension</artifactId>
-      <version>0.0.10</version>
+      <version>0.1.0</version>
     </dependency>
 
     <dependency>
@@ -68,7 +68,7 @@
           <plugin>
             <groupId>io.fabric8</groupId>
             <artifactId>fabric8-maven-plugin</artifactId>
-            <version>3.5.33</version>
+            <version>3.5.42</version>
             <executions>
               <execution>
                 <goals>
