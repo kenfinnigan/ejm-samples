@@ -16,7 +16,7 @@
     <version.spring-boot>1.5.22.RELEASE</version.spring-boot>
     <version.dropwizard>1.3.24</version.dropwizard>
 
-    <version.h2>1.4.200</version.h2>
+    <version.h2>2.1.210</version.h2>
     <version.mysql>8.0.21</version.mysql>
 
     <version.junit>4.13.1</version.junit>
