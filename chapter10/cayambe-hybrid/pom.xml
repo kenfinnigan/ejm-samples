@@ -15,7 +15,7 @@
   <packaging>pom</packaging>
 
   <properties>
-    <version.struts>1.1-beta-2</version.struts>
+    <version.struts>1.2.9</version.struts>
     <version.log4j>1.2.17</version.log4j>
   </properties>
 
