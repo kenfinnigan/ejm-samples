@@ -63,7 +63,7 @@
     <dependency>
       <groupId>org.jboss.resteasy</groupId>
       <artifactId>resteasy-client</artifactId>
-      <version>3.13.0.Final</version>
+      <version>3.14.0.Final</version>
       <scope>provided</scope>
     </dependency>
 
